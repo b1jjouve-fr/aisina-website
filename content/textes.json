@@ -1,0 +1,147 @@
+{
+  "metier": {
+    "delai_debut": 0.25,
+    "delai_pas": 0.22,
+    "format_delai": "%.2f",
+    "mots": [
+      {
+        "texte": "On",
+        "ton": "sombre"
+      },
+      {
+        "texte": "fabrique",
+        "ton": "clair"
+      },
+      {
+        "texte": "des",
+        "ton": "sombre"
+      },
+      {
+        "texte": "jeux",
+        "ton": "clair"
+      },
+      {
+        "texte": "vidéo",
+        "ton": "clair"
+      },
+      {
+        "texte": "immersifs,",
+        "ton": "sombre"
+      },
+      {
+        "texte": "forts",
+        "ton": "sombre"
+      },
+      {
+        "texte": "en",
+        "ton": "sombre"
+      },
+      {
+        "texte": "technologie",
+        "ton": "clair"
+      },
+      {
+        "texte": "et",
+        "ton": "sombre"
+      },
+      {
+        "texte": "en",
+        "ton": "sombre"
+      },
+      {
+        "texte": "narration.",
+        "ton": "clair"
+      }
+    ]
+  },
+  "equipe": {
+    "delai_debut": 0.2,
+    "delai_pas": 0.14,
+    "format_delai": "%.2f",
+    "mots": [
+      {
+        "texte": "Une",
+        "ton": "sombre"
+      },
+      {
+        "texte": "passion :",
+        "ton": "sombre"
+      },
+      {
+        "texte": "La",
+        "ton": "clair"
+      },
+      {
+        "texte": "table",
+        "ton": "clair"
+      },
+      {
+        "texte": "de",
+        "ton": "clair"
+      },
+      {
+        "texte": "jeu",
+        "ton": "clair"
+      }
+    ]
+  },
+  "contact": {
+    "delai_debut": 0.2,
+    "delai_pas": 0.2,
+    "format_delai": "%.2f",
+    "mots": [
+      {
+        "texte": "Poussez",
+        "ton": "clair"
+      },
+      {
+        "texte": "la",
+        "ton": "sombre"
+      },
+      {
+        "texte": "porte",
+        "ton": "sombre"
+      },
+      {
+        "texte": "de",
+        "ton": "sombre"
+      },
+      {
+        "texte": "l'atelier.",
+        "ton": "clair"
+      }
+    ]
+  },
+  "tb_histoire": {
+    "mots": [
+      {
+        "texte": "Une",
+        "ton": "sombre"
+      },
+      {
+        "texte": "histoire",
+        "ton": "clair"
+      },
+      {
+        "texte": "écrite pour vous, jouée par",
+        "ton": "sombre"
+      },
+      {
+        "texte": "votre équipe.",
+        "ton": "clair"
+      }
+    ]
+  },
+  "tb_exemples": {
+    "mots": [
+      {
+        "texte": "Exemples",
+        "ton": "sombre"
+      },
+      {
+        "texte": "de scénarios",
+        "ton": "clair"
+      }
+    ]
+  }
+}

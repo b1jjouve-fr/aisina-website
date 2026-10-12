@@ -1,0 +1,30 @@
+/* AISINA — base commune aux deux pages (liens, icônes, parallaxe, bandeau, formulaires) */
+a{color:#C9BFAE;text-decoration:none}a:hover{color:#F3EEE3}
+@keyframes cue{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+.cue{animation:cue 2.2s ease-in-out infinite}
+.nv{display:block;flex:none;animation:nvspin 20s linear infinite;animation-play-state:paused}
+a:hover .nv,a:focus-visible .nv{animation-play-state:running}
+@keyframes nvspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.nv{animation:none}}
+@keyframes pa{from{transform:translate(-50px,-26px) scale(1.14)}to{transform:translate(46px,24px) scale(1)}}
+@keyframes pb{from{transform:translate(60px,30px) scale(1.04)}to{transform:translate(-70px,-36px) scale(1.22)}}
+@keyframes pc{0%{transform:translate(0,0)}50%{transform:translate(900px,120px)}100%{transform:translate(260px,-60px)}}
+.pa{animation:pa 22s ease-in-out infinite alternate;will-change:transform}
+.pb{animation:pb 30s ease-in-out infinite alternate;will-change:transform}
+.pc{animation:pc 26s ease-in-out infinite alternate;will-change:transform}
+@keyframes focus{0%{filter:blur(64px)}40%{filter:blur(0px)}58%{filter:blur(0px)}100%{filter:blur(64px)}}
+.bl{animation:focus 30s ease-in-out infinite;will-change:filter}
+@media (prefers-reduced-motion: reduce){.pa,.pb,.pc,.bl{animation:none}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick{display:flex;width:max-content;white-space:nowrap;animation:ticker 60s linear infinite}
+.fl a{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8E8678;transition:color .3s ease}
+.fl a:hover,.fl a:focus-visible{color:#D08A44}
+.fl a{display:inline-flex;align-items:center;gap:8px}
+.fl .ea{display:block;flex:none;transform:rotate(-45deg);transition:transform .3s ease}
+.fl a:hover .ea,.fl a:focus-visible .ea{transform:translate(3px,-3px) rotate(-45deg)}
+@media (prefers-reduced-motion: reduce){.fl .ea{transition:none}}
+.fld::placeholder{color:rgba(201,191,174,0.6)}
+.ta::-webkit-resizer{background:linear-gradient(135deg,transparent 0 46%,rgba(201,191,174,.75) 46% 54%,transparent 54% 70%,rgba(201,191,174,.75) 70% 78%,transparent 78%)}
+.fld:focus{border-bottom-color:#D08A44 !important}
+@keyframes wordIn{from{opacity:0;transform:translateY(22px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}

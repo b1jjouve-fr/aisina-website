@@ -1,16 +1,46 @@
-AISINA, export local complet (Accueil + Team building), CSS et JS intégrés aux fichiers HTML
+AISINA, site local complet (Accueil + Team building)
 
 Ouvrir :
   Double-clic sur index.html (Chrome, Safari, Firefox).
   La page Team building s'ouvre depuis le lien de l'accueil, ou directement via team-building.html.
 
-Contenu :
+Organisation des fichiers :
   index.html           Accueil (page complète, défilement écran par écran)
   team-building.html   Page Team building entreprise
-  assets/              Toutes les images (fonds, aquarelles, personnages)
+  css/site.css         Styles communs aux deux pages
+  css/accueil.css      Styles propres à l'accueil
+  css/team-building.css Styles propres à la page Team building
+  js/site.js           Logique des deux pages : défilement, zoom, calcul des tailles, formulaires
+  content/equipe.json  Les cinq fiches de l'équipe
+  content/scenarios.json  Les étapes et les scénarios de la page Team building
+  content/textes.json  Les grands titres (mots et couleurs)
+  assets/equipe/       Photos des membres : prenom-portrait.webp et prenom-fond.webp
+  assets/              Toutes les autres images (fonds, aquarelles, personnages)
   fonts/               Polices embarquées (Fraunces, Space Mono, Instrument Sans, Pinyon Script)
-  support.js           Moteur d'affichage des pages (ne pas supprimer)
+  outils/generer.py    Reconstruit les fiches à partir de content/
+  support.js           Moteur d'affichage des pages (ne pas modifier, ne pas supprimer)
   Manifeste.dc.html    Bloc "Manifeste" du Hero (déjà intégré dans index.html, gardé par précaution)
+
+Modifier le contenu (équipe, scénarios, titres) :
+  1. Modifier le fichier voulu dans content/.
+  2. Lancer dans ce dossier :
+       python3 outils/generer.py
+     Les fiches des pages sont réécrites à partir du JSON.
+  Pour seulement vérifier si les pages sont à jour, sans rien réécrire :
+       python3 outils/generer.py --verifier
+
+  Dans index.html et team-building.html, les parties fabriquées ainsi sont encadrées par
+  des repères du type <!-- contenu:equipe-fiches --> ... <!-- /contenu:equipe-fiches -->.
+  Modifier directement entre ces repères n'a pas de sens : la prochaine génération l'effacerait.
+  Tout le reste des pages se modifie normalement, à la main.
+
+  Ajouter ou retirer un membre d'équipe se fait entièrement dans content/equipe.json
+  (la liste des fiches utilisée par js/site.js est régénérée avec le reste).
+  Pour les photos, déposer prenom-portrait.webp et prenom-fond.webp dans assets/equipe/
+  et indiquer "photo": "prenom" dans le JSON.
+  Seul point à ne pas oublier au-delà de cinq membres : sur écran très étroit et très haut,
+  la position des photos vient de css/accueil.css, lignes ".flat .ph:nth-child(1)" à
+  ".flat .ph:nth-child(5)". Ajouter une ligne de plus par membre supplémentaire.
 
 Aucune connexion Internet n'est nécessaire, sauf pour les liens LinkedIn et Instagram du pied de page.
 Garder les fichiers dans ce même dossier : les chemins sont relatifs.

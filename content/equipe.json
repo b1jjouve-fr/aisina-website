@@ -1,0 +1,150 @@
+{
+  "titre_jeux_preferes": "Jeux préférés",
+  "membres": [
+    {
+      "prenom": "Jeremy",
+      "nom": "Gutierrez",
+      "photo": "jeremy",
+      "role": "Cofondateur, vision et production",
+      "paragraphes": [
+        "Jeremy porte la vision de Masca et en tient le cap, de la première idée jusqu'à la sortie. C'est lui qui fixe l'ambition du studio, choisit les batailles à mener et s'assure que chaque décision reste fidèle à l'histoire que nous voulons raconter.",
+        "Côté production, il organise le travail de l'équipe, anticipe les risques et garde un calendrier réaliste, pour laisser à chacun le temps de bien faire. Il est aussi le premier interlocuteur des partenaires et des financeurs qui accompagnent le projet."
+      ],
+      "jeux_preferes": [
+        {
+          "titre": "Baldur's Gate 3",
+          "genre": "RPG"
+        },
+        {
+          "titre": "Hades",
+          "genre": "Action"
+        },
+        {
+          "titre": "Vampire : la Mascarade",
+          "genre": "JDR"
+        },
+        {
+          "titre": "Crusader Kings III",
+          "genre": "Stratégie"
+        }
+      ],
+      "disponible_en_mission": false
+    },
+    {
+      "prenom": "Auriane",
+      "nom": "Dauguen",
+      "photo": "auriane",
+      "role": "Cofondatrice, lead technique",
+      "paragraphes": [
+        "Auriane conçoit l'architecture technique qui donne vie à l'aquarelle dans le moteur : plans de profondeur, parallaxe 2.5D, éclairage dynamique qui joue le clair-obscur. Elle transforme des peintures en scènes vivantes, sans jamais trahir la main de l'artiste.",
+        "Elle bâtit aussi la chaîne de fabrication du studio, pour que décors, personnages et dialogues passent du papier au jeu sans friction. Son objectif est simple : que la technique disparaisse au service du récit."
+      ],
+      "jeux_preferes": [
+        {
+          "titre": "Outer Wilds",
+          "genre": "Exploration"
+        },
+        {
+          "titre": "Hollow Knight",
+          "genre": "Metroidvania"
+        },
+        {
+          "titre": "Return of the Obra Dinn",
+          "genre": "Enquête"
+        },
+        {
+          "titre": "Dishonored",
+          "genre": "Infiltration"
+        }
+      ],
+      "disponible_en_mission": true
+    },
+    {
+      "prenom": "Chloé",
+      "nom": "Harrand",
+      "photo": "chloe",
+      "role": "Direction artistique et concept art",
+      "paragraphes": [
+        "Chloé peint les décors et les personnages à la main avant qu'ils n'entrent dans le jeu. Sa direction artistique donne à Masca son clair-obscur et sa matière, quelque part entre l'aquarelle, la gravure et les enluminures de la France de 1559.",
+        "Elle dessine les concepts, définit la palette et veille à la cohérence visuelle de chaque scène, du premier croquis à l'image finale. Elle travaille main dans la main avec l'équipe technique pour que la peinture survive au passage dans le moteur."
+      ],
+      "jeux_preferes": [
+        {
+          "titre": "Gris",
+          "genre": "Aventure"
+        },
+        {
+          "titre": "Ōkami",
+          "genre": "Action"
+        },
+        {
+          "titre": "Darkest Dungeon",
+          "genre": "RPG"
+        },
+        {
+          "titre": "Child of Light",
+          "genre": "RPG"
+        }
+      ],
+      "disponible_en_mission": true
+    },
+    {
+      "prenom": "Sven",
+      "nom": "Holtz",
+      "photo": "sven",
+      "role": "Gestion de projet, narration et game design",
+      "paragraphes": [
+        "Sven structure le projet, écrit les intrigues et dessine les règles du jeu. Meneur de jeu de longue date, il pense chaque scène comme une séance à la table, avec ses choix, ses silences et leurs conséquences.",
+        "Il coordonne le travail de l'équipe, de la rédaction des dialogues à l'équilibrage des combats, et fait le lien entre l'écriture, le game design et la production. Il tient le fil rouge pour que Masca reste cohérent d'un bout à l'autre."
+      ],
+      "jeux_preferes": [
+        {
+          "titre": "Disco Elysium",
+          "genre": "RPG"
+        },
+        {
+          "titre": "Pentiment",
+          "genre": "Narratif"
+        },
+        {
+          "titre": "Divinity : Original Sin 2",
+          "genre": "RPG"
+        },
+        {
+          "titre": "L'Appel de Cthulhu",
+          "genre": "JDR"
+        }
+      ],
+      "disponible_en_mission": true
+    },
+    {
+      "prenom": "Guillaume",
+      "nom": "Faure",
+      "photo": "guillaume",
+      "role": "Partenariats",
+      "paragraphes": [
+        "Guillaume tisse les liens avec les studios, les éditeurs, les financeurs et les institutions qui peuvent accompagner Aisina. Il présente le projet, écoute les attentes de chacun et construit des partenariats durables plutôt que des contrats ponctuels.",
+        "Il ouvre les bonnes portes pour que Masca trouve ses partenaires, puis son public. Il veille aussi à ce que chaque collaboration serve la vision du studio et respecte la manière dont l'équipe aime travailler."
+      ],
+      "jeux_preferes": [
+        {
+          "titre": "Slay the Spire",
+          "genre": "Deckbuilding"
+        },
+        {
+          "titre": "Civilization VI",
+          "genre": "Stratégie"
+        },
+        {
+          "titre": "Stardew Valley",
+          "genre": "Gestion"
+        },
+        {
+          "titre": "Mario Kart 8",
+          "genre": "Course"
+        }
+      ],
+      "disponible_en_mission": false
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "etapes": [
+    {
+      "numero": "01",
+      "titre": "On écrit votre intrigue",
+      "texte": "Nous partons de votre demande : l'équipe, l'ambiance, le temps disponible. Scénario, décor et personnages sont écrits sur mesure."
+    },
+    {
+      "numero": "02",
+      "titre": "Chacun reçoit un rôle",
+      "texte": "Un personnage, un objectif commun, un secret. Personne n'a toutes les cartes, tout le monde doit se parler."
+    },
+    {
+      "numero": "03",
+      "titre": "L'équipe coopère",
+      "texte": "Indices à échanger, alliances à nouer, versions des faits à recouper. Des énigmes façon escape game peuvent s'y glisser, en option."
+    }
+  ],
+  "scenarios": [
+    {
+      "etiquette": "Enquête, huis clos",
+      "titre": "Le dernier conseil",
+      "description": "Le fondateur est retrouvé sans vie la veille de l'assemblée annuelle. Dix suspects, un coffre vide et une nuit pour désigner le coupable.",
+      "mots_cles": [
+        "Enquête",
+        "Coopération"
+      ],
+      "fond": {
+        "fichier": "0be808e0c0d006a0efdaed3ce55a6826.webp",
+        "cadrage": "50% 40%"
+      },
+      "personnages": [
+        {
+          "fichier": "ecd629c42c16dcc85dea92104f5ce528.webp",
+          "gauche": "30.8",
+          "hauteur": "184.5",
+          "plan": "1"
+        },
+        {
+          "fichier": "27442ff96bbe488e2fb0f5d19ab5289f.webp",
+          "gauche": "210.2",
+          "hauteur": "199.8",
+          "plan": "2"
+        }
+      ]
+    },
+    {
+      "etiquette": "Mission, énigmes",
+      "titre": "Enigma 08",
+      "description": "Trois équipes, un coffre à ouvrir avant l'aube. Chacun détient un indice, aucun ne peut réussir seul.",
+      "mots_cles": [
+        "Énigmes en option",
+        "Coopération"
+      ],
+      "fond": {
+        "fichier": "f064f18954357048605dbab221674b07.webp",
+        "cadrage": "50% 30%"
+      },
+      "personnages": [
+        {
+          "fichier": "fe56834be15bac19cf8d456dc17bbe4b.webp",
+          "gauche": "1.4",
+          "hauteur": "184.5",
+          "plan": "1"
+        },
+        {
+          "fichier": "9fae5f382070875dbc9af02f243fe91d.webp",
+          "gauche": "219.4",
+          "hauteur": "184.5",
+          "plan": "2"
+        },
+        {
+          "fichier": "0aff1d96c1a1cba23748fb4d6e06e11e.webp",
+          "gauche": "107.9",
+          "hauteur": "199.8",
+          "plan": "3"
+        }
+      ]
+    },
+    {
+      "etiquette": "Dark fantasy",
+      "titre": "Sentence à l'aube",
+      "description": "France, 1559. Le village accuse l'un des siens. Juges, témoins et accusés doivent s'accorder avant le lever du jour.",
+      "mots_cles": [
+        "Procès",
+        "Négociation"
+      ],
+      "fond": {
+        "fichier": "9db14b673327e1e78317a70674a71fef.webp",
+        "cadrage": "50% 60%"
+      },
+      "personnages": [
+        {
+          "fichier": "8bd63cf60270622161cb1b1ce891c651.webp",
+          "gauche": "73.8",
+          "hauteur": "190.8",
+          "plan": "2"
+        },
+        {
+          "fichier": "2dc5f559e539831918e13eae7a15e348.webp",
+          "gauche": "217.6",
+          "hauteur": "198.0",
+          "plan": "3"
+        }
+      ]
+    }
+  ]
+}

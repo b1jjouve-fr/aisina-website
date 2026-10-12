@@ -10,6 +10,7 @@ Organisation des fichiers :
   css/site.css         Styles communs aux deux pages
   css/accueil.css      Styles propres à l'accueil
   css/team-building.css Styles propres à la page Team building
+  css/mobile.css       Mise en page de l'accueil sur téléphone (sous 760 px de large)
   js/site.js           Logique des deux pages : défilement, zoom, calcul des tailles, formulaires
   content/equipe.json  Les cinq fiches de l'équipe
   content/scenarios.json  Les étapes et les scénarios de la page Team building
@@ -41,6 +42,20 @@ Modifier le contenu (équipe, scénarios, titres) :
   Seul point à ne pas oublier au-delà de cinq membres : sur écran très étroit et très haut,
   la position des photos vient de css/accueil.css, lignes ".flat .ph:nth-child(1)" à
   ".flat .ph:nth-child(5)". Ajouter une ligne de plus par membre supplémentaire.
+  (L'ordre photo/fiche sur téléphone, lui, est régénéré tout seul dans css/mobile.css.)
+
+Affichage sur téléphone :
+  L'accueil est dessiné comme une suite d'écrans fixes de 1440 x 900, réduits par un zoom.
+  Sous 760 px de large, js/site.js bascule en mode « mobile » : le zoom est abandonné,
+  le texte retrouve sa taille de lecture et css/mobile.css remet les blocs les uns sous
+  les autres, comme sur la page Team building. Dans ce mode :
+    - le défilement écran par écran et le manifeste en surimpression sont désactivés ;
+    - les deux volets de la section Jeux s'affichent l'un sous l'autre ;
+    - les scènes peintes restent à l'échelle, via la variable --cz ;
+    - chaque photo d'équipe se place au-dessus de la fiche du membre.
+  Au-dessus de 760 px, rien ne change : l'affichage sur ordinateur est celui d'origine.
+  Le seuil est défini à deux endroits, qui doivent rester d'accord : MOBILE_MAX dans
+  js/site.js et la requête @media de css/mobile.css.
 
 Aucune connexion Internet n'est nécessaire, sauf pour les liens LinkedIn et Instagram du pied de page.
 Garder les fichiers dans ce même dossier : les chemins sont relatifs.

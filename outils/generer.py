@@ -92,6 +92,16 @@ def equipe_fiches(eq):
     return lignes
 
 
+def equipe_ordre_mobile(eq):
+    """Entrelace photos et fiches sur telephone : photo 1, fiche 1, photo 2..."""
+    lignes = []
+    for i in range(len(eq['membres'])):
+        lignes.append('  .mobile .ph:nth-child(%d) { order: %d; }' % (i + 1, 2 * i + 1))
+        lignes.append('  .mobile .mbr:nth-child(%d) { order: %d; }' % (i + 2, 2 * i + 2))
+    lignes.append('  .mobile .mis { order: %d; }' % (2 * len(eq['membres']) + 1))
+    return lignes
+
+
 def equipe_identifiants(eq):
     ids = ', '.join("'m%d'" % i for i in range(len(eq['membres'])))
     return ['  const MEMBRES = [%s];' % ids]
@@ -159,6 +169,7 @@ PLAN = [
     ('index.html',         'titre-equipe',        'textes.json',    fabrique_titre('equipe')),
     ('index.html',         'titre-contact',       'textes.json',    fabrique_titre('contact')),
     ('js/site.js',         'equipe-identifiants', 'equipe.json',    equipe_identifiants),
+    ('css/mobile.css',     'equipe-ordre',        'equipe.json',    equipe_ordre_mobile),
     ('team-building.html', 'etapes',              'scenarios.json', scenarios_etapes),
     ('team-building.html', 'cartes',              'scenarios.json', scenarios_cartes),
     ('team-building.html', 'titre-histoire',      'textes.json',    fabrique_titre('tb_histoire')),
@@ -168,6 +179,8 @@ PLAN = [
 
 def reperes(fichier, nom):
     if fichier.endswith('.js'):
+        return '  /* contenu:%s */' % nom, '  /* /contenu:%s */' % nom
+    if fichier.endswith('.css'):
         return '  /* contenu:%s */' % nom, '  /* /contenu:%s */' % nom
     return '<!-- contenu:%s -->' % nom, '<!-- /contenu:%s -->' % nom
 

@@ -1,0 +1,252 @@
+/* AISINA — mise en page téléphone de la page d'accueil.
+
+   L'accueil est dessiné comme une suite de toiles fixes de 1440 × 900, réduites
+   en bloc par un zoom. Sous 760 px ce modèle ne tient plus : le texte deviendrait
+   illisible. js/site.js bascule alors en mode « mobile » (classe .mobile sur la
+   racine, variable --cz pour l'échelle des scènes peintes) et cette feuille
+   remet les blocs dans le flux normal, comme sur la page Team building.
+
+   Rien ici ne s'applique au-dessus de 760 px : l'affichage sur ordinateur est
+   strictement inchangé. Le seuil doit rester le même que MOBILE_MAX dans
+   js/site.js. L'en-tête n'est pas retouché : il garde son aspect actuel. */
+
+@media (max-width: 760px) {
+
+  /* ---------------------------------------------------- réglages généraux */
+  html { scroll-snap-type: none !important; scroll-behavior: smooth; }
+  .mobile .snap { scroll-snap-align: none !important; }
+  .mobile { overflow-x: clip; }
+
+  /* le défilement écran par écran n'existe plus : les sections reprennent
+     la hauteur de leur contenu */
+  .mobile #metier,
+  .mobile #jeux,
+  .mobile #contact { height: auto !important; }
+  .mobile #jeux { height: auto !important; }
+
+  /* Les toiles de 1440 px redeviennent de simples blocs. On garde
+     position: relative (et non static) : les calques de fond de chaque section
+     sont en position absolute, et un bloc non positionne passerait dessous. */
+  .mobile .mm-toile:not(.mm-scene) {
+    position: relative !important;
+    left: auto !important; top: auto !important;
+    width: auto !important; height: auto !important;
+  }
+
+  /* ------------------------------------------------------------- bandeau */
+  /* le voile du haut n'a plus lieu d'être sans défilement écran par écran */
+  .mobile .hveil { display: none !important; }
+
+  /* ---------------------------------------------------------------- hero */
+  .mobile .fg {
+    left: 0 !important;
+    width: 100% !important;
+    transform-origin: 50% 50% !important;
+  }
+  /* mentions verticales des deux côtés, cadre dessiné et manifeste :
+     dessinés pour une toile de 1440 × 900, ils n'ont pas de sens ici */
+  .mobile .mm-cote,
+  .mobile .frame,
+  .mobile .mf,
+  .mobile .cartel { display: none !important; }
+
+  .mobile .mm-logo {
+    left: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    padding-bottom: 96px;
+    box-sizing: border-box;
+  }
+  .mobile .mm-logo svg { width: min(52vw, 210px); height: auto; }
+
+  .mobile .mm-cartouche {
+    left: 20px !important; right: 20px !important;
+    width: auto !important;
+    bottom: 104px !important;
+  }
+  .mobile .mm-descendre {
+    left: 50% !important;
+    transform: translateX(-50%);
+    bottom: 28px !important;
+  }
+
+  /* ------------------------------------------------------------- métier */
+  .mobile #metier { padding: 104px 20px 96px !important; box-sizing: border-box; }
+  .mobile #metier h2 {
+    position: relative !important;
+    left: auto !important; top: auto !important;
+    width: auto !important;
+    font-size: 34px !important;
+    line-height: 1.14 !important;
+  }
+  .mobile #metier .gfi {
+    position: relative !important;
+    left: auto !important; top: auto !important;
+    width: auto !important;
+    display: block !important;
+    margin-top: 30px !important;
+  }
+  .mobile #metier .gfi p { font-size: 17px !important; }
+  .mobile #metier .gfi > div {
+    justify-content: flex-start !important;
+    height: auto !important;
+    padding-top: 22px !important;
+  }
+
+  /* --------------------------------------------------------------- jeux */
+  /* la scène peinte ne peut pas se réagencer : on la met à l'échelle */
+  .mobile #jstage { position: static !important; height: auto !important; }
+  /* la scène garde ses 1440 x 900 mais se réduit par zoom ; la réserve en haut
+     laisse la peinture occuper sa hauteur, le texte vient se poser en dessous */
+  .mobile .mm-scene {
+    position: relative !important;
+    left: 0 !important; top: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+    zoom: var(--cz, 1);
+  }
+  /* la couche de texte de la scene reprend sa place dans le flux, sous la
+     peinture : la reserve de 900 px laisse celle-ci occuper sa hauteur */
+  .mobile .mm-scene-texte {
+    position: relative !important;
+    width: auto !important; height: auto !important;
+    padding-top: 900px;
+  }
+  /* le second volet, masqué sur ordinateur car il s'affiche au défilement,
+     devient ici une section à part entière */
+  .mobile .jstB {
+    display: block !important;
+    position: relative !important;
+    left: 0 !important; top: 0 !important;
+    width: 100% !important; height: auto !important;
+    margin-top: 48px;
+  }
+  /* pastilles, boutons de volet et lien « faire défiler » : il n'y a plus de
+     diaporama, les deux volets sont affichés l'un sous l'autre */
+  .mobile .mm-points,
+  .mobile .mm-scene-texte button,
+  .mobile a.jr { display: none !important; }
+
+  /* le texte est un enfant de la scène : on annule l'échelle de celle-ci
+     pour qu'il retrouve sa taille de lecture normale */
+  .mobile #jeux .jr {
+    position: relative !important;
+    left: auto !important; right: auto !important; bottom: auto !important;
+    zoom: calc(1 / var(--cz, 1));
+    width: 100vw !important;
+    box-sizing: border-box;
+    padding: 26px 20px 0 !important;
+  }
+  .mobile #jeux .jr h2 { font-size: 32px !important; line-height: 1.12 !important; }
+  .mobile #jeux .jr p { font-size: 16px !important; }
+
+  /* -------------------------------------------------------------- équipe */
+  .mobile #eq-title {
+    width: auto !important; height: auto !important;
+    padding: 104px 20px 64px !important;
+  }
+  .mobile #eq-title h2 {
+    white-space: normal !important;
+    font-size: 34px !important;
+    line-height: 1.14 !important;
+  }
+  .mobile #eq-title p {
+    margin: 28px 0 0 !important;
+    width: auto !important;
+    font-size: 17px !important;
+  }
+
+  .mobile .mm-equipe {
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .mobile .mm-fiches {
+    width: auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column;
+  }
+  /* la pile de photos cesse d'être un calque collant : ses cinq photos
+     deviennent frères des fiches, et l'ordre les intercale */
+  .mobile .stk {
+    display: contents !important;
+  }
+  /* contenu:equipe-ordre */
+  .mobile .ph:nth-child(1) { order: 1; }
+  .mobile .mbr:nth-child(2) { order: 2; }
+  .mobile .ph:nth-child(2) { order: 3; }
+  .mobile .mbr:nth-child(3) { order: 4; }
+  .mobile .ph:nth-child(3) { order: 5; }
+  .mobile .mbr:nth-child(4) { order: 6; }
+  .mobile .ph:nth-child(4) { order: 7; }
+  .mobile .mbr:nth-child(5) { order: 8; }
+  .mobile .ph:nth-child(5) { order: 9; }
+  .mobile .mbr:nth-child(6) { order: 10; }
+  .mobile .mis { order: 11; }
+  /* /contenu:equipe-ordre */
+
+  .mobile .ph {
+    position: relative !important;
+    left: auto !important; top: auto !important; bottom: auto !important;
+    width: min(70vw, 290px) !important;
+    height: auto !important;
+    aspect-ratio: 351 / 441;
+    margin: 56px auto -24px !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .mobile .ph .pp {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .mobile .mbr {
+    height: auto !important;
+    display: block !important;
+    padding: 0 20px 24px !important;
+  }
+  .mobile .mbr .rvt { margin-left: 0 !important; width: auto !important; }
+  .mobile .mbr h3 { font-size: 34px !important; line-height: 1.06 !important; margin-top: 18px !important; }
+  .mobile .mbr p { font-size: 17px !important; margin-top: 22px !important; }
+  .mobile .mbr .gm span:first-child { font-size: 21px !important; }
+
+  /* ------------------------------------------------------------ missions */
+  .mobile .mis { height: auto !important; padding: 72px 20px !important; }
+  .mobile .mis .rvt {
+    display: block !important;
+    padding: 36px 24px !important;
+  }
+  .mobile .mis .rvt > div { width: auto !important; }
+  .mobile .mis .rvt > div + div { margin-top: 28px; }
+  .mobile .mis h2,
+  .mobile .mis .rvt > div > div:nth-child(2) { font-size: 28px !important; line-height: 1.14 !important; }
+
+  /* ------------------------------------------------------------- contact */
+  .mobile #contact { padding: 104px 20px 48px !important; box-sizing: border-box; }
+  .mobile .mm-contact,
+  .mobile .mm-contact-texte,
+  .mobile .mm-form,
+  .mobile .mm-pied {
+    position: relative !important;
+    left: auto !important; right: auto !important;
+    top: auto !important; bottom: auto !important;
+    width: auto !important; height: auto !important;
+    min-height: 0 !important;
+  }
+  .mobile .mm-contact-texte h2 { width: auto !important; font-size: 34px !important; line-height: 1.14 !important; }
+  .mobile .mm-contact-texte p { width: auto !important; font-size: 17px !important; }
+  .mobile .mm-form { margin-top: 36px !important; padding: 28px 22px 30px !important; }
+  /* pied de page : logo, liens de section et liens sociaux s'empilent */
+  .mobile .mm-pied { margin-top: 48px !important; }
+  .mobile .mm-pied > div {
+    display: block !important;
+  }
+  .mobile .mm-pied .fl {
+    flex-wrap: wrap !important;
+    gap: 14px 22px !important;
+    margin-top: 22px;
+  }
+  .mobile .mm-pied svg[aria-label="Aisina"] { width: 112px; height: auto; }
+}

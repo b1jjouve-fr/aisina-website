@@ -7,6 +7,9 @@ window.AISINA = window.AISINA || {};
    Accueil (index.html) - defilement ecran par ecran, zoom, parallaxe
    --------------------------------------------------------------- */
 window.AISINA.accueil = function (DCLogic) {
+  /* Largeur en dessous de laquelle la page passe en mise en page mobile
+     (doit rester en accord avec la requete media de css/mobile.css). */
+  const MOBILE_MAX = 760;
   /* Identifiants des fiches equipe, dans l'ordre d'affichage.
      Genere depuis content/equipe.json : voir outils/generer.py. */
   /* contenu:equipe-identifiants */
@@ -15,7 +18,7 @@ window.AISINA.accueil = function (DCLogic) {
   return class Component extends DCLogic {
     constructor(...args) {
     super(...args);
-    this.state = { fade: false, flat: false, still: false, z: 1, vhd: 900, vwd: 1440, sS: 1, open: false, leaving: false, nav: 'studio', p: 0, slide: 0, ar: 0, active: -2, who: 0, sent: false,
+    this.state = { fade: false, flat: false, mobile: false, still: false, z: 1, vhd: 900, vwd: 1440, sS: 1, open: false, leaving: false, nav: 'studio', p: 0, slide: 0, ar: 0, active: -2, who: 0, sent: false,
       seenM: false, seenJ: false, seenE: false, seenC: false, offH: false, offM: true, offE: true, offC: true };
     this.auto = 0;
     this.inJ = false;
@@ -24,7 +27,7 @@ window.AISINA.accueil = function (DCLogic) {
     this.SC = ['hero', 'metier', 'jeux', 'jeux-b', 'eq-title', ...MEMBRES, 'missions', 'contact'];
     this.lock = 0; this.lastW = 0; this.lastAbs = 0; this.lastSy = 0; this.down = true;
     this.onWheel = (ev) => {
-    if (this.state.flat) return;
+    if (this.state.flat || this.state.mobile) return;
     if (ev.ctrlKey || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
     const tg = ev.target;
     if (tg && tg.closest && tg.closest('textarea')) return;
@@ -38,7 +41,7 @@ window.AISINA.accueil = function (DCLogic) {
     this.step(ev.deltaY > 0 ? 1 : -1);
     };
     this.onKey = (ev) => {
-    if (this.state.flat) return;
+    if (this.state.flat || this.state.mobile) return;
     if (ev.key === 'Escape' && this.state.open) { this.setState({ open: false }); return; }
     const tg = ev.target;
     if (tg && tg.closest && tg.closest('input,textarea,select,button,a')) return;
@@ -80,14 +83,21 @@ window.AISINA.accueil = function (DCLogic) {
     const d = document;
     const iw = window.innerWidth || 1440, ih = window.innerHeight || 900;
     const flat = ih / iw > 3;
-    const z = flat ? Math.min(1, iw / 1440) : Math.min(1, iw / 1200);
-    const vh = flat ? 900 : Math.round(ih / z);
+    // Sous MOBILE_MAX, la page quitte le modele "toile fixe mise a l'echelle" :
+    // le texte reprend sa taille reelle (z = 1) et seules les scenes peintes
+    // restent mises a l'echelle, via --cz. Voir css/mobile.css.
+    const mob = !flat && iw <= MOBILE_MAX;
+    const z = mob ? 1 : flat ? Math.min(1, iw / 1440) : Math.min(1, iw / 1200);
+    const vh = mob ? ih : flat ? 900 : Math.round(ih / z);
     const rs = document.documentElement.style;
     if (rs.getPropertyValue('--H') !== vh + 'px') rs.setProperty('--H', vh + 'px');
     const vw = Math.round(iw / z);
     const sSv = Math.round(Math.max(1, vh / 900, vw / 1440) * 1000) / 1000;
     if (rs.getPropertyValue('--sS') !== String(sSv)) rs.setProperty('--sS', String(sSv));
-    const he = flat ? z : Math.min(1, z / 0.7);
+    const czv = Math.round((mob ? iw / 1440 : 1) * 10000) / 10000;
+    if (rs.getPropertyValue('--cz') !== String(czv)) rs.setProperty('--cz', String(czv));
+    // L'en-tete garde l'aspect qu'il a aujourd'hui : une barre de 1440 px mise a l'echelle.
+    const he = mob ? iw / 1440 : flat ? z : Math.min(1, z / 0.7);
     const hiz = Math.round(he / z * 10000) / 10000, hhw = Math.round(iw / he);
     if (rs.getPropertyValue('--iz') !== String(hiz)) rs.setProperty('--iz', String(hiz));
     if (rs.getPropertyValue('--hw') !== hhw + 'px') rs.setProperty('--hw', hhw + 'px');
@@ -96,6 +106,16 @@ window.AISINA.accueil = function (DCLogic) {
     const h = R('hero'), m = R('metier'), j = R('jeux'), e = R('equipe'), c = R('contact');
     if (!h || !m || !j || !e || !c) return;
     if (!(h.height > 0) || !(iw > 0) || !(ih > 0)) return;
+    if (mob) {
+    const mo = { mobile: true, flat: false, still: false, z: 1, vhd: vh, vwd: vw, sS: 1, nav: 'studio',
+      leaving: false, p: 0, slide: 0, active: -2, open: false,
+      seenM: true, seenJ: true, seenE: true, seenC: true, offH: false, offM: false, offE: false, offC: false };
+    let chm = false;
+    for (const k in mo) { if (mo[k] !== this.state[k]) { chm = true; break; } }
+    if (chm) this.setState(mo);
+    return;
+    }
+    if (this.state.mobile) this.setState({ mobile: false });
     if (flat) {
     if (!this.stillT) this.stillT = setTimeout(() => this.setState({ still: true }), 5500);
     const fl = { flat: true, z: Math.round(z * 10000) / 10000, vhd: 900, vwd: vw, sS: 1, nav: 'studio', leaving: false, p: 0, slide: 0, active: 0, open: false,
@@ -222,7 +242,7 @@ window.AISINA.accueil = function (DCLogic) {
     rootStyle: S.z < 1 ? 'zoom: ' + S.z + ';' : '',
     jScale: 'transform: scale(' + S.sS + ');',
     frameD: 'M28.5 28.5 H' + (S.vwd - 28.5) + ' V' + (S.vhd - 28.5) + ' H84.5 A56 56 0 0 1 28.5 ' + (S.vhd - 84.5) + ' Z',
-    rootClass: (S.open ? 'is-open' : '') + (L ? ' is-leaving' : '') + (S.flat ? ' flat' : '') + (S.flat && S.still ? ' still' : ''),
+    rootClass: (S.open ? 'is-open' : '') + (L ? ' is-leaving' : '') + (S.mobile ? ' mobile' : '') + (S.flat ? ' flat' : '') + (S.flat && S.still ? ' still' : ''),
     c1: L && nv === 'studio' ? 'cur' : '',
     c2: L && nv === 'jeux' ? 'cur' : '',
     c3: L && nv === 'equipe' ? 'cur' : '',

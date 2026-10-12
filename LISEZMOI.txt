@@ -1,0 +1,19 @@
+AISINA, export local complet (Accueil + Team building), CSS et JS intégrés aux fichiers HTML
+
+Ouvrir :
+  Double-clic sur index.html (Chrome, Safari, Firefox).
+  La page Team building s'ouvre depuis le lien de l'accueil, ou directement via team-building.html.
+
+Contenu :
+  index.html           Accueil (page complète, défilement écran par écran)
+  team-building.html   Page Team building entreprise
+  assets/              Toutes les images (fonds, aquarelles, personnages)
+  fonts/               Polices embarquées (Fraunces, Space Mono, Instrument Sans, Pinyon Script)
+  support.js           Moteur d'affichage des pages (ne pas supprimer)
+  Manifeste.dc.html    Bloc "Manifeste" du Hero (déjà intégré dans index.html, gardé par précaution)
+
+Aucune connexion Internet n'est nécessaire, sauf pour les liens LinkedIn et Instagram du pied de page.
+Garder les fichiers dans ce même dossier : les chemins sont relatifs.
+Si un navigateur bloque l'ouverture en double-clic, lancer dans le dossier :
+  python3 -m http.server 8000
+puis ouvrir http://localhost:8000

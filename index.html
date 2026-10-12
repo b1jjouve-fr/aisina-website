@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Accueil, page complète</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<script>window.__resources={};window.__resourceBlobs={"./Manifeste.dc.html":new Blob(["<!doctype html>\n<html lang=\"fr\">\n<head>\n<meta charset=\"utf-8\">\n<title>Manifeste<\/title>\n<script src=\"./support.js\"><\/script>\n<\/head>\n<body>\n<x-dc>\n<helmet>\n<style>\nbody{margin:0}\n<\/style>\n<\/helmet>\n<div style=\"position: relative; width: 1440px; height: 900px; overflow: hidden; color: #C9BFAE; font-family: 'Instrument Sans', sans-serif; background: {{ rootBg }}\">\n<div style=\"position: absolute; left: 160px; top: 140px; width: 1120px; display: flex; flex-direction: column\">\n<div style=\"display: flex; align-items: center; gap: 20px\"><span style=\"font-family: &quot;Space Mono&quot;, monospace; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; color: rgb(201, 191, 174)\">MANIFESTE<\/span><span style=\"display: none; flex-grow: 1; height: 1px; background: rgba(201, 191, 174, 0.3)\"><\/span><\/div>\n<h2 style=\"margin: 34px 0 0; max-width: 1000px; font-family: 'Fraunces', serif; font-weight: 300; font-size: 72px; line-height: 1.06; color: #F3EEE3\">Une fabrique anim\u00e9e par des bricoleurs qualifi\u00e9s.<\/h2>\n<div style=\"display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 80px; margin-top: 64px; align-items: start\">\n<p style=\"margin: 0; max-width: 520px; font-family: 'Instrument Sans', sans-serif; font-weight: 400; font-size: 22px; line-height: 1.55; color: #E4DCCB\">Aisina est un studio de cr\u00e9ation gaming tourn\u00e9 autour de la narration, qui va au-del\u00e0 du jeu vid\u00e9o pour raconter des histoires partout o\u00f9 elles sont n\u00e9cessaires.&nbsp;<br>Aisina est un studio de cr\u00e9ation gaming tourn\u00e9 autour de la narration, qui va au-del\u00e0 du jeu vid\u00e9o pour raconter des histoires partout o\u00f9 elles sont n\u00e9cessaires. Texte provisoire<\/p>\n<div style=\"padding-left: 28px; border-left: 2px solid #B5702E; display: flex; flex-direction: column; gap: 12px\">\n<span style=\"font-family: 'Space Mono', monospace; text-transform: uppercase; font-size: 11px; letter-spacing: 0.2em; color: #D08A44\">Notre mission<\/span>\n<span style=\"font-family: 'Fraunces', serif; font-weight: 300; font-size: 38px; line-height: 1.15; color: #F3EEE3\">Fabriquer des histoires qui ont du sens et qui marquent.<\/span>\n<\/div>\n<\/div>\n<\/div>\n\n<\/div>\n<\/x-dc>\n<script type=\"text/x-dc\" data-dc-script data-props='{\"$preview\":{\"width\":1440,\"height\":900},\"standalone\":{\"editor\":\"boolean\",\"default\":true}}'>\nclass Component extends DCLogic {\nrenderVals() {\nconst standalone = this.props.standalone ?? true;\nreturn { standalone: standalone, rootBg: standalone ? '#0C1419' : 'transparent' };\n}\n}\n<\/script>\n<\/body>\n<\/html>\n"],{type:"text/html"})};</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+a{color:#C9BFAE;text-decoration:none}a:hover{color:#F3EEE3}
+.vj{color:#F3EEE3;transition:color .3s ease}
+.vj .va{display:inline-block;transition:transform .3s ease}
+.vj:hover,.vj:focus-visible{color:#D08A44}
+.vj:hover .va,.vj:focus-visible .va{transform:rotate(90deg)}
+@media (prefers-reduced-motion: reduce){.vj,.vj .va{transition:none}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes cue{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+.rise{animation:rise 1.6s ease-out both}
+.pulse{animation:pulse 2.4s ease-in-out infinite}
+.cue{animation:cue 2.2s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.fog,.rise,.pulse,.cue{animation:none}}
+.fog{position:absolute;border-radius:50%;mix-blend-mode:screen;will-change:transform;pointer-events:none}
+.f1{left:-220px;top:360px;width:960px;height:720px;background:radial-gradient(closest-side,rgba(47,90,134,.55),rgba(47,90,134,0));animation:fog1 16s ease-in-out infinite alternate}
+.f2{left:780px;top:330px;width:820px;height:640px;background:radial-gradient(closest-side,rgba(163,106,104,.40),rgba(163,106,104,0));animation:fog2 18s ease-in-out infinite alternate}
+.f3{left:240px;top:-240px;width:860px;height:640px;background:radial-gradient(closest-side,rgba(47,84,96,.50),rgba(47,84,96,0));animation:fog3 13s ease-in-out infinite alternate}
+.f4{left:880px;top:-200px;width:760px;height:600px;background:radial-gradient(closest-side,rgba(90,74,102,.50),rgba(90,74,102,0));animation:fog4 20s ease-in-out infinite alternate}
+.f5{left:980px;top:230px;width:400px;height:320px;background:radial-gradient(closest-side,rgba(181,112,46,.28),rgba(181,112,46,0));animation:fog5 15s ease-in-out infinite alternate}
+@keyframes fog1{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(220px,-110px,0) scale(1.18)}}
+@keyframes fog2{0%{transform:translate3d(0,0,0) scale(1.1)}100%{transform:translate3d(-260px,70px,0) scale(0.92)}}
+@keyframes fog3{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(240px,120px,0) scale(1.15)}}
+@keyframes fog4{0%{transform:translate3d(0,0,0) scale(1.05)}100%{transform:translate3d(-200px,150px,0) scale(0.9)}}
+@keyframes fog5{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-160px,90px,0) scale(1.3)}}
+.cartel:hover{background:rgba(201,191,174,.26) !important;border-color:rgba(243,238,227,.9) !important}
+.cartel:focus-visible{outline:2px solid #F3EEE3;outline-offset:4px}
+.fg,.mf{position:absolute;left:calc((var(--W,1440px) - 1440px) / 2);top:0;width:1440px;height:var(--H);transform-origin:720px 50%}
+.bg{position:absolute;left:0;top:0;width:var(--W,1440px);height:var(--H);transform-origin:50% 50%}
+.bg{transition:transform 1.8s cubic-bezier(.22,.7,.2,1)}
+.fg{transition:transform .9s cubic-bezier(.2,.7,.2,1) .25s,opacity .9s ease .25s,filter .9s ease .25s,visibility 0s}
+.mf{opacity:0;visibility:hidden;transform:scale(.88);filter:blur(18px);transition:opacity .5s ease,transform .8s ease,filter .6s ease,visibility 0s linear .8s}
+.is-open .bg{transform:scale(1.1)}
+.is-open .fg{opacity:0;transform:scale(1.5);filter:blur(14px);visibility:hidden;pointer-events:none;transition:transform 1.1s cubic-bezier(.6,0,.9,.5),opacity .8s ease .2s,filter 1.1s ease,visibility 0s linear 1.1s}
+.is-open .mf{opacity:1;visibility:visible;transform:none;filter:none;transition:opacity 1s ease .55s,transform 1.5s cubic-bezier(.2,.7,.2,1) .45s,filter 1.2s ease .45s,visibility 0s}
+.frame{opacity:1;transition:opacity 0s}
+.frame path{stroke-dasharray:1 1;stroke-dashoffset:0;transition:stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1);animation:draw 2.6s cubic-bezier(.65,0,.35,1) .3s backwards}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.is-leaving .frame path,.is-open .frame path{stroke-dashoffset:1;animation:none;transition-duration:1.1s}
+.is-leaving .frame,.is-open .frame{opacity:0;transition:opacity 0s linear 1.1s}
+.hdr{transition:opacity .5s ease .25s,visibility 0s}
+.is-open .hdr{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease 1s,visibility 0s linear 1.45s}
+.hnav{transition:opacity .5s ease .25s,visibility 0s,transform .8s cubic-bezier(.4,0,.2,1) .25s}
+.hnav nav{gap:8px;transition:gap .6s cubic-bezier(.2,.7,.2,1)}
+.hnav a{display:flex;align-items:center;gap:10px;white-space:nowrap;overflow:hidden;max-width:230px;padding:12px 14px;transition:max-width .6s cubic-bezier(.2,.7,.2,1),opacity .4s ease,padding .6s cubic-bezier(.2,.7,.2,1)}
+.is-leaving .hnav{transform:translateY(-32px)}
+.is-leaving .hnav nav{gap:0}
+.is-leaving .hnav a{pointer-events:none}
+.is-leaving .hnav a:not(.cur){max-width:0;opacity:0;padding-left:0;padding-right:0}
+.lgw{transition:transform .8s cubic-bezier(.4,0,.2,1) .25s}
+.is-leaving .lgw{transform:translateY(-36px)}
+.is-open .hnav{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease,visibility 0s linear .4s}
+.hdr .lt{transition:transform .55s cubic-bezier(.4,0,.2,1) calc((5 - var(--i)) * .09s),opacity .55s ease calc((5 - var(--i)) * .09s)}
+.is-leaving .hdr .lt,.is-open .hdr .lt{transform:translateX(-12px);opacity:0;transition-delay:calc(var(--i) * .09s)}
+.cartel svg{transition:transform .6s ease}
+.is-open .cartel svg{transform:rotate(-180deg)}
+.is-open .cartel{background:rgba(201,191,174,.22) !important;border-color:rgba(243,238,227,.8) !important}
+@media (prefers-reduced-motion: reduce){.frame path{animation:none !important}.bg,.fg,.mf,.cartel svg,.frame,.frame path,.lt,.hnav,.hnav a,.hnav nav,.lgw,.hdr{transition:none !important}}
+.paint{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:50% 50%;will-change:transform;animation:paintDrift 30s ease-in-out infinite alternate}
+@keyframes paintDrift{0%{transform:translate3d(-70px,22px,0) scale(1.09)}100%{transform:translate3d(70px,-30px,0) scale(1.17)}}
+@media (prefers-reduced-motion: reduce){.paint{animation:none}}
+@keyframes cartelFloat{0%{translate:0 0}22%{translate:8px -5px}48%{translate:-4px -9px}74%{translate:-9px 3px}100%{translate:0 0}}
+.cartel.rise{animation:rise 1.6s ease-out both,cartelFloat 18s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.cartel.rise{animation:none}}
+.nv{display:block;flex:none;animation:nvspin 20s linear infinite;animation-play-state:paused}
+a:hover .nv,a:focus-visible .nv{animation-play-state:running}
+@keyframes nvspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.nv{animation:none}}
+@keyframes pa{from{transform:translate(-50px,-26px) scale(1.14)}to{transform:translate(46px,24px) scale(1)}}
+@keyframes pb{from{transform:translate(60px,30px) scale(1.04)}to{transform:translate(-70px,-36px) scale(1.22)}}
+@keyframes pc{0%{transform:translate(0,0)}50%{transform:translate(900px,120px)}100%{transform:translate(260px,-60px)}}
+.pa{animation:pa 22s ease-in-out infinite alternate;will-change:transform}
+.pb{animation:pb 30s ease-in-out infinite alternate;will-change:transform}
+.pc{animation:pc 26s ease-in-out infinite alternate;will-change:transform}
+@keyframes focus{0%{filter:blur(64px)}40%{filter:blur(0px)}58%{filter:blur(0px)}100%{filter:blur(64px)}}
+.bl{animation:focus 30s ease-in-out infinite;will-change:filter}
+@media (prefers-reduced-motion: reduce){.pa,.pb,.pc,.bl{animation:none}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick{display:flex;width:max-content;white-space:nowrap;animation:ticker 60s linear infinite}
+@keyframes fb0{from{filter:blur(44px);transform:scale(1.08)}to{filter:blur(0);transform:scale(1)}}
+@keyframes fb1{from{filter:blur(44px);transform:scale(1.08)}to{filter:blur(0);transform:scale(1)}}
+.fa0{animation:fb0 2s cubic-bezier(.4,0,.2,1) both}
+.fa1{animation:fb1 2s cubic-bezier(.4,0,.2,1) both}
+@media (prefers-reduced-motion: reduce){.fa0,.fa1{animation:none}}
+.mbr{height:var(--H);box-sizing:border-box;padding:0;display:flex;align-items:center}
+.gm{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid rgba(201,191,174,.2)}
+.gm:last-of-type{border-bottom:1px solid rgba(201,191,174,.2)}
+.gm:first-child,div:not(.gm)+.gm{border-top:0}
+.ph{position:absolute;left:145px;bottom:41px;width:351px;height:441px;overflow:hidden;transition:opacity .5s ease}
+.ph img{position:absolute;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none;user-select:none}
+.ph .pp{opacity:var(--po,0);transform:translateY(var(--py,20px));transition:opacity .3s ease-out var(--pd,0s),transform .4s cubic-bezier(.2,.7,.2,1) var(--pd,0s)}
+@media (prefers-reduced-motion: reduce){.ph .pp{transition:none}}
+.pill{display:inline-flex;align-items:center;margin-top:32px;padding:9px 18px;border-radius:999px;border:1px solid rgba(208,138,68,.6);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;color:#D08A44;transition:background .3s ease,color .3s ease,border-color .3s ease}
+.pill:hover,.pill:focus-visible{background:rgba(181,112,46,.22);border-color:rgba(208,138,68,.95);color:#F3EEE3}
+.cta{display:inline-flex;align-items:center;height:52px;padding:0 30px;border-radius:999px;background:rgba(181,112,46,.22);border:1px solid rgba(208,138,68,.85);color:#F3EEE3;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:background .3s ease}
+.cta:hover{background:rgba(181,112,46,.38)}
+@keyframes rvIn{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){.rvt{animation:rvIn linear both;animation-timeline:view();animation-range:entry 0% entry 50%}}
+.fl a{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8E8678;transition:color .3s ease}
+.fl a:hover,.fl a:focus-visible{color:#D08A44}
+.fl a{display:inline-flex;align-items:center;gap:8px}
+.fl .ea{display:block;flex:none;transform:rotate(-45deg);transition:transform .3s ease}
+.fl a:hover .ea,.fl a:focus-visible .ea{transform:translate(3px,-3px) rotate(-45deg)}
+@media (prefers-reduced-motion: reduce){.fl .ea{transition:none}}
+.fld::placeholder{color:rgba(201,191,174,0.6)}
+.ta::-webkit-resizer{background:linear-gradient(135deg,transparent 0 46%,rgba(201,191,174,.75) 46% 54%,transparent 54% 70%,rgba(201,191,174,.75) 70% 78%,transparent 78%)}
+.fld:focus{border-bottom-color:#D08A44 !important}
+button:focus-visible{outline:1px solid #D08A44;outline-offset:3px}
+.send:hover{background:rgba(181,112,46,0.38) !important}
+:root{--H:900px}
+html{scroll-snap-type:y mandatory}
+.snap{scroll-snap-align:start}
+body{margin:0;background:#0C1419}
+@keyframes wordIn{from{opacity:0;transform:translateY(22px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.home{position:relative;width:100%;overflow-x:clip;background:#0C1419;color:#C9BFAE;font-family:'Instrument Sans',sans-serif}
+.gw{display:inline-block;opacity:0}
+.gfi,.jr{opacity:0}
+.in .gw{opacity:1;animation:wordIn 1.1s cubic-bezier(.2,.7,.2,1) backwards}
+.in .gfi{opacity:1;animation:fadeIn 1.2s ease-out backwards}
+.in .jr{opacity:1;animation:rise 1.4s ease-out backwards}
+@media (prefers-reduced-motion: reduce){.gw,.gfi,.jr{opacity:1 !important;animation:none !important}}
+.bgc{position:absolute;left:0;top:0;width:100%;height:100%;clip-path:inset(0);pointer-events:none}
+.bgf{position:fixed;top:0;left:0;width:var(--W,1440px);height:var(--H);overflow:hidden;background:#0C1419}
+.off .pa,.off .pb,.off .pc,.off .bl{animation-play-state:paused}
+.hdr{position:fixed !important;top:0 !important;left:0 !important;width:var(--hw,1440px) !important;zoom:var(--iz,1);z-index:60}
+.hveil{position:fixed;left:0;top:0;width:100%;height:104px;z-index:55;pointer-events:none;background:linear-gradient(180deg,rgba(12,20,25,.78),rgba(12,20,25,0));opacity:0;transition:opacity .6s ease}
+.is-leaving .hveil{opacity:1}
+.is-open .hveil{opacity:0}
+.is-leaving .hnav a.cur{pointer-events:auto}
+.is-leaving .hnav:hover a:not(.cur),.is-leaving .hnav:has(a:focus-visible) a:not(.cur){max-width:230px;opacity:1;padding-left:14px;padding-right:14px;pointer-events:auto}
+.is-open .hnav a,.is-open .hnav:hover a{pointer-events:none}
+@media (prefers-reduced-motion: reduce){.hveil{transition:none}}
+.bgx,.jstB{display:none}
+.flat .rvt{animation:none !important}
+.flat.still *{animation-play-state:paused !important}
+.flat .hdr{position:absolute !important}
+.flat .hveil{display:none}
+.flat .bgf{position:absolute}
+.flat .bgx{display:block}
+.flat .jstB{display:block}
+.flat #jstage{position:relative}
+.flat #equipe .stk{position:absolute !important;top:0;left:0;margin:0 !important;height:calc(5 * var(--H)) !important}
+.flat .ph{bottom:auto !important;opacity:1 !important;transform:none !important;transition:none !important}
+.flat .ph .pp{opacity:1 !important;transform:none !important;transition:none !important}
+.flat .ph:nth-child(1){top:calc(1 * var(--H) - 482px)}
+.flat .ph:nth-child(2){top:calc(2 * var(--H) - 482px)}
+.flat .ph:nth-child(3){top:calc(3 * var(--H) - 482px)}
+.flat .ph:nth-child(4){top:calc(4 * var(--H) - 482px)}
+.flat .ph:nth-child(5){top:calc(5 * var(--H) - 482px)}
+</style>
+</helmet>
+<div class="home {{ rootClass }}" style="{{ rootStyle }}">
+<div class="hveil" aria-hidden="true"></div>
+<div class="hdr" style="position: fixed; left: 0; top: 0; width: 1440px; height: 0">
+<div class="lgw" style="position: absolute; left: 0; top: 0">
+<a class="rise" href="#hero" onClick="{{ goTop }}" aria-label="Aisina, accueil" style="position: absolute; left: 64px; top: 64px; display: block; animation-delay: 2.4s"><svg role="img" aria-label="Aisina" width="212" height="39.17" viewBox="0 0 184 34" fill="none" style="display:block"><path fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M0.0080595 33.8L0.154636 24.6852L0.320087 20.6963L0.116138 17.8855L0.271463 13.1819L0.00391019 6.31461L0.116842 3.3983L0 1.23456L0.00621693 0.0244982L8.11685 0L13.181 0.204642L19.0217 0L14.0938 9.23825L11.4517 13.9458L7.42528 20.9889L5.46185 25.1269L0.255105 33.2637L0.0080595 33.8ZM20.7475 0.0122491L23.3073 0L25.9969 0.157044L29.4407 0.0343723L33.3636 0.103708L34.7703 0.0146242L39.8798 0.0408947L39.9455 2.60166L39.8021 9.02215L39.8662 13.015L39.5979 18.9837L39.9065 23.682L39.8671 28.6666L39.9109 33.7874L36.0175 27.7064L33.7118 22.878L29.1155 15.7927L27.1735 12.9662L24.4662 7.86028L20.7475 0.0122491ZM27.746 33.7206H24.7393L19.9425 33.5468L16.6225 33.7206H11.9729L13.319 30.9062L14.2417 28.4969L16.0016 25.6551L17.4781 22.2086L19.8596 17.2289L21.9548 22.3949L25.3765 28.766L27.746 33.7206Z"></path><path class="lt" style="--i:5" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M56.7402 24.558C57.458 23.1914 57.458 23.1914 58.0371 21.8482L63.6876 8.27804H65.9804L71.6771 21.9871C72.2327 23.307 72.2327 23.307 72.9043 24.558H67.6941C68.4346 23.1219 68.4346 23.1219 68.0875 22.1956L67.3462 20.2736H61.0249L60.2374 22.2885C59.8895 23.2147 59.8895 23.2147 60.6543 24.558H56.7402Z M61.7654 18.3283H66.6285L64.2204 12.0064L61.7654 18.3283Z"></path><path class="lt" style="--i:4" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M84.0893 24.558C84.7609 23.1914 84.7609 23.1914 84.7609 22.6354V10.2695C84.7609 9.69076 84.7609 9.69077 84.0893 8.34753H88.7901C88.1421 9.71414 88.1421 9.71414 88.1421 10.2695V22.6354C88.1421 23.2148 88.1421 23.2147 88.7901 24.558H84.0893Z"></path><path class="lt" style="--i:3" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M106.39 24.9049C104.143 24.9049 102.36 24.2332 101.11 23.1453L100.785 18.907C102.592 21.4545 104.676 22.7516 106.829 22.7516C108.312 22.7516 109.238 21.941 109.238 20.6673C109.238 19.6482 108.613 18.9538 107.246 18.3744L104.236 17.1241C102.222 16.2673 101.202 14.8084 101.202 12.8403C101.202 9.96874 103.588 8 106.853 8C108.729 8 110.28 8.53266 111.6 9.5284V13.2106C110.188 11.1263 108.288 10.0844 106.482 10.0844C105 10.0844 104.213 10.8716 104.213 11.9141C104.213 12.8631 104.792 13.512 105.88 13.9517L109.122 15.2716C111.068 16.0361 112.271 17.5177 112.271 19.7176C112.271 22.8211 109.863 24.9049 106.39 24.9049Z"></path><path class="lt" style="--i:2" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M124.244 24.558C124.916 23.1914 124.916 23.1914 124.916 22.6354V10.2695C124.916 9.69076 124.916 9.69077 124.244 8.34753H128.945C128.297 9.71414 128.297 9.71414 128.297 10.2695V22.6354C128.297 23.2148 128.297 23.2147 128.945 24.558H124.244Z"></path><path class="lt" style="--i:1" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M141.473 24.558C142.144 23.1914 142.144 23.1914 142.144 22.6354V9.06526L141.496 8.34753H145.502L153.723 18.6992V10.2929C153.723 9.71413 153.723 9.71414 152.866 8.34753H156.618C155.97 9.71414 155.97 9.71414 155.97 10.2695V24.7197H154.348L144.391 12.539V22.6126C144.391 23.1914 144.391 23.1914 145.317 24.558H141.473Z"></path><path class="lt" style="--i:0" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M167.571 24.558C168.289 23.1914 168.289 23.1914 168.868 21.8482L174.519 8.27804H176.811L182.508 21.9871C183.063 23.307 183.063 23.307 183.735 24.558H178.525C179.266 23.1219 179.266 23.1219 178.919 22.1956L178.177 20.2736H171.855L171.068 22.2885C170.721 23.2147 170.721 23.2147 171.485 24.558H167.571Z M172.597 18.3283H177.46L175.051 12.0064L172.597 18.3283Z"></path></svg></a>
+</div>
+<div class="hnav" style="position: absolute; right: 50px; top: 60px"><nav class="rise" aria-label="Navigation principale" style="display: flex; animation-delay: 2.4s">
+<a class="{{ c1 }}" onClick="{{ go1 }}" href="#metier" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase"><svg class="nv" aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 9.764L2.19141 6.05572L5.95311 7.29186L3.62821 4.05572L6.74736 1.76395L9.07226 4.99995L9.07226 0.999999L12.9277 0.999999L12.9277 4.99995L15.2526 1.76395L18.3718 4.05572L16.0469 7.29186L19.8086 6.05572L21 9.764L17.2383 11L21 12.236L19.8086 15.9443L16.0469 14.7081L18.3718 17.9443L15.2526 20.236L12.9277 17L12.9277 21L9.07226 21L9.07226 17L6.74736 20.236L3.62821 17.9443L5.95311 14.7081L2.19141 15.9443L1 12.236L4.7617 11L1 9.764Z" stroke="currentColor" stroke-width="0.6" stroke-miterlimit="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Studio</span></a>
+<a class="{{ c2 }}" onClick="{{ go2 }}" href="#jeux" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase"><svg class="nv" aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none"><path transform="translate(0.5 0)" d="M2.2998 15.8281L2.2998 6.17285L10.5 1.34863L18.7002 6.17285L18.7002 15.8281L10.5 20.6523L2.2998 15.8281Z" stroke="currentColor" stroke-width="0.6"></path></svg><span>Jeux</span></a>
+<a class="{{ c3 }}" onClick="{{ go3 }}" href="#equipe" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase"><svg class="nv" aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M6.0166 6.25879L6.22168 6.22168L6.25879 6.0166L7.07031 1.51367L10.8291 4.125L11 4.24316L11.1709 4.125L14.9287 1.51367L15.7412 6.0166L15.7783 6.22168L15.9834 6.25879L20.4873 7.07129L17.876 10.8291L17.7568 11L17.876 11.1709L20.4873 14.9297L15.9834 15.7412L15.7783 15.7783L15.7412 15.9834L14.9287 20.4873L11.1709 17.875L11 17.7568L10.8291 17.875L7.07031 20.4873L6.25879 15.9834L6.22168 15.7783L6.0166 15.7412L1.51172 14.9297L4.12402 11.1709L4.24316 11L4.12402 10.8291L1.51172 7.07129L6.0166 6.25879Z" stroke="currentColor" stroke-width="0.6"></path></svg><span>Équipe</span></a>
+<a class="{{ c4 }}" onClick="{{ go4 }}" href="#contact" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase"><svg class="nv" aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M1.82519 6.58691L9.2832 9.6748L9.95215 9.95215L9.6748 9.2832L6.58594 1.82617L7.63379 1.39258L10.7227 8.84961L11 9.51855L11.2773 8.84961L14.3652 1.39258L15.4131 1.82617L12.3252 9.2832L12.0479 9.95215L12.7168 9.6748L20.1738 6.58691L20.6074 7.63476L13.1504 10.7227L12.4814 11L13.1504 11.2773L20.6074 14.3672L20.1738 15.4141L12.7168 12.3252L12.0479 12.0479L12.3252 12.7168L15.4131 20.1748L14.3652 20.6084L11.2773 13.1504L11 12.4814L10.7227 13.1504L7.63379 20.6084L6.58594 20.1748L9.6748 12.7168L9.95215 12.0479L9.2832 12.3252L1.8252 15.4141L1.3916 14.3672L8.84961 11.2773L9.51855 11L8.84961 10.7227L1.3916 7.63477L1.82519 6.58691Z" stroke="currentColor" stroke-width="0.6"></path></svg><span>Contact</span></a>
+</nav></div>
+</div>
+<section id="hero" class="snap" style="position: relative; width: 100%; height: var(--H); background: #0C1419">
+<div class="stage" style="position: relative; margin: 0; width: var(--W, 1440px); height: var(--H); overflow: hidden; background: #0C1419; color: #C9BFAE; font-family: 'Instrument Sans', sans-serif">
+<div class="bg">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: var(--H); overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/bab312f9b41542dbc37735f7a8a4d85c.webp) center / cover no-repeat; filter: brightness(.36) saturate(1.1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/bab312f9b41542dbc37735f7a8a4d85c.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.5; filter: brightness(.62)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(225, 115, 105, 0.2), rgba(225, 115, 105, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: var(--H); background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(46, 30, 42, 0.7), rgba(46, 30, 42, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: var(--H); background: rgba(12, 20, 25, 0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: var(--H); background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: var(--H); background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+</div>
+<div style="position: absolute; left: 0; top: 0; width: 100%; height: var(--H); background: radial-gradient(ellipse at 50% 48%, rgba(12, 20, 25, 0) 30%, rgba(12, 20, 25, 0.8) 100%)"></div>
+
+<section class="mf" id="manifeste" aria-label="Manifeste">
+<dc-import name="Manifeste" standalone="{{ no }}" hint-size="1440px,900px"></dc-import>
+</section>
+
+<div class="fg">
+<div class="rise" style="position: absolute; left: calc(62px - (var(--W, 1440px) - 1440px) / 2); top: 0; height: var(--H); display: flex; align-items: center; animation-delay: 2.8s"><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.24em; writing-mode: vertical-rl; transform: rotate(180deg); opacity: 0.85">ATELIER AISINA · 2026</div></div>
+<div class="rise" style="position: absolute; right: calc(62px - (var(--W, 1440px) - 1440px) / 2); top: 0; height: var(--H); display: flex; align-items: center; animation-delay: 2.8s"><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.24em; writing-mode: vertical-rl; opacity: 0.85">MADE IN FRANCE</div></div>
+
+<div style="position: absolute; left: 0; top: 0; width: 1440px; height: var(--H); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px">
+<h1 class="rise" style="margin: 0; animation-delay: 1.2s"><svg role="img" aria-label="Aisina" width="200" height="225" viewBox="0 0 65 73" style="display:block"><path fill="#C9BFAE" d="M22.9336 15.0977L18.6348 22.791L12.083 34.3018L8.8877 41.0645L0.415039 54.3623L0.0126953 55.2393L0.251953 40.3428L0.520508 33.8242L0.189453 29.2305L0.441406 21.543L0.00683594 10.3203L0.19043 5.55371L0 2.01758L0.00976562 0.0400391L13.208 0L21.4482 0.333984L30.9531 0L22.9336 15.0977ZM42.3027 0.256836L47.9072 0.0566406L54.291 0.169922L56.5791 0.0234375L64.8936 0.0664062L65.001 4.25195L64.7676 14.7451L64.8721 21.2705L64.4355 31.0254L64.9375 38.7031L64.873 46.8496L64.9443 55.2188L58.6094 45.2803L54.8574 37.3896L47.3779 25.8096L44.2178 21.1904L39.8125 12.8457L33.7607 0.0195312L37.9268 0L42.3027 0.256836ZM35.7256 36.5996L41.2939 47.0117L45.1494 55.1094H40.2568L32.4512 54.8252L27.0488 55.1094H19.4824L21.6729 50.5098L23.1748 46.5723L26.0381 41.9277L28.4414 36.2949L32.3164 28.1572L35.7256 36.5996Z"></path><path fill="#C9BFAE" transform="translate(0 64) scale(0.4514) translate(-83 -18)" d="M140.058 18.0605C142.179 18.0605 143.934 18.6632 145.426 19.7891V23.9531C143.829 21.5962 141.681 20.418 139.639 20.418C137.963 20.418 137.072 21.3084 137.072 22.4873C137.072 23.5603 137.727 24.2938 138.958 24.791L142.624 26.2842C144.824 27.1487 146.185 28.8238 146.186 31.3115C146.186 34.8211 143.462 37.1777 139.534 37.1777C136.994 37.1777 134.978 36.4178 133.563 35.1875L133.196 30.3955C135.239 33.2762 137.596 34.7421 140.031 34.7422C141.708 34.7422 142.755 33.826 142.755 32.3857C142.755 31.2333 142.048 30.4481 140.503 29.793L137.099 28.3789C134.821 27.41 133.668 25.7597 133.668 23.5342C133.668 20.2871 136.365 18.0607 140.058 18.0605ZM193.061 30.1602V20.6533C193.061 19.9993 193.06 19.9991 192.092 18.4541H196.334C195.601 19.9991 195.601 19.9993 195.601 20.627V36.9678H193.768L182.508 23.1934V34.5859C182.508 35.2399 182.508 35.2404 183.555 36.7852H179.208C179.967 35.2401 179.967 35.2399 179.967 34.6113V19.2656L179.234 18.4541H183.765L193.061 30.1602ZM100.279 33.8779C100.908 35.3704 100.908 35.3708 101.667 36.7852H95.7754C96.6127 35.1614 96.6131 35.1613 96.2207 34.1143L95.3818 31.9404H88.2334L87.3438 34.2188C86.9504 35.2661 86.9498 35.2664 87.8145 36.7852H83.3887C84.2003 35.2399 84.2007 35.2396 84.8555 33.7207L91.2451 18.375H93.8379L100.279 33.8779ZM119.632 18.4541C118.899 19.999 118.899 19.9993 118.899 20.627V34.6113C118.899 35.2663 118.899 35.2664 119.632 36.7852H114.316C115.076 35.2402 115.075 35.2399 115.075 34.6113V20.627C115.075 19.9729 115.075 19.9725 114.316 18.4541H119.632ZM165.04 18.4541C164.307 19.9989 164.308 19.9994 164.308 20.627V34.6113C164.308 35.2663 164.307 35.2666 165.04 36.7852H159.725C160.484 35.24 160.484 35.2399 160.484 34.6113V20.627C160.484 19.9729 160.484 19.9726 159.725 18.4541H165.04ZM225.611 33.8779C226.24 35.3704 226.24 35.3706 227 36.7852H221.107C221.945 35.1615 221.945 35.1614 221.553 34.1143L220.715 31.9404H213.565L212.675 34.2188C212.282 35.2662 212.283 35.2662 213.146 36.7852H208.721C209.532 35.2398 209.533 35.2397 210.188 33.7207L216.577 18.375H219.169L225.611 33.8779ZM89.0713 29.7402H94.5703L91.8477 22.5918L89.0713 29.7402ZM214.403 29.7402H219.903L217.179 22.5918L214.403 29.7402Z"></path></svg></h1>
+
+</div>
+
+<div class="rise" style="position: absolute; left: calc(62px - (var(--W, 1440px) - 1440px) / 2); bottom: 67px; width: 340px; box-sizing: border-box; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; border-radius: 20px; background: rgba(201, 191, 174, 0.12); border: 1px solid rgba(201, 191, 174, 0.5); backdrop-filter: blur(14px); animation-delay: 3.1s">
+<div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #D08A44">Jeu en cours de création</div>
+<div style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.15; color: #F3EEE3">Masca : Les Sentences de l'Ombre</div>
+<a class="vj" onClick="{{ go2 }}" href="#jeux" style="align-self: flex-start; padding: 12px 0; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">Voir le jeu <span class="va">→</span></a>
+</div>
+
+<a onClick="{{ go1 }}" class="rise" href="#metier" aria-label="Descendre vers la suite" style="position: absolute; left: 670px; bottom: 56px; width: 100px; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0; animation-delay: 3.4s">
+<span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase">Descendre</span>
+<span style="position: relative; display: block; width: 1px; height: 48px; overflow: hidden; background: rgba(201, 191, 174, 0.3)"><span class="cue" style="position: absolute; left: 0; top: 0; width: 1px; height: 100%; background: #F3EEE3"></span></span>
+</a>
+</div>
+
+<svg class="frame" aria-hidden="true" width="1440" height="900" style="position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible"><path pathLength="1" d="{{ frameD }}" fill="none" stroke="rgba(201, 191, 174, 0.45)" stroke-width="1" stroke-linejoin="miter" stroke-linecap="square"></path></svg>
+
+
+
+
+<button type="button" class="rise cartel" onClick="{{ toggle }}" aria-expanded="{{ expanded }}" aria-controls="manifeste" aria-label="{{ cartelLabel }}" style="position: absolute; right: 28.5px; display: flex; align-items: center; gap: 14px; padding: 16px 30px; border-radius: 999px; box-sizing: border-box; background: rgba(201, 191, 174, 0.12); border: 1px solid rgba(201, 191, 174, 0.5); backdrop-filter: blur(14px); font-family: 'Space Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: #F3EEE3; animation-delay: 2.8s; bottom: 82px; cursor: pointer; margin: 0; appearance: none; -webkit-appearance: none"><span class="pulse" style="display: block; width: 6px; height: 6px; border-radius: 999px; background: rgb(243, 238, 227)"></span><span>FABRIQUE DE JEUX VIDÉOS NARRATIFS</span><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:block"><path d="M2 5l5 5 5-5" stroke="#F3EEE3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+</section>
+<section id="metier" class="{{ gM }}" style="position: relative; width: 100%; background: #0C1419; height: var(--H);">
+<div class="bgc" aria-hidden="true"><div class="bgf">
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/3850b6c76a7771cd3d95e53a23e4e8f2.webp) center / cover no-repeat; filter: brightness(.4) saturate(1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/3850b6c76a7771cd3d95e53a23e4e8f2.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.55; filter: brightness(.7)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(110, 145, 215, 0.26), rgba(110, 145, 215, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(32, 65, 95, 0.55), rgba(32, 65, 95, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(12, 20, 25, 0.42)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+
+
+
+</div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; bottom: 0; width: 100%; height: 56px; border-top: 1px solid rgba(201, 191, 174, 0.25); display: flex; align-items: center; overflow: hidden">
+<div class="tick" style="font-family: 'Space Mono', monospace; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; color: #8E8678"><span>DARK FANTASY &nbsp;//&nbsp; RPG &nbsp;//&nbsp; UNREAL ENGINE 5 &nbsp;//&nbsp; PARALLAXE 2.5D &nbsp;//&nbsp; DARK FANTASY &nbsp;//&nbsp; RPG &nbsp;//&nbsp; UNREAL ENGINE 5 &nbsp;//&nbsp; PARALLAXE 2.5D &nbsp;//&nbsp; </span><span>DARK FANTASY &nbsp;//&nbsp; RPG &nbsp;//&nbsp; UNREAL ENGINE 5 &nbsp;//&nbsp; PARALLAXE 2.5D &nbsp;//&nbsp; DARK FANTASY &nbsp;//&nbsp; RPG &nbsp;//&nbsp; UNREAL ENGINE 5 &nbsp;//&nbsp; PARALLAXE 2.5D &nbsp;//&nbsp; </span></div>
+</div>
+<div style="position: absolute; left: calc(50% - 720px); top: calc((var(--H) - 900px) / 2); width: 1440px; height: 900px;">
+<h2 style="position: absolute; left: 160px; top: 198px; width: 1120px; margin: 0; font-family: 'Fraunces', serif; font-weight: 300; font-size: 104px; line-height: 1.08; letter-spacing: -0.01em"><span class="gw" style="color: #7D766A; animation-delay: 0.25s">On</span> <span class="gw" style="color: #F3EEE3; animation-delay: 0.47s">fabrique</span> <span class="gw" style="color: #7D766A; animation-delay: 0.69s">des</span> <span class="gw" style="color: #F3EEE3; animation-delay: 0.91s">jeux</span> <span class="gw" style="color: #F3EEE3; animation-delay: 1.13s">vidéo</span> <span class="gw" style="color: #7D766A; animation-delay: 1.35s">immersifs,</span> <span class="gw" style="color: #7D766A; animation-delay: 1.57s">forts</span> <span class="gw" style="color: #7D766A; animation-delay: 1.79s">en</span> <span class="gw" style="color: #F3EEE3; animation-delay: 2.01s">technologie</span> <span class="gw" style="color: #7D766A; animation-delay: 2.23s">et</span> <span class="gw" style="color: #7D766A; animation-delay: 2.45s">en</span> <span class="gw" style="color: #F3EEE3; animation-delay: 2.67s">narration.</span> </h2>
+
+<div class="gfi" style="position: absolute; left: 160px; top: 676px; width: 1120px; display: grid; grid-template-columns: 420px minmax(0, 1fr); column-gap: 80px; align-items: start; animation-delay: 3.2s">
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #C9BFAE">Notre premier jeu, <span style="color: rgb(243, 238, 227)">Masca : Les Sentences de l'Ombre</span>, est en cours de création.&nbsp;</p><div style="display: flex; align-items: center; gap: 14px; height: 100%; padding-top: 6px; justify-content: flex-end">
+<svg aria-hidden="true" width="12" height="16" viewBox="0 0 12 16" fill="none" style="display: block; flex: none"><path d="M1.5 1.5V15" stroke="#D08A44" stroke-width="1.5" stroke-linecap="round"></path><path d="M2.2 2h8.3L7.9 5.4l2.6 3.4H2.2z" fill="#D08A44"></path></svg>
+<span style="font-family: 'Space Mono', monospace; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; color: #D08A44">SORTIE : PRINTEMPS&nbsp;2028</span>
+</div>
+
+</div>
+
+
+</div>
+</section>
+<section id="jeux" class="{{ gJ }}" style="position: relative; width: 100%; height: calc(2 * var(--H)); background: #0C1419">
+<span id="jeux-a" class="snap" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1px; height: var(--H)"></span>
+<span id="jeux-b" class="snap" aria-hidden="true" style="position: absolute; left: 0; top: var(--H); width: 1px; height: var(--H)"></span>
+<div id="jstage" style="position: sticky; top: 0; width: 100%; height: var(--H); overflow: hidden; background: #0C1419">
+<div style="position: absolute; left: calc(50% - 720px); top: calc((var(--H) - 900px) / 2); width: 1440px; height: 900px; overflow: hidden; transform-origin: 50% 50%; {{ jScale }}">
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; overflow: hidden; transform-origin: 720px 450px; {{ st.foret }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px"><img src="assets/d591d22d59771371b623ee155c2773ff.jpg" alt="" style="filter: brightness(0.86) saturate(0.95); position: absolute; left: -60px; top: -40px; width: 1560px; height: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; overflow: hidden; transform-origin: 720px 450px; {{ st.tribunal }}"><img src="assets/59dd2c24df6f6b2215b8d791c99d581a.jpg" alt="" style="position: absolute; left: -30px; top: -150px; width: 1500px; height: auto; display: block"></div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ st.wolf }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 1145px 410px"><img src="assets/56374be5f334540dd496be88195977b5.webp" alt="" style="position: absolute; left: 900px; top: 90px; height: 640px; width: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ st.farmer }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 716px 570px"><img src="assets/07fb82f737fe79652b14a12d7259418a.webp" alt="" style="position: absolute; left: 420px; top: 200px; height: 740px; width: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ st.skullcat }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 1130px 760px"><img src="assets/652a3dbdb89282056b6f439acc46de66.webp" alt="" style="position: absolute; left: 1010px; top: 610px; height: 300px; width: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ st.bluecat }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 370px 775px"><img src="assets/9af238893d5eae4a5588294def6f5f33.webp" alt="" style="position: absolute; left: 250px; top: 640px; height: 270px; width: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ st.portrait }}"><img src="assets/dfa73518edfdddf6625f413c30554c93.webp" alt="" style="position: absolute; left: 60px; top: 340px; height: 560px; width: auto; display: block"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ st.redhat }}"><img src="assets/51c336e16754b9cc9c22ffac35273234.webp" alt="" style="position: absolute; left: 520px; top: 200px; height: 700px; width: auto; display: block"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ st.judgestand }}"><img src="assets/3ea79ce5e1e52a3311bff47b22a2f194.webp" alt="" style="position: absolute; left: 830px; top: 110px; height: 720px; width: auto; display: block"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ st.bluehat }}"><img src="assets/5c9a09d6f46d5266d787422ee7e0b3a2.webp" alt="" style="position: absolute; left: 750px; top: 430px; height: 500px; width: auto; display: block"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ st.judgeclose }}"><img src="assets/8a5ed709696130c2eb2e8673b4c53ab4.webp" alt="" style="position: absolute; left: 1080px; top: 330px; height: 640px; width: auto; display: block"></div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; background: linear-gradient(90deg, rgba(12, 20, 25, 0.78), rgba(12, 20, 25, 0) 46%), linear-gradient(0deg, rgba(12, 20, 25, 0.7), rgba(12, 20, 25, 0) 26%)"></div>
+
+
+
+<div aria-hidden="true" style="position: absolute; right: max(64px, calc(720px - var(--W, 1440px) / (2 * var(--sS, 1)) + 40px)); top: 330px; width: 1px; height: 240px; background: rgba(201,191,174,0.35)">
+<span style="position: absolute; left: -3px; top: 0; width: 7px; height: 7px; border-radius: 999px; background: rgba(201,191,174,0.7)"></span>
+<span style="position: absolute; left: -3px; top: 233px; width: 7px; height: 7px; border-radius: 999px; background: rgba(201,191,174,0.7)"></span>
+<span style="position: absolute; left: -4px; width: 9px; height: 9px; border-radius: 999px; background: #D08A44; {{ st.dot }}"></span>
+</div>
+
+
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; background: linear-gradient(90deg, rgba(12, 20, 25, 0.66) 0%, rgba(12, 20, 25, 0.34) 62%, rgba(12, 20, 25, 0.22) 100%); {{ st.scrim }}"></div>
+<div style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; text-shadow: 0 1px 10px rgba(12,20,25,0.85);">
+<div class="jr" style="position: absolute; left: max(96px, calc(720px - var(--W, 1440px) / (2 * var(--sS, 1)) + 56px)); bottom: max(96px, calc(450px - var(--H, 900px) / (2 * var(--sS, 1)) + 80px)); width: 500px; scale: calc(1 / var(--sS, 1)); transform-origin: left bottom; box-sizing: border-box; padding: 34px 36px 32px; display: flex; flex-direction: column; gap: 16px; border-radius: 24px; background: rgba(201, 191, 174, 0.12); border: 1px solid rgba(201, 191, 174, 0.5); backdrop-filter: blur(14px); animation-delay: 0.6s">
+<div style="display: grid">
+<div style="grid-area: 1 / 1; display: flex; flex-direction: column; gap: 16px; transition: opacity .45s ease; {{ sl.a }}">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #d08a44">En création</div>
+
+<div style="font-family: 'Pinyon Script', cursive; font-size: 96px; line-height: 0.95; color: #F3EEE3; margin-top: 12px">Masca</div><div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 13px; color: #F3EEE3; letter-spacing: 0.14em">Les Sentences de l'Ombre</div>
+<p style="margin: 4px 0 0; font-size: 17px; line-height: 1.55; color: #E4DCCB">Dans la France de 1559, une traqueuse de créatures folkloriques, des mercenaires, des crimes occultes à juger devant le tribunal.</p>
+<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px">
+<span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">RPG</span>
+<span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">Dark Fantasy</span>
+<span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">TACTIQUE 2D</span>
+<span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(181,112,46,0.8); color: #d08a44"><span style="color: #d08a44; letter-spacing: 1.32px">PC // Switch</span></span>
+</div>
+</div>
+<div style="grid-area: 1 / 1; display: flex; flex-direction: column; gap: 16px; transition: opacity .45s ease; {{ sl.b }}">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #D08A44">La fabrication</div>
+<div style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 40px; line-height: 1.08; color: #F3EEE3; margin-top: 18px">De l'aquarelle au moteur</div>
+<p style="margin: 4px 0 0; font-size: 17px; line-height: 1.55; color: #E4DCCB">Décors et personnages sont peints à la main, scannés, détourés puis retouchés en numérique. Ils sont ensuite disposés en plans de profondeur (parallaxe 2.5D) dans Unreal Engine 5, avec un éclairage dynamique qui joue le clair-obscur.</p>
+<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px"><span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">01 Peint à la main</span><span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">02 Scanné et détouré</span><span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">03 Plans 2.5D</span><span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">04 Unreal Engine 5</span></div>
+</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; margin-top: 4px">
+<div style="display: flex; gap: 6px">
+<button type="button" aria-label="Le jeu" onClick="{{ goA }}" style="padding: 0; border: 0; background: none; cursor: pointer; text-shadow: inherit; width: 32px; height: 20px; background-clip: content-box; box-sizing: border-box; padding: 9px 0; {{ sl.da }}"></button>
+<button type="button" aria-label="La fabrication" onClick="{{ goB }}" style="padding: 0; border: 0; background: none; cursor: pointer; text-shadow: inherit; width: 32px; height: 20px; background-clip: content-box; box-sizing: border-box; padding: 9px 0; {{ sl.db }}"></button>
+</div>
+<button type="button" onClick="{{ jtoggle }}" style="padding: 0; border: 0; background: none; cursor: pointer; text-shadow: inherit; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #F3EEE3; letter-spacing: 0.16em; padding: 8px 0; display: none">{{ sl.next }}</button>
+</div>
+</div>
+<a class="jr" href="#jeux" onClick="{{ goScroll }}" style="position: absolute; right: 96px; bottom: 96px; display: flex; align-items: center; gap: 14px; {{ st.cue }} animation-delay: 1.2s; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #C9BFAE">
+<span>Défiler pour ouvrir l'aquarelle</span><span style="display: block; width: 1px; height: 36px; background: #C9BFAE"></span>
+</a>
+</div>
+</div>
+</div>
+<div class="jstB" aria-hidden="true" style="position: absolute; left: 0; top: var(--H); width: 100%; height: var(--H); overflow: hidden; background: #0C1419">
+<div style="position: absolute; left: calc(50% - 720px); top: calc((var(--H) - 900px) / 2); width: 1440px; height: 900px; overflow: hidden; transform-origin: 50% 50%; {{ jScale }}">
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; overflow: hidden; transform-origin: 720px 450px; {{ stB.foret }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px"><img src="assets/d591d22d59771371b623ee155c2773ff.jpg" alt="" style="filter: brightness(0.86) saturate(0.95); position: absolute; left: -60px; top: -40px; width: 1560px; height: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; overflow: hidden; transform-origin: 720px 450px; {{ stB.tribunal }}"><img src="assets/59dd2c24df6f6b2215b8d791c99d581a.jpg" alt="" style="position: absolute; left: -30px; top: -150px; width: 1500px; height: auto; display: block"></div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ stB.wolf }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 1145px 410px"><img src="assets/56374be5f334540dd496be88195977b5.webp" alt="" style="position: absolute; left: 900px; top: 90px; height: 640px; width: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ stB.farmer }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 716px 570px"><img src="assets/07fb82f737fe79652b14a12d7259418a.webp" alt="" style="position: absolute; left: 420px; top: 200px; height: 740px; width: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ stB.skullcat }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 1130px 760px"><img src="assets/652a3dbdb89282056b6f439acc46de66.webp" alt="" style="position: absolute; left: 1010px; top: 610px; height: 300px; width: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ stB.bluecat }}"><div class="{{ fcls }}" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 370px 775px"><img src="assets/9af238893d5eae4a5588294def6f5f33.webp" alt="" style="position: absolute; left: 250px; top: 640px; height: 270px; width: auto; display: block"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ stB.portrait }}"><img src="assets/dfa73518edfdddf6625f413c30554c93.webp" alt="" style="position: absolute; left: 60px; top: 340px; height: 560px; width: auto; display: block"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ stB.redhat }}"><img src="assets/51c336e16754b9cc9c22ffac35273234.webp" alt="" style="position: absolute; left: 520px; top: 200px; height: 700px; width: auto; display: block"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ stB.judgestand }}"><img src="assets/3ea79ce5e1e52a3311bff47b22a2f194.webp" alt="" style="position: absolute; left: 830px; top: 110px; height: 720px; width: auto; display: block"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ stB.bluehat }}"><img src="assets/5c9a09d6f46d5266d787422ee7e0b3a2.webp" alt="" style="position: absolute; left: 750px; top: 430px; height: 500px; width: auto; display: block"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 720px 450px; {{ stB.judgeclose }}"><img src="assets/8a5ed709696130c2eb2e8673b4c53ab4.webp" alt="" style="position: absolute; left: 1080px; top: 330px; height: 640px; width: auto; display: block"></div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; background: linear-gradient(90deg, rgba(12, 20, 25, 0.78), rgba(12, 20, 25, 0) 46%), linear-gradient(0deg, rgba(12, 20, 25, 0.7), rgba(12, 20, 25, 0) 26%)"></div>
+
+
+
+<div aria-hidden="true" style="position: absolute; right: max(64px, calc(720px - var(--W, 1440px) / (2 * var(--sS, 1)) + 40px)); top: 330px; width: 1px; height: 240px; background: rgba(201,191,174,0.35)">
+<span style="position: absolute; left: -3px; top: 0; width: 7px; height: 7px; border-radius: 999px; background: rgba(201,191,174,0.7)"></span>
+<span style="position: absolute; left: -3px; top: 233px; width: 7px; height: 7px; border-radius: 999px; background: rgba(201,191,174,0.7)"></span>
+<span style="position: absolute; left: -4px; width: 9px; height: 9px; border-radius: 999px; background: #D08A44; {{ stB.dot }}"></span>
+</div>
+
+
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; background: linear-gradient(90deg, rgba(12, 20, 25, 0.66) 0%, rgba(12, 20, 25, 0.34) 62%, rgba(12, 20, 25, 0.22) 100%); {{ stB.scrim }}"></div>
+<div style="position: absolute; left: 0; top: 0; width: 1440px; height: 900px; text-shadow: 0 1px 10px rgba(12,20,25,0.85);">
+<div class="jr" style="position: absolute; left: max(96px, calc(720px - var(--W, 1440px) / (2 * var(--sS, 1)) + 56px)); bottom: max(96px, calc(450px - var(--H, 900px) / (2 * var(--sS, 1)) + 80px)); width: 500px; scale: calc(1 / var(--sS, 1)); transform-origin: left bottom; box-sizing: border-box; padding: 34px 36px 32px; display: flex; flex-direction: column; gap: 16px; border-radius: 24px; background: rgba(201, 191, 174, 0.12); border: 1px solid rgba(201, 191, 174, 0.5); backdrop-filter: blur(14px); animation-delay: 0.6s">
+<div style="display: grid">
+<div style="grid-area: 1 / 1; display: flex; flex-direction: column; gap: 16px; transition: opacity .45s ease; {{ slB.a }}">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #d08a44">En création</div>
+
+<div style="font-family: 'Pinyon Script', cursive; font-size: 96px; line-height: 0.95; color: #F3EEE3; margin-top: 12px">Masca</div><div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 13px; color: #F3EEE3; letter-spacing: 0.14em">Les Sentences de l'Ombre</div>
+<p style="margin: 4px 0 0; font-size: 17px; line-height: 1.55; color: #E4DCCB">Dans la France de 1559, une traqueuse de créatures folkloriques, des mercenaires, des crimes occultes à juger devant le tribunal.</p>
+<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px">
+<span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">RPG</span>
+<span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">Dark Fantasy</span>
+<span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">TACTIQUE 2D</span>
+<span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(181,112,46,0.8); color: #d08a44"><span style="color: #d08a44; letter-spacing: 1.32px">PC // Switch</span></span>
+</div>
+</div>
+<div style="grid-area: 1 / 1; display: flex; flex-direction: column; gap: 16px; transition: opacity .45s ease; {{ slB.b }}">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #D08A44">La fabrication</div>
+<div style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 40px; line-height: 1.08; color: #F3EEE3; margin-top: 18px">De l'aquarelle au moteur</div>
+<p style="margin: 4px 0 0; font-size: 17px; line-height: 1.55; color: #E4DCCB">Décors et personnages sont peints à la main, scannés, détourés puis retouchés en numérique. Ils sont ensuite disposés en plans de profondeur (parallaxe 2.5D) dans Unreal Engine 5, avec un éclairage dynamique qui joue le clair-obscur.</p>
+<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px"><span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">01 Peint à la main</span><span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">02 Scanné et détouré</span><span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">03 Plans 2.5D</span><span style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.12em; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(201,191,174,0.5); color: #F3EEE3">04 Unreal Engine 5</span></div>
+</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; margin-top: 4px">
+<div style="display: flex; gap: 6px">
+<button type="button" aria-label="Le jeu" onClick="{{ goA }}" style="padding: 0; border: 0; background: none; cursor: pointer; text-shadow: inherit; width: 32px; height: 20px; background-clip: content-box; box-sizing: border-box; padding: 9px 0; {{ slB.da }}"></button>
+<button type="button" aria-label="La fabrication" onClick="{{ goB }}" style="padding: 0; border: 0; background: none; cursor: pointer; text-shadow: inherit; width: 32px; height: 20px; background-clip: content-box; box-sizing: border-box; padding: 9px 0; {{ slB.db }}"></button>
+</div>
+<button type="button" onClick="{{ jtoggle }}" style="padding: 0; border: 0; background: none; cursor: pointer; text-shadow: inherit; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #F3EEE3; letter-spacing: 0.16em; padding: 8px 0; display: none">{{ slB.next }}</button>
+</div>
+</div>
+<a class="jr" href="#jeux" onClick="{{ goScroll }}" style="position: absolute; right: 96px; bottom: 96px; display: flex; align-items: center; gap: 14px; {{ stB.cue }} animation-delay: 1.2s; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #C9BFAE">
+<span>Défiler pour ouvrir l'aquarelle</span><span style="display: block; width: 1px; height: 36px; background: #C9BFAE"></span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section id="equipe" class="{{ gE }}" style="position: relative; width: 100%; background: #0C1419;">
+<div class="bgc" aria-hidden="true"><div class="bgf">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/f064f18954357048605dbab221674b07.webp) center / cover no-repeat; filter: brightness(.3) saturate(1.1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/f064f18954357048605dbab221674b07.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.5; filter: brightness(.55)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(190, 120, 170, 0.2), rgba(190, 120, 170, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(46, 30, 42, 0.7), rgba(46, 30, 42, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(12, 20, 25, 0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+</div></div>
+<div class="bgc bgx" aria-hidden="true" style="top: calc(1 * var(--H)); height: var(--H)"><div class="bgf">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/f064f18954357048605dbab221674b07.webp) center / cover no-repeat; filter: brightness(.3) saturate(1.1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/f064f18954357048605dbab221674b07.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.5; filter: brightness(.55)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(190, 120, 170, 0.2), rgba(190, 120, 170, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(46, 30, 42, 0.7), rgba(46, 30, 42, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(12, 20, 25, 0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+</div></div>
+<div class="bgc bgx" aria-hidden="true" style="top: calc(2 * var(--H)); height: var(--H)"><div class="bgf">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/f064f18954357048605dbab221674b07.webp) center / cover no-repeat; filter: brightness(.3) saturate(1.1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/f064f18954357048605dbab221674b07.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.5; filter: brightness(.55)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(190, 120, 170, 0.2), rgba(190, 120, 170, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(46, 30, 42, 0.7), rgba(46, 30, 42, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(12, 20, 25, 0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+</div></div>
+<div class="bgc bgx" aria-hidden="true" style="top: calc(3 * var(--H)); height: var(--H)"><div class="bgf">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/f064f18954357048605dbab221674b07.webp) center / cover no-repeat; filter: brightness(.3) saturate(1.1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/f064f18954357048605dbab221674b07.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.5; filter: brightness(.55)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(190, 120, 170, 0.2), rgba(190, 120, 170, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(46, 30, 42, 0.7), rgba(46, 30, 42, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(12, 20, 25, 0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+</div></div>
+<div class="bgc bgx" aria-hidden="true" style="top: calc(4 * var(--H)); height: var(--H)"><div class="bgf">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/f064f18954357048605dbab221674b07.webp) center / cover no-repeat; filter: brightness(.3) saturate(1.1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/f064f18954357048605dbab221674b07.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.5; filter: brightness(.55)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(190, 120, 170, 0.2), rgba(190, 120, 170, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(46, 30, 42, 0.7), rgba(46, 30, 42, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(12, 20, 25, 0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+</div></div>
+<div class="bgc bgx" aria-hidden="true" style="top: calc(5 * var(--H)); height: var(--H)"><div class="bgf">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/f064f18954357048605dbab221674b07.webp) center / cover no-repeat; filter: brightness(.3) saturate(1.1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/f064f18954357048605dbab221674b07.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.5; filter: brightness(.55)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(190, 120, 170, 0.2), rgba(190, 120, 170, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(46, 30, 42, 0.7), rgba(46, 30, 42, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(12, 20, 25, 0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+</div></div>
+<div class="bgc bgx" aria-hidden="true" style="top: calc(6 * var(--H)); height: var(--H)"><div class="bgf">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/f064f18954357048605dbab221674b07.webp) center / cover no-repeat; filter: brightness(.3) saturate(1.1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/f064f18954357048605dbab221674b07.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.5; filter: brightness(.55)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(190, 120, 170, 0.2), rgba(190, 120, 170, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(46, 30, 42, 0.7), rgba(46, 30, 42, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(12, 20, 25, 0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+</div></div>
+<div style="position: relative; width: 1440px; margin: 0 0 0 calc(50% - 720px);">
+<div id="eq-title" class="snap" style="position: relative; width: 1440px; height: var(--H); display: flex; flex-direction: column; justify-content: center; padding: 0 160px; box-sizing: border-box">
+<h2 style="margin: 0; white-space: nowrap; font-family: 'Fraunces', serif; font-weight: 300; font-size: 76px; line-height: 1.06; letter-spacing: -0.01em"><span class="gw" style="color: #7D766A; animation-delay: 0.20s">Une</span> <span class="gw" style="color: #7D766A; animation-delay: 0.34s">passion :</span> <span class="gw" style="color: #F3EEE3; animation-delay: 0.48s">La</span> <span class="gw" style="color: #F3EEE3; animation-delay: 0.62s">table</span> <span class="gw" style="color: #F3EEE3; animation-delay: 0.76s">de</span> <span class="gw" style="color: #F3EEE3; animation-delay: 0.90s">jeu</span></h2>
+<p class="gfi" style="margin: 56px 0 0 420px; width: 700px; font-size: 20px; line-height: 1.7; color: #C9BFAE; animation-delay: 1.4s">Amis avant d'être associés, nous avons éprouvé notre façon de travailler ensemble lors d'une Game Jam. Nous sommes tous passés par la maîtrise de jeu ou l'organisation de jeux de rôle grandeur nature.</p>
+</div>
+<div style="position: relative; width: 1440px; padding: 0 160px; box-sizing: border-box">
+<div class="stk" style="position: sticky; top: 0; left: 0; width: 1440px; height: var(--H); margin: 0 0 calc(0px - var(--H)) -160px; pointer-events: none; z-index: 1">
+<div class="ph" style="{{ p0 }}"><img src="assets/a16a7e1af4ce4a053fd28f10a8a20601.webp" alt=""><img class="pp" src="assets/afe0214fda8e9462e70743238fa61596.webp" alt="Portrait de Jeremy Gutierrez"></div>
+<div class="ph" style="{{ p1 }}"><img src="assets/8e2af9081748b68140f64e785ae3831d.webp" alt=""><img class="pp" src="assets/c115807d173ee5e90987d9e2f4016b8d.webp" alt="Portrait de Auriane Dauguen"></div>
+<div class="ph" style="{{ p2 }}"><img src="assets/5d4a16699f40b54b15e2fcd727e8a899.webp" alt=""><img class="pp" src="assets/14d45ed1feedc8b4adadc599382b4656.webp" alt="Portrait de Chloé Harrand"></div>
+<div class="ph" style="{{ p3 }}"><img src="assets/b347ee585d7bf879458baf682a85c977.webp" alt=""><img class="pp" src="assets/b8c94f070463dfdd10541cedc52f15b6.webp" alt="Portrait de Sven Holtz"></div>
+<div class="ph" style="{{ p4 }}"><img src="assets/e3ec051135b0796caca433c97dcbe1f9.webp" alt=""><img class="pp" src="assets/6fc7f79d01c7e8b95e71b6c73b825359.webp" alt="Portrait de Guillaume Faure"></div>
+</div>
+<section id="m0" class="mbr snap">
+<div class="rvt" style="margin-left: 420px; width: 700px">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; color: #D08A44">Cofondateur, vision et production</div>
+<h3 style="margin: 22px 0 0; font-family: 'Fraunces', serif; font-weight: 300; font-size: 80px; line-height: 1.02; letter-spacing: -0.01em; color: #F3EEE3">Jeremy <span style="color: #7D766A">Gutierrez</span></h3>
+<p style="margin: 36px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Jeremy porte la vision de Masca et en tient le cap, de la première idée jusqu'à la sortie. C'est lui qui fixe l'ambition du studio, choisit les batailles à mener et s'assure que chaque décision reste fidèle à l'histoire que nous voulons raconter.</p>
+<p style="margin: 24px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Côté production, il organise le travail de l'équipe, anticipe les risques et garde un calendrier réaliste, pour laisser à chacun le temps de bien faire. Il est aussi le premier interlocuteur des partenaires et des financeurs qui accompagnent le projet.</p>
+
+<div style="margin-top: 56px; padding-bottom: 12px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #D08A44">Jeux préférés</div>
+<div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Baldur's Gate 3</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">RPG</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Hades</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Action</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Vampire : la Mascarade</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">JDR</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Crusader Kings III</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Stratégie</span></div>
+</div>
+</section>
+<section id="m1" class="mbr snap">
+<div class="rvt" style="margin-left: 420px; width: 700px">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; color: #D08A44">Cofondatrice, lead technique</div>
+<h3 style="margin: 22px 0 0; font-family: 'Fraunces', serif; font-weight: 300; font-size: 80px; line-height: 1.02; letter-spacing: -0.01em; color: #F3EEE3">Auriane <span style="color: #7D766A">Dauguen</span></h3>
+<p style="margin: 36px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Auriane conçoit l'architecture technique qui donne vie à l'aquarelle dans le moteur : plans de profondeur, parallaxe 2.5D, éclairage dynamique qui joue le clair-obscur. Elle transforme des peintures en scènes vivantes, sans jamais trahir la main de l'artiste.</p>
+<p style="margin: 24px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Elle bâtit aussi la chaîne de fabrication du studio, pour que décors, personnages et dialogues passent du papier au jeu sans friction. Son objectif est simple : que la technique disparaisse au service du récit.</p>
+<div style="margin-top: 56px; padding-bottom: 12px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #D08A44">Jeux préférés</div>
+<div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Outer Wilds</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Exploration</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Hollow Knight</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Metroidvania</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Return of the Obra Dinn</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Enquête</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Dishonored</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Infiltration</span></div>
+<a class="pill" href="#missions" onClick="{{ toMissions }}">Disponible en mission →</a>
+</div>
+</section>
+<section id="m2" class="mbr snap">
+<div class="rvt" style="margin-left: 420px; width: 700px">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; color: #D08A44">Direction artistique et concept art</div>
+<h3 style="margin: 22px 0 0; font-family: 'Fraunces', serif; font-weight: 300; font-size: 80px; line-height: 1.02; letter-spacing: -0.01em; color: #F3EEE3">Chloé <span style="color: #7D766A">Harrand</span></h3>
+<p style="margin: 36px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Chloé peint les décors et les personnages à la main avant qu'ils n'entrent dans le jeu. Sa direction artistique donne à Masca son clair-obscur et sa matière, quelque part entre l'aquarelle, la gravure et les enluminures de la France de 1559.</p>
+<p style="margin: 24px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Elle dessine les concepts, définit la palette et veille à la cohérence visuelle de chaque scène, du premier croquis à l'image finale. Elle travaille main dans la main avec l'équipe technique pour que la peinture survive au passage dans le moteur.</p>
+<div style="margin-top: 56px; padding-bottom: 12px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #D08A44">Jeux préférés</div>
+<div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Gris</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Aventure</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Ōkami</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Action</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Darkest Dungeon</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">RPG</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Child of Light</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">RPG</span></div>
+<a class="pill" href="#missions" onClick="{{ toMissions }}">Disponible en mission →</a>
+</div>
+</section>
+<section id="m3" class="mbr snap">
+<div class="rvt" style="margin-left: 420px; width: 700px">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; color: #D08A44">Gestion de projet, narration et game design</div>
+<h3 style="margin: 22px 0 0; font-family: 'Fraunces', serif; font-weight: 300; font-size: 80px; line-height: 1.02; letter-spacing: -0.01em; color: #F3EEE3">Sven <span style="color: #7D766A">Holtz</span></h3>
+<p style="margin: 36px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Sven structure le projet, écrit les intrigues et dessine les règles du jeu. Meneur de jeu de longue date, il pense chaque scène comme une séance à la table, avec ses choix, ses silences et leurs conséquences.</p>
+<p style="margin: 24px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Il coordonne le travail de l'équipe, de la rédaction des dialogues à l'équilibrage des combats, et fait le lien entre l'écriture, le game design et la production. Il tient le fil rouge pour que Masca reste cohérent d'un bout à l'autre.</p>
+<div style="margin-top: 56px; padding-bottom: 12px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #D08A44">Jeux préférés</div>
+<div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Disco Elysium</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">RPG</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Pentiment</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Narratif</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Divinity : Original Sin 2</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">RPG</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">L'Appel de Cthulhu</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">JDR</span></div>
+<a class="pill" href="#missions" onClick="{{ toMissions }}">Disponible en mission →</a>
+</div>
+</section>
+<section id="m4" class="mbr snap">
+<div class="rvt" style="margin-left: 420px; width: 700px">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; color: #D08A44">Partenariats</div>
+<h3 style="margin: 22px 0 0; font-family: 'Fraunces', serif; font-weight: 300; font-size: 80px; line-height: 1.02; letter-spacing: -0.01em; color: #F3EEE3">Guillaume <span style="color: #7D766A">Faure</span></h3>
+<p style="margin: 36px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Guillaume tisse les liens avec les studios, les éditeurs, les financeurs et les institutions qui peuvent accompagner Aisina. Il présente le projet, écoute les attentes de chacun et construit des partenariats durables plutôt que des contrats ponctuels.</p>
+<p style="margin: 24px 0 0; font-size: 20px; line-height: 1.7; color: #C9BFAE">Il ouvre les bonnes portes pour que Masca trouve ses partenaires, puis son public. Il veille aussi à ce que chaque collaboration serve la vision du studio et respecte la manière dont l'équipe aime travailler.</p>
+
+<div style="margin-top: 56px; padding-bottom: 12px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #D08A44">Jeux préférés</div>
+<div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Slay the Spire</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Deckbuilding</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Civilization VI</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Stratégie</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Stardew Valley</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Gestion</span></div><div class="gm"><span style="font-family: 'Fraunces', serif; font-weight: 300; font-size: 26px; line-height: 1.2; color: #F3EEE3">Mario Kart 8</span><span style="flex: none; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: #8E8678">Course</span></div>
+</div>
+</section>
+</div>
+<div class="mis snap" id="missions" style="height: var(--H); display: flex; flex-direction: column; justify-content: center; padding: 0 160px; box-sizing: border-box">
+<div class="rvt" style="display: flex; align-items: center; justify-content: space-between; gap: 60px; box-sizing: border-box; padding: 56px 64px; border-radius: 24px; background: rgba(201, 191, 174, 0.12); border: 1px solid rgba(201, 191, 174, 0.5); backdrop-filter: blur(14px); border-color: #C9BFAE80">
+<div style="width: 560px">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; color: #D08A44">Missions en studio</div>
+<h3 style="margin: 20px 0 0; font-family: 'Fraunces', serif; font-weight: 300; font-size: 52px; line-height: 1.08; letter-spacing: -0.01em; color: #F3EEE3">Besoin de renfort <span style="color: #7D766A">dans votre studio ?</span></h3>
+<p style="margin: 24px 0 0; font-size: 18px; line-height: 1.65; color: #C9BFAE">Chloé, Auriane et Sven peuvent aussi intervenir en mission chez vous : direction artistique et concept art, développement technique, narration et game design. Racontez-nous votre besoin, nous revenons vers vous avec le bon profil.</p>
+</div>
+<a class="cta" href="#contact" onClick="{{ askMission }}" style="flex: none">Proposer une mission →</a>
+</div>
+</div>
+</div>
+</section>
+<section id="contact" class="{{ gC }}" style="position: relative; width: 100%; background: #0C1419; height: var(--H);">
+<div class="bgc" aria-hidden="true"><div class="bgf">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden">
+<div class="bl" style="position: absolute; left: -240px; top: -200px; width: calc(100% + 480px); height: calc(100% + 400px)">
+<div class="pa" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(assets/9db14b673327e1e78317a70674a71fef.webp) center / cover no-repeat; filter: brightness(.3) saturate(1.1)"></div>
+<div class="pb" style="position: absolute; left: -60px; top: -60px; width: calc(100% + 120px); height: calc(100% + 120px); background: url(assets/9db14b673327e1e78317a70674a71fef.webp) 30% 60% / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.5; filter: brightness(.55)"></div>
+</div>
+<div class="pc" style="position: absolute; left: -300px; top: 80px; width: 900px; height: 700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(90, 195, 170, 0.16), rgba(90, 195, 170, 0)); mix-blend-mode: screen"></div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 620px 420px at 6% 96%, rgba(46, 30, 42, 0.7), rgba(46, 30, 42, 0)), radial-gradient(ellipse 560px 380px at 98% 6%, rgba(117, 82, 81, 0.32), rgba(117, 82, 81, 0)), radial-gradient(ellipse 420px 300px at 88% 84%, rgba(19, 40, 70, 0.7), rgba(19, 40, 70, 0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(12, 20, 25, 0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 62.5% 71% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.8))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;); background-size: 400px 400px; mix-blend-mode: overlay; opacity: 0.3"></div>
+</div></div>
+<div style="position: absolute; left: calc(50% - 720px); top: 0; width: 1440px; height: var(--H);">
+<div style="position: absolute; left: 0; top: calc((var(--H) - 620px) / 2); width: 1440px; height: 620px">
+<div style="position: absolute; left: 160px; top: 0">
+<h2 style="width: 560px; margin: 0; font-family: 'Fraunces', serif; font-weight: 300; font-size: 84px; line-height: 1.06; letter-spacing: -0.01em"><span class="gw" style="color: #F3EEE3; animation-delay: 0.20s">Poussez</span> <span class="gw" style="color: #7D766A; animation-delay: 0.40s">la</span> <span class="gw" style="color: #7D766A; animation-delay: 0.60s">porte</span> <span class="gw" style="color: #7D766A; animation-delay: 0.80s">de</span> <span class="gw" style="color: #F3EEE3; animation-delay: 1.00s">l'atelier.</span></h2>
+<p class="gfi" style="width: 440px; margin: 40px 0 0; font-size: 19px; line-height: 1.6; color: #C9BFAE; animation-delay: 1.3s">Vous financez des projets, vous dirigez un studio, vous créez seul·e ? Dites-nous qui vous êtes et ce que vous cherchez, nous reveindrons vers vous.</p>
+</div>
+<div class="gfi" style="position: absolute; left: 820px; top: 0; width: 460px; min-height: 620px; box-sizing: border-box; padding: 40px 44px 44px; border-radius: 24px; background: rgba(201, 191, 174, 0.12); border: 1px solid rgba(201, 191, 174, 0.5); backdrop-filter: blur(14px); animation-delay: 0.8s">
+<div style="display: flex; flex-direction: column; min-height: 534px; {{ formStyle }}">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #C9BFAE">Vous êtes</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px"><button type="button" onClick="{{ pick0 }}" style="{{ chip0 }}">Investisseur ou financeur</button><button type="button" onClick="{{ pick1 }}" style="{{ chip1 }}">Studio</button><button type="button" onClick="{{ pick2 }}" style="{{ chip2 }}">Créateur indépendant</button><button type="button" onClick="{{ pick3 }}" style="{{ chip3 }}">Autre</button></div>
+<div style="margin-top: 22px"><input type="text" placeholder="Votre nom" class="fld" style="width: 100%; box-sizing: border-box; padding: 14px 0; background: transparent; border: 0; border-bottom: 1px solid rgba(201, 191, 174, 0.4); color: #F3EEE3; font-family: 'Instrument Sans', sans-serif; font-size: 17px; outline: none"><input type="email" placeholder="Votre e-mail" class="fld" style="width: 100%; box-sizing: border-box; padding: 14px 0; background: transparent; border: 0; border-bottom: 1px solid rgba(201, 191, 174, 0.4); color: #F3EEE3; font-family: 'Instrument Sans', sans-serif; font-size: 17px; outline: none"></div>
+<div style="position: relative; flex: 1 1 auto; min-height: 96px; display: flex; flex-direction: column; margin-top: 4px"><textarea placeholder="{{ ph }}" rows="4" class="fld ta" onInput="{{ taChk }}" onScroll="{{ taChk }}" style="flex: 1 1 auto; min-height: 0; width: 100%; box-sizing: border-box; padding: 14px 0; resize: vertical; background: transparent; border: 0; color: #F3EEE3; font-family: 'Instrument Sans', sans-serif; font-size: 17px; line-height: 1.5; outline: none"></textarea><div aria-hidden="true" style="position: absolute; left: 0; right: 22px; bottom: 0; height: 36px; pointer-events: none; backdrop-filter: blur(5px); -webkit-mask-image: linear-gradient(0deg, #000, rgba(0, 0, 0, 0)); mask-image: linear-gradient(0deg, #000, rgba(0, 0, 0, 0)); opacity: {{ fadeO }}; transition: opacity .25s ease"></div></div>
+<button type="button" onClick="{{ send }}" class="send" style="flex: none; align-self: flex-start; margin-top: 26px; display: inline-flex; align-items: center; gap: 12px; height: 52px; padding: 0 28px; border-radius: 999px; background: rgba(181, 112, 46, 0.22); border: 1px solid rgba(208, 138, 68, 0.85); cursor: pointer; color: #F3EEE3; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.16em; font-size: 12px">Envoyer le message →</button>
+</div>
+<div style="{{ doneStyle }}">
+<div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: #D08A44">Message envoyé</div>
+<div style="margin-top: 16px; font-family: 'Fraunces', serif; font-weight: 300; font-size: 48px; line-height: 1.08; color: #F3EEE3">Merci, à très vite.</div>
+<p style="margin: 18px 0 0; font-size: 17px; line-height: 1.55; color: #E4DCCB">Nous lisons chaque message et revenons vers vous.</p>
+<button type="button" onClick="{{ again }}" style="margin-top: 28px; padding: 8px 0; border: 0; background: none; cursor: pointer; color: #F3EEE3; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; letter-spacing: 0.16em; font-size: 12px">← Écrire un autre message</button>
+</div>
+</div>
+</div>
+<div class="gfi" style="position: absolute; left: 160px; bottom: 14px; width: 1120px; animation-delay: 1.7s">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="#hero" onClick="{{ goTop }}" aria-label="Aisina, accueil" style="display: block"><svg role="img" aria-label="Aisina" width="132" height="24.4" viewBox="0 0 184 34" fill="none" style="display:block"><path fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M0.0080595 33.8L0.154636 24.6852L0.320087 20.6963L0.116138 17.8855L0.271463 13.1819L0.00391019 6.31461L0.116842 3.3983L0 1.23456L0.00621693 0.0244982L8.11685 0L13.181 0.204642L19.0217 0L14.0938 9.23825L11.4517 13.9458L7.42528 20.9889L5.46185 25.1269L0.255105 33.2637L0.0080595 33.8ZM20.7475 0.0122491L23.3073 0L25.9969 0.157044L29.4407 0.0343723L33.3636 0.103708L34.7703 0.0146242L39.8798 0.0408947L39.9455 2.60166L39.8021 9.02215L39.8662 13.015L39.5979 18.9837L39.9065 23.682L39.8671 28.6666L39.9109 33.7874L36.0175 27.7064L33.7118 22.878L29.1155 15.7927L27.1735 12.9662L24.4662 7.86028L20.7475 0.0122491ZM27.746 33.7206H24.7393L19.9425 33.5468L16.6225 33.7206H11.9729L13.319 30.9062L14.2417 28.4969L16.0016 25.6551L17.4781 22.2086L19.8596 17.2289L21.9548 22.3949L25.3765 28.766L27.746 33.7206Z"></path><path class="lt" style="--i:5" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M56.7402 24.558C57.458 23.1914 57.458 23.1914 58.0371 21.8482L63.6876 8.27804H65.9804L71.6771 21.9871C72.2327 23.307 72.2327 23.307 72.9043 24.558H67.6941C68.4346 23.1219 68.4346 23.1219 68.0875 22.1956L67.3462 20.2736H61.0249L60.2374 22.2885C59.8895 23.2147 59.8895 23.2147 60.6543 24.558H56.7402Z M61.7654 18.3283H66.6285L64.2204 12.0064L61.7654 18.3283Z"></path><path class="lt" style="--i:4" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M84.0893 24.558C84.7609 23.1914 84.7609 23.1914 84.7609 22.6354V10.2695C84.7609 9.69076 84.7609 9.69077 84.0893 8.34753H88.7901C88.1421 9.71414 88.1421 9.71414 88.1421 10.2695V22.6354C88.1421 23.2148 88.1421 23.2147 88.7901 24.558H84.0893Z"></path><path class="lt" style="--i:3" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M106.39 24.9049C104.143 24.9049 102.36 24.2332 101.11 23.1453L100.785 18.907C102.592 21.4545 104.676 22.7516 106.829 22.7516C108.312 22.7516 109.238 21.941 109.238 20.6673C109.238 19.6482 108.613 18.9538 107.246 18.3744L104.236 17.1241C102.222 16.2673 101.202 14.8084 101.202 12.8403C101.202 9.96874 103.588 8 106.853 8C108.729 8 110.28 8.53266 111.6 9.5284V13.2106C110.188 11.1263 108.288 10.0844 106.482 10.0844C105 10.0844 104.213 10.8716 104.213 11.9141C104.213 12.8631 104.792 13.512 105.88 13.9517L109.122 15.2716C111.068 16.0361 112.271 17.5177 112.271 19.7176C112.271 22.8211 109.863 24.9049 106.39 24.9049Z"></path><path class="lt" style="--i:2" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M124.244 24.558C124.916 23.1914 124.916 23.1914 124.916 22.6354V10.2695C124.916 9.69076 124.916 9.69077 124.244 8.34753H128.945C128.297 9.71414 128.297 9.71414 128.297 10.2695V22.6354C128.297 23.2148 128.297 23.2147 128.945 24.558H124.244Z"></path><path class="lt" style="--i:1" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M141.473 24.558C142.144 23.1914 142.144 23.1914 142.144 22.6354V9.06526L141.496 8.34753H145.502L153.723 18.6992V10.2929C153.723 9.71413 153.723 9.71414 152.866 8.34753H156.618C155.97 9.71414 155.97 9.71414 155.97 10.2695V24.7197H154.348L144.391 12.539V22.6126C144.391 23.1914 144.391 23.1914 145.317 24.558H141.473Z"></path><path class="lt" style="--i:0" fill="#C9BFAE" fill-rule="evenodd" clip-rule="evenodd" d="M167.571 24.558C168.289 23.1914 168.289 23.1914 168.868 21.8482L174.519 8.27804H176.811L182.508 21.9871C183.063 23.307 183.063 23.307 183.735 24.558H178.525C179.266 23.1219 179.266 23.1219 178.919 22.1956L178.177 20.2736H171.855L171.068 22.2885C170.721 23.2147 170.721 23.2147 171.485 24.558H167.571Z M172.597 18.3283H177.46L175.051 12.0064L172.597 18.3283Z"></path></svg></a>
+<nav class="fl" aria-label="Pied de page" style="display: flex; align-items: center; gap: 30px">
+<a href="#metier" onClick="{{ go1 }}">Studio</a><a href="#jeux" onClick="{{ go2 }}">Jeux</a><a href="#equipe" onClick="{{ go3 }}">Équipe</a><a href="#contact" onClick="{{ go4 }}">Contact</a><a href="team-building.html">Team building</a>
+</nav>
+<div class="fl" style="display: flex; align-items: center; gap: 30px"><a href="https://www.linkedin.com/company/aisina-ai/" target="_blank" rel="noopener">LinkedIn<svg class="ea" aria-hidden="true" width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><a href="https://www.instagram.com/aisina.studio/?hl=fr" target="_blank" rel="noopener">Instagram<svg class="ea" aria-hidden="true" width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+constructor(...args) {
+super(...args);
+this.state = { fade: false, flat: false, still: false, z: 1, vhd: 900, vwd: 1440, sS: 1, open: false, leaving: false, nav: 'studio', p: 0, slide: 0, ar: 0, active: -2, who: 0, sent: false,
+  seenM: false, seenJ: false, seenE: false, seenC: false, offH: false, offM: true, offE: true, offC: true };
+this.auto = 0;
+this.inJ = false;
+this.raf = 0;
+this.onScr = () => { if (this.raf) return; this.raf = requestAnimationFrame(() => { this.raf = 0; this.measure(); }); };
+this.SC = ['hero', 'metier', 'jeux', 'jeux-b', 'eq-title', 'm0', 'm1', 'm2', 'm3', 'm4', 'missions', 'contact'];
+this.lock = 0; this.lastW = 0; this.lastAbs = 0; this.lastSy = 0; this.down = true;
+this.onWheel = (ev) => {
+if (this.state.flat) return;
+if (ev.ctrlKey || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
+const tg = ev.target;
+if (tg && tg.closest && tg.closest('textarea')) return;
+ev.preventDefault();
+const now = Date.now();
+const ab = Math.abs(ev.deltaY);
+const fresh = now - this.lastW > 160 || ab > this.lastAbs * 1.6 + 4;
+this.lastW = now; this.lastAbs = ab;
+if (now < this.lock || !fresh || ab < 4) return;
+this.lock = now + 900;
+this.step(ev.deltaY > 0 ? 1 : -1);
+};
+this.onKey = (ev) => {
+if (this.state.flat) return;
+if (ev.key === 'Escape' && this.state.open) { this.setState({ open: false }); return; }
+const tg = ev.target;
+if (tg && tg.closest && tg.closest('input,textarea,select,button,a')) return;
+const k = ev.key;
+let dir = 0;
+if (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !ev.shiftKey)) dir = 1;
+else if (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && ev.shiftKey)) dir = -1;
+if (k === 'Home') { ev.preventDefault(); this.go(this.SC[0]); return; }
+if (k === 'End') { ev.preventDefault(); this.go(this.SC[this.SC.length - 1]); return; }
+if (!dir) return;
+ev.preventDefault();
+const now = Date.now();
+if (now < this.lock) return;
+this.lock = now + 700;
+this.step(dir);
+};
+}
+componentDidMount() {
+window.addEventListener('scroll', this.onScr, true);
+window.addEventListener('resize', this.onScr);
+window.addEventListener('keydown', this.onKey);
+window.addEventListener('wheel', this.onWheel, { passive: false });
+this.measure();
+this.t1 = setTimeout(() => this.measure(), 400);
+this.t2 = setTimeout(() => this.measure(), 1600);
+if (typeof ResizeObserver !== 'undefined') { this.ro = new ResizeObserver(() => this.onScr()); this.ro.observe(document.documentElement); }
+}
+componentWillUnmount() {
+window.removeEventListener('scroll', this.onScr, true);
+window.removeEventListener('resize', this.onScr);
+window.removeEventListener('keydown', this.onKey);
+window.removeEventListener('wheel', this.onWheel);
+clearTimeout(this.t1);
+clearTimeout(this.t2);
+clearTimeout(this.stillT);
+if (this.ro) this.ro.disconnect();
+}
+measure() {
+const d = document;
+const iw = window.innerWidth || 1440, ih = window.innerHeight || 900;
+const flat = ih / iw > 3;
+const z = flat ? Math.min(1, iw / 1440) : Math.min(1, iw / 1200);
+const vh = flat ? 900 : Math.round(ih / z);
+const rs = document.documentElement.style;
+if (rs.getPropertyValue('--H') !== vh + 'px') rs.setProperty('--H', vh + 'px');
+const vw = Math.round(iw / z);
+const sSv = Math.round(Math.max(1, vh / 900, vw / 1440) * 1000) / 1000;
+if (rs.getPropertyValue('--sS') !== String(sSv)) rs.setProperty('--sS', String(sSv));
+const he = flat ? z : Math.min(1, z / 0.7);
+const hiz = Math.round(he / z * 10000) / 10000, hhw = Math.round(iw / he);
+if (rs.getPropertyValue('--iz') !== String(hiz)) rs.setProperty('--iz', String(hiz));
+if (rs.getPropertyValue('--hw') !== hhw + 'px') rs.setProperty('--hw', hhw + 'px');
+if (rs.getPropertyValue('--W') !== vw + 'px') rs.setProperty('--W', vw + 'px');
+const R = (id) => { const el = d.getElementById(id); if (!el) return null; const b = el.getBoundingClientRect(); return { top: b.top / z, bottom: b.bottom / z, height: b.height / z }; };
+const h = R('hero'), m = R('metier'), j = R('jeux'), e = R('equipe'), c = R('contact');
+if (!h || !m || !j || !e || !c) return;
+if (!(h.height > 0) || !(iw > 0) || !(ih > 0)) return;
+if (flat) {
+if (!this.stillT) this.stillT = setTimeout(() => this.setState({ still: true }), 5500);
+const fl = { flat: true, z: Math.round(z * 10000) / 10000, vhd: 900, vwd: vw, sS: 1, nav: 'studio', leaving: false, p: 0, slide: 0, active: 0, open: false,
+  seenM: true, seenJ: true, seenE: true, seenC: true, offH: true, offM: true, offE: true, offC: true };
+let chf = false;
+for (const k in fl) { if (fl[k] !== this.state[k]) { chf = true; break; } }
+if (chf) this.setState(fl);
+return;
+}
+const line = vh * 0.5;
+let nav = 'studio';
+if (j.top <= line) nav = 'jeux';
+if (e.top <= line) nav = 'equipe';
+if (c.top <= line) nav = 'contact';
+const sy0 = Math.max(window.pageYOffset || 0, document.documentElement.scrollTop || 0);
+const leaving = sy0 > 2 && h.top < -vh * 0.12;
+const cl = (x) => Math.max(0, Math.min(1, x));
+const sh = vh;
+const p = Math.round(cl(-j.top / Math.max(1, j.height - sh)) * 1000) / 1000;
+let slide = this.state.slide;
+const want = p >= 0.52 ? 1 : 0;
+if (want !== this.auto) { this.auto = want; slide = want; }
+const sy = Math.max(window.pageYOffset || 0, document.documentElement.scrollTop || 0);
+if (sy > this.lastSy + 1) this.down = true; else if (sy < this.lastSy - 1) this.down = false;
+this.lastSy = sy;
+let active = this.state.active;
+const secs = d.querySelectorAll('#equipe .mbr');
+if (secs.length) {
+active = -2;
+secs.forEach((s, i) => { if (s.getBoundingClientRect().top / z <= vh * 0.5) active = i; });
+const ms = d.getElementById('missions');
+if (ms && ms.getBoundingClientRect().top / z <= vh * (this.down ? 0.97 : 0.03)) active = -1;
+}
+const vis = (b) => b.bottom > 0 && b.top < vh;
+const next = {
+flat: false, still: false, z: Math.round(z * 10000) / 10000, vhd: vh, vwd: vw, sS: Math.round(Math.max(1, vh / 900, (iw / z) / 1440) * 1000) / 1000,
+nav, leaving, p, slide, active,
+open: this.state.open && h.top > -40,
+seenM: vis(m) && (this.state.seenM || m.top < vh * 0.75),
+seenJ: vis(j) && (this.state.seenJ || j.top < vh * 0.6),
+seenE: vis(e) && (this.state.seenE || e.top < vh * 0.7),
+seenC: vis(c) && (this.state.seenC || c.top < vh * 0.7),
+offH: !vis(h), offM: !vis(m), offE: !vis(e), offC: !vis(c)
+};
+const inJ = vis(j);
+if (inJ && !this.inJ) next.ar = 1 - this.state.ar;
+this.inJ = inJ;
+let ch = false;
+for (const k in next) { if (next[k] !== this.state[k]) { ch = true; break; } }
+if (ch) this.setState(next);
+}
+step(dir) {
+let best = 0, bd = 1e9;
+this.SC.forEach((id, i) => { const el = document.getElementById(id); if (!el) return; const dd = Math.abs(el.getBoundingClientRect().top); if (dd < bd) { bd = dd; best = i; } });
+const t = Math.max(0, Math.min(this.SC.length - 1, best + dir));
+this.go(this.SC[t]);
+}
+go(id, block) {
+const el = document.getElementById(id);
+if (!el) return;
+const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+el.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: block || 'start' });
+}
+renderVals() {
+const cl = (x) => Math.max(0, Math.min(1, x));
+const sm = (x) => { x = cl(x); return x * x * (3 - 2 * x); };
+const S = this.state;
+const p = S.p;
+const mkSt = (p) => {
+const F = [['wolf', 0.45], ['farmer', 0.8], ['skullcat', 1.0], ['bluecat', 1.0]];
+const T = [['portrait', 0.45], ['redhat', 0.65], ['judgestand', 0.5], ['bluehat', 0.85], ['judgeclose', 1.0]];
+const fo = sm((p - 0.36) / 0.26);
+const ti = sm((p - 0.38) / 0.28);
+const q = cl((p - 0.45) / 0.55);
+const st = {};
+st.foret = 'transform: scale(' + (1.02 + fo * 0.25 + p * 0.04).toFixed(4) + '); opacity: ' + (1 - sm((fo - 0.35) / 0.65)).toFixed(3) + '; filter: blur(' + (fo * 4).toFixed(1) + 'px);';
+st.tribunal = 'transform: scale(' + (1.22 - ti * 0.14 + q * 0.03).toFixed(4) + '); opacity: ' + sm(ti * 1.8).toFixed(3) + '; filter: brightness(0.82) saturate(0.95) blur(' + ((1 - ti) * 5).toFixed(1) + 'px);';
+F.forEach(([k, dd]) => {
+const sc = 1 + fo * (0.12 + 0.55 * dd);
+const tx = -p * 80 * (dd - 0.3);
+const ty = -p * 30 * dd;
+st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(4) + '); opacity: ' + (1 - sm((fo - 0.1) / 0.7)).toFixed(3) + '; filter: blur(' + (fo * (1.5 + 6 * dd)).toFixed(1) + 'px);';
+});
+T.forEach(([k, dd]) => {
+const sc = 0.78 + 0.22 * ti + 0.0;
+const tx = -q * 70 * (dd - 0.3);
+const ty = -q * 30 * dd;
+const op = cl((ti - (1 - Math.min(dd, 1)) * 0.25) / 0.5);
+st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + (sc + q * 0.04 * dd).toFixed(4) + '); opacity: ' + op.toFixed(3) + '; filter: blur(' + ((1 - ti) * (2 + 6 * dd)).toFixed(1) + 'px);';
+});
+st.dot = 'top: ' + (p * 232).toFixed(1) + 'px;';
+st.cue = 'opacity: ' + (1 - cl(p / 0.08)).toFixed(3) + ';';
+st.scrim = 'opacity: ' + (1 - 0.6 * sm((p - 0.35) / 0.3)).toFixed(3) + ';';
+return st;
+};
+const st = mkSt(p);
+const stB = mkSt(1);
+const on = (k) => 'opacity: ' + (k ? 1 : 0) + '; visibility: ' + (k ? 'visible' : 'hidden') + ';';
+const dot = (k) => 'background-color: ' + (k ? '#F3EEE3' : 'rgba(201, 191, 174, 0.45)') + ';';
+const cur = S.slide === 1 ? 1 : 0;
+const sl = { a: on(!cur), b: on(cur), da: dot(!cur), db: dot(cur), next: cur ? '← Le jeu' : 'La fabrication →' };
+const slB = { a: on(false), b: on(true), da: dot(false), db: dot(true), next: '' };
+
+const act = S.active;
+const pv = {};
+const bgi = act === -2 ? 0 : act;
+for (let i = 0; i < 5; i++) { const on = i === act; pv['p' + i] = 'opacity: ' + (i === bgi ? 1 : 0) + '; --po: ' + (on ? 1 : 0) + '; --py: ' + (on ? '0px' : '20px') + '; --pd: ' + (on ? '.2s' : '0s') + ';' + (act === -1 ? ' transition-duration: 0.28s;' : ''); }
+
+const w = S.who;
+const base = "cursor: pointer; padding: 10px 16px; border-radius: 999px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px; ";
+const chip = (k) => base + (w === k ? 'background: rgba(243, 238, 227, 0.16); border: 1px solid #F3EEE3; color: #F3EEE3;' : 'background: transparent; border: 1px solid rgba(201, 191, 174, 0.5); color: #C9BFAE;');
+
+const L = S.leaving, nv = S.nav;
+const to = (id, blk) => (ev) => { if (ev && ev.preventDefault) ev.preventDefault(); this.go(id, blk); };
+const sec = (seen, off) => 'g snap' + (seen ? ' in' : '') + (off ? ' off' : '');
+const jgo = (k) => (ev) => {
+if (ev && ev.preventDefault) ev.preventDefault();
+this.setState({ slide: k });
+this.go(k ? 'jeux-b' : 'jeux-a');
+};
+return {
+...pv,
+st, sl, stB, slB,
+rootStyle: S.z < 1 ? 'zoom: ' + S.z + ';' : '',
+jScale: 'transform: scale(' + S.sS + ');',
+frameD: 'M28.5 28.5 H' + (S.vwd - 28.5) + ' V' + (S.vhd - 28.5) + ' H84.5 A56 56 0 0 1 28.5 ' + (S.vhd - 84.5) + ' Z',
+rootClass: (S.open ? 'is-open' : '') + (L ? ' is-leaving' : '') + (S.flat ? ' flat' : '') + (S.flat && S.still ? ' still' : ''),
+c1: L && nv === 'studio' ? 'cur' : '',
+c2: L && nv === 'jeux' ? 'cur' : '',
+c3: L && nv === 'equipe' ? 'cur' : '',
+c4: L && nv === 'contact' ? 'cur' : '',
+go1: to('metier'), go2: to('jeux'), go3: to('equipe'), go4: to('contact'), goTop: to('hero'),
+expanded: S.open ? 'true' : 'false',
+cartelLabel: S.open ? 'Refermer le manifeste' : 'Lire le manifeste',
+no: false,
+toggle: () => this.setState({ open: !this.state.open }),
+gM: sec(S.seenM, S.offM), gJ: sec(S.seenJ, false), gE: sec(S.seenE, S.offE), gC: sec(S.seenC, S.offC),
+fcls: 'fa' + S.ar,
+goA: jgo(0), goB: jgo(1),
+jtoggle: jgo(S.slide === 1 ? 0 : 1),
+goScroll: to('jeux-b'),
+toMissions: to('missions'),
+askMission: (ev) => { if (ev && ev.preventDefault) ev.preventDefault(); this.setState({ who: 1, sent: false }); this.go('contact'); },
+ph: w === 1 ? 'Parlez-nous de votre studio, du profil ou de la mission que vous cherchez.' : 'Votre message',
+chip0: chip(0), chip1: chip(1), chip2: chip(2), chip3: chip(3),
+pick0: () => this.setState({ who: 0 }), pick1: () => this.setState({ who: 1 }), pick2: () => this.setState({ who: 2 }), pick3: () => this.setState({ who: 3 }),
+send: () => this.setState({ sent: true }),
+taChk: (e) => { const t = e && e.target; if (!t) return; const over = t.scrollHeight > t.clientHeight + 2 && t.scrollTop + t.clientHeight < t.scrollHeight - 2; if (over !== !!this.state.fade) this.setState({ fade: over }); },
+fadeO: this.state.fade ? 1 : 0,
+noop: (ev) => { if (ev && ev.preventDefault) ev.preventDefault(); },
+again: () => this.setState({ sent: false }),
+formStyle: S.sent ? 'display: none;' : '',
+doneStyle: S.sent ? '' : 'display: none;'
+};
+}
+}
+</script>
+</body>
+</html>

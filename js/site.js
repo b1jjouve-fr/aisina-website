@@ -86,7 +86,9 @@ window.AISINA.accueil = function (DCLogic) {
     // Sous MOBILE_MAX, la page quitte le modele "toile fixe mise a l'echelle" :
     // le texte reprend sa taille reelle (z = 1) et seules les scenes peintes
     // restent mises a l'echelle, via --cz. Voir css/mobile.css.
-    const mob = !flat && iw <= MOBILE_MAX;
+    const cssMobilePret = getComputedStyle(document.documentElement)
+      .getPropertyValue('--mobile-css').trim() === '1';
+    const mob = !flat && iw <= MOBILE_MAX && cssMobilePret;
     const z = mob ? 1 : flat ? Math.min(1, iw / 1440) : Math.min(1, iw / 1200);
     const vh = mob ? ih : flat ? 900 : Math.round(ih / z);
     const rs = document.documentElement.style;

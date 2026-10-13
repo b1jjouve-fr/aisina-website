@@ -12,6 +12,12 @@
 
 @media (max-width: 760px) {
 
+  /* Témoin lu par js/site.js : il ne bascule en mode mobile que s'il constate
+     que cette feuille est bien chargée. Sans ce garde-fou, un cache qui
+     servirait le JS récent sans la feuille retirerait le zoom sans remettre
+     les blocs dans le flux, et la page paraîtrait vide. */
+  :root { --mobile-css: 1; }
+
   /* ---------------------------------------------------- réglages généraux */
   html { scroll-snap-type: none !important; scroll-behavior: smooth; }
   .mobile .snap { scroll-snap-align: none !important; }

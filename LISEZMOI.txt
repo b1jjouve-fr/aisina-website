@@ -57,6 +57,19 @@ Affichage sur téléphone :
   Le seuil est défini à deux endroits, qui doivent rester d'accord : MOBILE_MAX dans
   js/site.js et la requête @media de css/mobile.css.
 
+  Garde-fou : js/site.js ne bascule en mode mobile que s'il constate que
+  css/mobile.css est bien chargée (témoin --mobile-css). Si cette feuille manque
+  ou si un cache en sert une version périmée, la page revient à son ancien
+  comportement, lisible, au lieu de paraître vide.
+
+Mise en ligne :
+  Depuis la division du projet, index.html ne suffit plus à lui seul : il lui faut
+  css/site.css, css/accueil.css, css/mobile.css, js/site.js, support.js et
+  fonts/fonts.css. Ces fichiers doivent toujours être publiés ensemble.
+  Après une mise en ligne, si l'affichage semble incomplet, recharger en vidant le
+  cache (Cmd+Maj+R) : GitHub Pages garde les fichiers en cache dix minutes, et un
+  mélange d'anciennes et de nouvelles versions suffit à dégrader la page.
+
 Aucune connexion Internet n'est nécessaire, sauf pour les liens LinkedIn et Instagram du pied de page.
 Garder les fichiers dans ce même dossier : les chemins sont relatifs.
 Si un navigateur bloque l'ouverture en double-clic, lancer dans le dossier :

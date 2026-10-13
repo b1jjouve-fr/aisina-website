@@ -7,10 +7,12 @@ Ouvrir :
 Organisation des fichiers :
   index.html           Accueil (page complète, défilement écran par écran)
   team-building.html   Page Team building entreprise
+  404.html             Page affichée quand une adresse n'existe pas
   css/site.css         Styles communs aux deux pages
   css/accueil.css      Styles propres à l'accueil
   css/team-building.css Styles propres à la page Team building
   css/mobile.css       Mise en page de l'accueil sur téléphone (sous 760 px de large)
+  css/404.css          Styles de la page d'erreur
   js/site.js           Logique des deux pages : défilement, zoom, calcul des tailles, formulaires
   content/equipe.json  Les cinq fiches de l'équipe
   content/scenarios.json  Les étapes et les scénarios de la page Team building
@@ -61,6 +63,17 @@ Affichage sur téléphone :
   css/mobile.css est bien chargée (témoin --mobile-css). Si cette feuille manque
   ou si un cache en sert une version périmée, la page revient à son ancien
   comportement, lisible, au lieu de paraître vide.
+
+Page d'erreur :
+  404.html reprend l'artboard Figma « AISINA / 404 ». Elle n'utilise aucune nouvelle
+  image : le décor de forêt et le chat-crâne sont ceux de la section Jeux de l'accueil,
+  les icônes et le monogramme viennent de l'en-tête du site. Elle ne charge pas
+  support.js : c'est une page statique, sans moteur de gabarit.
+  GitHub Pages l'affiche automatiquement pour toute adresse inexistante du site.
+  Réserve : ses chemins sont relatifs, comme partout ailleurs, pour que le double-clic
+  fonctionne. Une adresse inexistante à deux niveaux de profondeur
+  (…/aisina-website/un/deux) afficherait donc le texte sans les styles. Les fautes de
+  frappe courantes, à un seul niveau, s'affichent correctement.
 
 Mise en ligne :
   Depuis la division du projet, index.html ne suffit plus à lui seul : il lui faut

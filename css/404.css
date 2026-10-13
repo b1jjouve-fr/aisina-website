@@ -1,0 +1,186 @@
+/* AISINA — page d'erreur 404.
+
+   Reprend la maquette Figma « AISINA / 404 » (artboard 1440 × 900).
+   Rien n'est ajouté au dossier assets : le décor de forêt et le chat-crâne sont
+   les illustrations déjà utilisées par la section Jeux de l'accueil, et les
+   icônes de navigation comme le monogramme viennent de l'en-tête du site.
+   css/site.css fournit la couleur des liens, l'animation des icônes au survol
+   et la dérive lente des calques .pa / .pb.
+
+   Les repères de la maquette sont convertis en pourcentages du cadre
+   1440 × 900, pour que la page suive la fenêtre sans se déformer. */
+
+body { margin: 0; background: #0C1419; }
+
+.err {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #1C2234;
+  color: #C9BFAE;
+  font-family: 'Instrument Sans', sans-serif;
+}
+
+/* ------------------------------------------------------------------ décor */
+.err-fond { position: absolute; inset: 0; overflow: hidden; }
+
+/* le même décor de forêt que la section Jeux, cadré et assombri.
+   .pa porte la dérive lente définie dans css/site.css. */
+.err-foret { position: absolute; left: -8%; top: -6%; width: 116%; height: 118%; }
+.err-foret .pa {
+  position: absolute; inset: 0;
+  background: url(../assets/d591d22d59771371b623ee155c2773ff.jpg) 50% 34% / cover no-repeat;
+  filter: brightness(.74) saturate(.9);
+}
+
+/* voile sombre de la maquette (noir 80 %), teinte bleutée, puis vignettage
+   pour ramener le regard vers le texte et la bête, comme sur l'artboard */
+.err-voile  { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.8); }
+.err-teinte { position: absolute; inset: 0; background: rgba(11, 16, 30, 0.3); }
+.err-teinte::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 78% at 50% 50%, rgba(12, 20, 25, 0), rgba(12, 20, 25, 0.75));
+}
+
+/* -------------------------------------------------------------- créature */
+.err-creature {
+  position: absolute;
+  right: 13.9%;          /* 201px sur 1440 */
+  bottom: 3.7%;          /*  33px sur 900  */
+  height: 90.7%;         /* 816px sur 900  */
+  aspect-ratio: 1002 / 1500;
+  pointer-events: none;
+}
+.err-creature img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+/* l'ombre portée floue posée sous la bête */
+.err-ombre {
+  position: absolute;
+  left: 21%; top: 80%; width: 58%; height: 11%;
+  background: #000;
+  border-radius: 50%;
+  filter: blur(32px);
+}
+
+/* ----------------------------------------------------------- barre haute */
+.err-barre {
+  position: absolute;
+  left: 0; top: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 68px 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.err-logo { display: block; flex: none; }
+.err-logo svg { display: block; }
+
+.err-nav { display: flex; gap: 36px; align-items: center; flex-wrap: wrap; }
+.err-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------- le propos */
+.err-bloc {
+  position: absolute;
+  left: calc(50% - 475px);   /* 245px sur 1440 */
+  top: 34.9%;                /* 314px sur 900  */
+  width: 493px;
+  max-width: calc(100% - 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+.err-surtitre {
+  margin: 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #C9BFAE;
+}
+.err-titre {
+  margin: 0;
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 80px;
+  line-height: 1.1;
+  color: #C9BFAE;
+}
+.err-retour {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 58px;
+  padding: 0 28px;
+  box-sizing: border-box;
+  border-radius: 100px;
+  background: rgba(181, 112, 46, 0.22);
+  border: 1px solid rgba(181, 112, 46, 0.85);
+  color: #FFFFFF;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background .3s ease, border-color .3s ease;
+}
+.err-retour:hover,
+.err-retour:focus-visible {
+  background: rgba(181, 112, 46, 0.38);
+  border-color: rgba(208, 138, 68, 0.95);
+  color: #FFFFFF;
+}
+.err-retour .va { display: inline-block; transition: transform .3s ease; }
+.err-retour:hover .va,
+.err-retour:focus-visible .va { transform: translateX(4px); }
+
+a:focus-visible { outline: 1px solid #D08A44; outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .err-retour, .err-retour .va { transition: none; }
+}
+
+/* --------------------------------------------- écrans intermédiaires */
+@media (max-width: 1240px) {
+  .err-bloc { left: 7%; width: 44%; min-width: 320px; }
+  .err-titre { font-size: clamp(44px, 5.4vw, 80px); }
+}
+
+/* ------------------------------------------------------------ téléphone */
+/* Même seuil que le reste du site (voir css/mobile.css et js/site.js) :
+   la créature passe en fond discret, le propos reprend toute la largeur. */
+@media (max-width: 760px) {
+  .err { display: flex; flex-direction: column; justify-content: center; padding: 104px 20px 56px; box-sizing: border-box; }
+
+  .err-creature {
+    right: -26%;
+    bottom: auto; top: 52%;
+    transform: translateY(-50%);
+    height: 58%;
+    opacity: 0.42;
+  }
+
+  .err-barre { padding: 0 20px; top: 24px; }
+  .err-nav { gap: 18px; }
+  .err-nav a span { display: none; }   /* seules les icônes restent */
+
+  .err-bloc {
+    position: relative;
+    left: auto; top: auto;
+    width: auto; max-width: none;
+    gap: 20px;
+  }
+  .err-titre { font-size: 40px; }
+  .err-retour { height: 52px; }
+}

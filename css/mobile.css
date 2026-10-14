@@ -300,6 +300,12 @@
   }
 
   /* --------------------------------------------------------------- jeux */
+  /* Entrees automatiques de la scene. La règle n'a qu'un « from » : le point
+     d'arrivée reste la valeur posée par js/site.js, si bien que la sortie au
+     défilement continue de jouer une fois l'entrée terminée. */
+  @keyframes jparait { from { opacity: 0; } }
+  @keyframes jsurgir { from { opacity: 0; transform: translateY(44px); } }
+
   /* La section garde son déroulé au défilement, comme sur ordinateur, mais
      raconté en six temps (maquette Figma « section#Jeux ») : le décor de forêt
      seul, ses personnages, le cartouche Masca ; puis le tribunal qui monte,
@@ -353,6 +359,10 @@
     padding: 24px !important;
     gap: 14px !important;
   }
+  @media (prefers-reduced-motion: reduce) {
+    .mobile #jstage .mm-scene > div { animation: none !important; }
+  }
+
   /* écrans courts : le cartouche se resserre pour laisser voir la peinture */
   @media (max-height: 700px) {
     .mobile #jeux .jr { padding: 20px !important; gap: 10px !important; }

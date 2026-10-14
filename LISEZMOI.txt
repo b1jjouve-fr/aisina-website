@@ -54,10 +54,15 @@ Affichage sur téléphone :
     - le défilement écran par écran et le manifeste en surimpression sont désactivés ;
     - la section Jeux garde son déroulé au défilement, mais raconté en six temps :
       le décor de forêt seul, ses personnages, le cartouche Masca, puis le tribunal
-      seul, ses personnages et son cartouche. La toile de 1440 x 900 est réduite
-      par --sS pour couvrir la hauteur de l'écran (cadrage portrait) et le plan est
-      reculé pour qu'on voie plusieurs personnages ; les minutages sont dans
-      renderVals (mkSt et jCarte) de js/site.js ;
+      seul, ses personnages et son cartouche. Seuls les deux décors suivent le
+      défilement : les personnages et le cartouche arrivent seuls, en fondu, dès
+      que l'écran est atteint (verrou vuA) puis dès que le tribunal est en place
+      (verrou vuB) ; leur entrée est une animation CSS (jparait, jsurgir) posée par
+      le style en ligne, dont le point d'arrivée reste la valeur calculée, si bien
+      que la sortie au défilement continue de jouer. La toile de 1440 x 900 est
+      réduite par --sS pour couvrir la hauteur de l'écran (cadrage portrait), le
+      plan est reculé et chaque personnage reçoit un décalage horizontal (table DX)
+      pour entrer dans le cadre ; tout cela est dans renderVals de js/site.js ;
     - les autres scènes peintes restent à l'échelle, via la variable --cz ;
     - chaque photo d'équipe se place au-dessus de la fiche du membre.
   Au-dessus de 760 px, rien ne change : l'affichage sur ordinateur est celui d'origine.

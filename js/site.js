@@ -18,7 +18,7 @@ window.AISINA.accueil = function (DCLogic) {
   return class Component extends DCLogic {
     constructor(...args) {
     super(...args);
-    this.state = { fade: false, flat: false, mobile: false, menu: false, still: false, z: 1, vhd: 900, vwd: 1440, sS: 1, open: false, leaving: false, nav: 'studio', p: 0, slide: 0, ar: 0, active: -2, who: 0, sent: false,
+    this.state = { fade: false, flat: false, mobile: false, menu: false, still: false, vuA: false, vuB: false, z: 1, vhd: 900, vwd: 1440, sS: 1, open: false, leaving: false, nav: 'studio', p: 0, slide: 0, ar: 0, active: -2, who: 0, sent: false,
       seenM: false, seenJ: false, seenE: false, seenC: false, offH: false, offM: true, offE: true, offC: true };
     this.auto = 0;
     this.inJ = false;
@@ -196,6 +196,9 @@ window.AISINA.accueil = function (DCLogic) {
        plus haut, comme sur ordinateur, et la scene est collante. */
     const mo = { mobile: true, flat: false, still: false, z: 1, vhd: vh, vwd: vw, sS: sSv, nav: 'studio',
       leaving: false, p: p, slide: slide,
+      /* verrous d'arrivee : une fois poses, personnages et cartouche restent la */
+      vuA: this.state.vuA || j.top <= vh * 0.15,
+      vuB: this.state.vuB || p >= 0.52,
       active: actifMob,
       /* le manifeste reste sous le contrôle de son bouton : ne pas le refermer
          à chaque mesure, sinon il se referme seul dès qu'on défile */
@@ -247,17 +250,26 @@ window.AISINA.accueil = function (DCLogic) {
     /* Deroule de la section Jeux.
        Sur ordinateur, les deux decors se relaient au defilement et les
        personnages sont la des le depart.
-       Sur telephone, la maquette demande six temps : le decor de foret seul,
-       puis ses personnages, puis le cartouche ; le tribunal monte ensuite,
-       seul, puis ses personnages, puis son cartouche. On ne change donc que
-       les fenetres de temps, pas le dessin. */
+       Sur telephone, la maquette demande six temps. Seuls les deux decors
+       suivent le defilement : les personnages et le cartouche arrivent seuls,
+       en fondu, des que l'ecran est atteint (vuA) puis des que le tribunal est
+       en place (vuB). Leur entree est une animation CSS (jparait, jsurgir)
+       posee par le style en ligne ; la valeur d'arrivee reste celle calculee
+       ici, si bien que la sortie au defilement continue de fonctionner.
+
+       DX : decalages horizontaux propres au telephone. L'ecran ne montre
+       qu'un tiers de la toile de 1440 px : sans eux, le loup, la portraiture
+       et les juges tombent hors cadre. */
+    const DX = { wolf: -194, farmer: -44, skullcat: -194, bluecat: 33,
+                 portrait: 133, redhat: 33, judgestand: -44, bluehat: -89, judgeclose: -67 };
+    const DT = { farmer: 0, wolf: 0.18, skullcat: 0.3, bluecat: 0.36,
+                 portrait: 0, redhat: 0.12, judgestand: 0.24, bluehat: 0.3, judgeclose: 0.36 };
     const mkSt = (p, M) => {
     const F = [['wolf', 0.45], ['farmer', 0.8], ['skullcat', 1.0], ['bluecat', 1.0]];
     const T = [['portrait', 0.45], ['redhat', 0.65], ['judgestand', 0.5], ['bluehat', 0.85], ['judgeclose', 1.0]];
-    const fi = M ? sm((p - 0.03) / 0.13) : 1;
-    const fo = M ? sm((p - 0.34) / 0.22) : sm((p - 0.36) / 0.26);
-    const ti = M ? sm((p - 0.42) / 0.22) : sm((p - 0.38) / 0.28);
-    const tc = M ? sm((p - 0.62) / 0.24) : ti;
+    const fo = M ? sm((p - 0.30) / 0.20) : sm((p - 0.36) / 0.26);
+    const ti = M ? sm((p - 0.32) / 0.20) : sm((p - 0.38) / 0.28);
+    const tc = M ? 1 : ti;
     const q = cl((p - 0.45) / 0.55);
     const st = {};
     st.foret = 'transform: scale(' + (1.02 + fo * 0.25 + p * 0.04).toFixed(4) + '); opacity: ' + (1 - sm((fo - 0.35) / 0.65)).toFixed(3) + '; filter: blur(' + (fo * 4).toFixed(1) + 'px);';
@@ -265,17 +277,22 @@ window.AISINA.accueil = function (DCLogic) {
     /* Sur telephone l'ecran ne montre qu'un tiers de la toile : on recule un peu
        le plan pour que l'on voie l'ensemble des personnages et non un seul. */
     F.forEach(([k, dd]) => {
-    const sc = (M ? 0.80 : 1) + fo * (0.12 + 0.55 * dd);
-    const tx = -p * 80 * (dd - 0.3);
+    const sc = (M ? 0.60 : 1) + fo * (0.12 + 0.55 * dd);
+    const tx = -p * 80 * (dd - 0.3) + (M ? DX[k] : 0);
     const ty = -p * 30 * dd;
-    st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(4) + '); opacity: ' + (fi * (1 - sm((fo - 0.1) / 0.7))).toFixed(3) + '; filter: blur(' + (fo * (1.5 + 6 * dd)).toFixed(1) + 'px);';
+    const op = M && !S.vuA ? 0 : (1 - sm((fo - 0.1) / 0.7));
+    const an = M && S.vuA ? ' animation: jparait .9s ease-out ' + DT[k] + 's backwards;' : '';
+    st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(4) + '); opacity: ' + op.toFixed(3) + '; filter: blur(' + (fo * (1.5 + 6 * dd)).toFixed(1) + 'px);' + an;
     });
     T.forEach(([k, dd]) => {
-    const sc = M ? 0.56 + 0.16 * tc : 0.78 + 0.22 * tc;
-    const tx = -q * 70 * (dd - 0.3);
+    const sc = M ? 0.58 : 0.78 + 0.22 * tc;
+    const tx = -q * 70 * (dd - 0.3) + (M ? DX[k] : 0);
     const ty = -q * 30 * dd;
-    const op = cl((tc - (1 - Math.min(dd, 1)) * 0.25) / 0.5);
-    st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + (sc + q * 0.04 * dd).toFixed(4) + '); opacity: ' + op.toFixed(3) + '; filter: blur(' + ((1 - tc) * (2 + 6 * dd)).toFixed(1) + 'px);';
+    /* les personnages du tribunal suivent leur decor : invisibles tant qu'il
+       n'est pas la, et ils repartent avec lui si l'on remonte */
+    const op = M ? (S.vuB ? ti : 0) : cl((tc - (1 - Math.min(dd, 1)) * 0.25) / 0.5);
+    const an = M && S.vuB ? ' animation: jparait 1s ease-out ' + DT[k] + 's backwards;' : '';
+    st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + (sc + q * 0.04 * dd).toFixed(4) + '); opacity: ' + op.toFixed(3) + '; filter: blur(' + (M ? 0 : (1 - tc) * (2 + 6 * dd)).toFixed(1) + 'px);' + an;
     });
     st.dot = 'top: ' + (p * 232).toFixed(1) + 'px;';
     st.cue = 'opacity: ' + (1 - cl(p / 0.08)).toFixed(3) + ';';
@@ -291,10 +308,14 @@ window.AISINA.accueil = function (DCLogic) {
        c'est-a-dire pendant qu'il est invisible : on ne voit jamais le fondu. */
     let jCarte = '';
     if (M) {
-    const ea = sm((p - 0.06) / 0.12), xa = sm((p - 0.40) / 0.10), eb = sm((p - 0.68) / 0.14);
-    const op = p < 0.52 ? ea * (1 - xa) : eb;
-    const ty = p < 0.52 ? (1 - ea) * 44 - xa * 34 : (1 - eb) * 44;
-    jCarte = 'opacity: ' + op.toFixed(3) + '; transform: translateY(' + ty.toFixed(1) + 'px);';
+    /* le premier cartouche se retire au defilement, juste avant que le decor
+       ne bascule ; le second ne fait qu'arriver */
+    const xa = sm((p - 0.28) / 0.12);
+    const vu = p < 0.52 ? S.vuA : S.vuB;
+    const op = !vu ? 0 : (p < 0.52 ? 1 - xa : 1);
+    const ty = p < 0.52 ? -xa * 34 : 0;
+    const an = vu ? ' animation: jsurgir 1s cubic-bezier(.2,.7,.2,1) ' + (p < 0.52 ? '.5' : '.75') + 's backwards;' : '';
+    jCarte = 'opacity: ' + op.toFixed(3) + '; transform: translateY(' + ty.toFixed(1) + 'px);' + an;
     }
     const on = (k) => 'opacity: ' + (k ? 1 : 0) + '; visibility: ' + (k ? 'visible' : 'hidden') + ';';
     const dot = (k) => 'background-color: ' + (k ? '#F3EEE3' : 'rgba(201, 191, 174, 0.45)') + ';';

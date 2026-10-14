@@ -1,14 +1,20 @@
 /* AISINA — page d'erreur 404.
 
-   Reprend la maquette Figma « AISINA / 404 » (artboard 1440 × 900).
-   Rien n'est ajouté au dossier assets : le décor de forêt et le chat-crâne sont
-   les illustrations déjà utilisées par la section Jeux de l'accueil, et les
-   icônes de navigation comme le monogramme viennent de l'en-tête du site.
-   css/site.css fournit la couleur des liens, l'animation des icônes au survol
-   et la dérive lente des calques .pa / .pb.
+   Reprend la maquette Figma « Website - 404 », qui existe en quatre états :
+   Desktop (1440), Tablet (744), Phone (393) et Phone / menu ouvert.
 
-   Les repères de la maquette sont convertis en pourcentages du cadre
-   1440 × 900, pour que la page suive la fenêtre sans se déformer. */
+   Aucune nouvelle image : le décor de forêt et le chat-crâne sont les
+   illustrations de la section Jeux de l'accueil, les icônes de navigation et
+   le logo viennent de l'en-tête du site. css/site.css fournit la couleur des
+   liens, l'animation des icônes et la dérive lente du calque .pa.
+
+   Trois paliers :
+     au-delà de 1240 px  mise en page de bureau
+     721 à 1240 px       logo réduit au monogramme, propos centré, bête assombrie
+     jusqu'à 720 px      barre avec bouton MENU et navigation en plein écran
+   Le seuil téléphone est à 720 px et non 760 comme sur l'accueil : l'artboard
+   tablette de la maquette fait 744 px et doit recevoir la mise en page tablette.
+   À harmoniser avec css/mobile.css. */
 
 body { margin: 0; background: #0C1419; }
 
@@ -24,8 +30,6 @@ body { margin: 0; background: #0C1419; }
 /* ------------------------------------------------------------------ décor */
 .err-fond { position: absolute; inset: 0; overflow: hidden; }
 
-/* le même décor de forêt que la section Jeux, cadré et assombri.
-   .pa porte la dérive lente définie dans css/site.css. */
 .err-foret { position: absolute; left: -8%; top: -6%; width: 116%; height: 118%; }
 .err-foret .pa {
   position: absolute; inset: 0;
@@ -33,8 +37,6 @@ body { margin: 0; background: #0C1419; }
   filter: brightness(.74) saturate(.9);
 }
 
-/* voile sombre de la maquette (noir 80 %), teinte bleutée, puis vignettage
-   pour ramener le regard vers le texte et la bête, comme sur l'artboard */
 .err-voile  { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.8); }
 .err-teinte { position: absolute; inset: 0; background: rgba(11, 16, 30, 0.3); }
 .err-teinte::after {
@@ -51,17 +53,9 @@ body { margin: 0; background: #0C1419; }
   height: 90.7%;         /* 816px sur 900  */
   aspect-ratio: 1002 / 1500;
   pointer-events: none;
+  transition: filter .4s ease;
 }
 .err-creature img { display: block; width: 100%; height: 100%; object-fit: contain; }
-
-/* l'ombre portée floue posée sous la bête */
-.err-ombre {
-  position: absolute;
-  left: 21%; top: 80%; width: 58%; height: 11%;
-  background: #000;
-  border-radius: 50%;
-  filter: blur(32px);
-}
 
 /* ----------------------------------------------------------- barre haute */
 .err-barre {
@@ -74,9 +68,16 @@ body { margin: 0; background: #0C1419; }
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  z-index: 3;
 }
 .err-logo { display: block; flex: none; }
 .err-logo svg { display: block; }
+/* les lettres du mot AISINA, que le palier tablette escamote une à une,
+   exactement comme l'en-tête de l'accueil le fait au défilement */
+.err-logo .lt {
+  transition: transform .55s cubic-bezier(.4, 0, .2, 1) calc((5 - var(--i)) * .09s),
+              opacity .55s ease calc((5 - var(--i)) * .09s);
+}
 
 .err-nav { display: flex; gap: 36px; align-items: center; flex-wrap: wrap; }
 .err-nav a {
@@ -90,6 +91,9 @@ body { margin: 0; background: #0C1419; }
   white-space: nowrap;
 }
 
+/* bouton MENU : seulement sur téléphone */
+.err-menu { display: none; }
+
 /* ------------------------------------------------------------- le propos */
 .err-bloc {
   position: absolute;
@@ -101,6 +105,7 @@ body { margin: 0; background: #0C1419; }
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+  z-index: 2;
 }
 .err-surtitre {
   margin: 0;
@@ -145,42 +150,144 @@ body { margin: 0; background: #0C1419; }
 .err-retour:hover .va,
 .err-retour:focus-visible .va { transform: translateX(4px); }
 
-a:focus-visible { outline: 1px solid #D08A44; outline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 1px solid #D08A44; outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .err-retour, .err-retour .va { transition: none; }
+  .err-retour, .err-retour .va, .err-logo .lt, .err-creature { transition: none; }
 }
 
-/* --------------------------------------------- écrans intermédiaires */
-@media (max-width: 1240px) {
-  .err-bloc { left: 7%; width: 44%; min-width: 320px; }
-  .err-titre { font-size: clamp(44px, 5.4vw, 80px); }
+/* ------------------------------------------------------------- tablette */
+/* Le mot AISINA se rétracte sur son monogramme, le propos se centre, et la
+   bête s'assombrit pour passer derrière le texte. */
+@media (min-width: 721px) and (max-width: 1240px) {
+  .err-logo .lt { opacity: 0; transform: translateX(-12px); transition-delay: calc(var(--i) * .09s); }
+
+  .err-bloc {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 32%;
+  }
+
+  .err-creature {
+    right: 50%;
+    transform: translateX(50%);
+    height: 72%;
+    filter: brightness(.42) saturate(.8);
+  }
 }
 
 /* ------------------------------------------------------------ téléphone */
-/* Même seuil que le reste du site (voir css/mobile.css et js/site.js) :
-   la créature passe en fond discret, le propos reprend toute la largeur. */
-@media (max-width: 760px) {
-  .err { display: flex; flex-direction: column; justify-content: center; padding: 104px 20px 56px; box-sizing: border-box; }
-
-  .err-creature {
-    right: -26%;
-    bottom: auto; top: 52%;
-    transform: translateY(-50%);
-    height: 58%;
-    opacity: 0.42;
+@media (max-width: 720px) {
+  .err {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 24px 56px;   /* marge mobile : 24px */
+    box-sizing: border-box;
   }
 
-  .err-barre { padding: 0 20px; top: 24px; }
-  .err-nav { gap: 18px; }
-  .err-nav a span { display: none; }   /* seules les icônes restent */
+  /* la bête devient un carré discret, derrière le propos */
+  .err-creature {
+    right: 50%;
+    transform: translateX(50%);
+    top: 110px;
+    bottom: auto;
+    height: auto;
+    width: 320px;
+    max-width: 82%;
+    aspect-ratio: 1;
+    filter: brightness(.5) saturate(.85);
+  }
+  .err-creature img { object-position: 50% 30%; }
 
+  /* ---- la barre : logo complet à gauche, bouton MENU à droite ---- */
+  .err-barre {
+    position: fixed;
+    top: 0;
+    padding: 16px 24px;
+    gap: 16px;
+  }
+  .err-logo svg { width: 117px; height: 21.6px; }
+
+  .err-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 120px;
+    padding: 8px 24px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    background: rgba(201, 191, 174, 0.12);
+    border: 1px solid rgba(201, 191, 174, 0.5);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    color: #F3EEE3;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 10px rgba(12, 20, 25, 0.85);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  /* les deux barres se rejoignent et pivotent pour former la croix */
+  .err-burger { position: relative; display: block; flex: none; width: 19px; height: 6px; }
+  .err-burger i {
+    position: absolute; left: 0;
+    width: 19px; height: 1px;
+    background: #F3EEE3;
+    transition: transform .4s cubic-bezier(.2, .7, .2, 1);
+  }
+  .err-burger i:nth-child(1) { top: 0; }
+  .err-burger i:nth-child(2) { top: 5px; }
+  [aria-expanded="true"] .err-burger i:nth-child(1) { transform: translateY(2.5px) rotate(135deg); }
+  [aria-expanded="true"] .err-burger i:nth-child(2) { transform: translateY(-2.5px) rotate(-135deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .err-burger i { transition: none; }
+  }
+
+  /* ---- la navigation en plein écran ---- */
+  .err-nav {
+    position: fixed;
+    left: 0; right: 0; top: 66px; bottom: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0;
+    padding: 24px 0;
+    box-sizing: border-box;
+    /* léger voile : la maquette n'en prévoit pas, mais sans lui les libellés
+       se confondent avec le texte de la page. Une seule ligne à retirer. */
+    background: rgba(12, 20, 25, 0.86);
+    z-index: 4;
+  }
+  .menu-ouvert .err-nav { display: flex; }
+  .menu-ouvert, .menu-ouvert body { overflow: hidden; }
+
+  .err-nav a {
+    flex-direction: column;
+    gap: 16px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #C8BFAE;
+  }
+  .err-nav a .nv { width: 40px; height: 40px; }
+  /* dans le panneau déployé, les icônes tournent en continu */
+  .menu-ouvert .err-nav .nv { animation-play-state: running; }
+
+  /* ---- le propos ---- */
   .err-bloc {
     position: relative;
     left: auto; top: auto;
+    transform: none;
     width: auto; max-width: none;
     gap: 20px;
   }
-  .err-titre { font-size: 40px; }
-  .err-retour { height: 52px; }
+  .err-titre { font-size: clamp(38px, 14.2vw, 56px); }
+  .err-retour { height: 54px; }
 }

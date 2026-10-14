@@ -18,7 +18,7 @@ window.AISINA.accueil = function (DCLogic) {
   return class Component extends DCLogic {
     constructor(...args) {
     super(...args);
-    this.state = { fade: false, flat: false, mobile: false, still: false, z: 1, vhd: 900, vwd: 1440, sS: 1, open: false, leaving: false, nav: 'studio', p: 0, slide: 0, ar: 0, active: -2, who: 0, sent: false,
+    this.state = { fade: false, flat: false, mobile: false, menu: false, still: false, z: 1, vhd: 900, vwd: 1440, sS: 1, open: false, leaving: false, nav: 'studio', p: 0, slide: 0, ar: 0, active: -2, who: 0, sent: false,
       seenM: false, seenJ: false, seenE: false, seenC: false, offH: false, offM: true, offE: true, offC: true };
     this.auto = 0;
     this.inJ = false;
@@ -41,6 +41,7 @@ window.AISINA.accueil = function (DCLogic) {
     this.step(ev.deltaY > 0 ? 1 : -1);
     };
     this.onKey = (ev) => {
+    if (ev.key === 'Escape' && this.state.menu) { this.setState({ menu: false }); return; }
     if (this.state.flat || this.state.mobile) return;
     if (ev.key === 'Escape' && this.state.open) { this.setState({ open: false }); return; }
     const tg = ev.target;
@@ -67,7 +68,30 @@ window.AISINA.accueil = function (DCLogic) {
     this.measure();
     this.t1 = setTimeout(() => this.measure(), 400);
     this.t2 = setTimeout(() => this.measure(), 1600);
+    this.rejoindreAncre();
     if (typeof ResizeObserver !== 'undefined') { this.ro = new ResizeObserver(() => this.onScr()); this.ro.observe(document.documentElement); }
+    }
+    /* La page est construite par le moteur apres le chargement : quand on arrive
+       avec une adresse du type index.html#jeux, le navigateur cherche l'ancre
+       avant qu'elle existe et reste sur le hero. On la rejoint donc nous-memes,
+       puis a nouveau une fois la mise en page stabilisee (images, polices).
+       Toute action de l'utilisateur annule ce rattrapage. */
+    rejoindreAncre() {
+    const nom = (window.location.hash || '').slice(1);
+    if (!nom || !document.getElementById(nom)) return;
+    let abandon = false;
+    const stop = () => { abandon = true; };
+    window.addEventListener('wheel', stop, { once: true, passive: true });
+    window.addEventListener('touchstart', stop, { once: true, passive: true });
+    window.addEventListener('keydown', stop, { once: true });
+    const poser = () => {
+    if (abandon) return;
+    const el = document.getElementById(nom);
+    if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+    };
+    poser();
+    this.t3 = setTimeout(poser, 500);
+    this.t4 = setTimeout(poser, 1700);
     }
     componentWillUnmount() {
     window.removeEventListener('scroll', this.onScr, true);
@@ -76,6 +100,8 @@ window.AISINA.accueil = function (DCLogic) {
     window.removeEventListener('wheel', this.onWheel);
     clearTimeout(this.t1);
     clearTimeout(this.t2);
+    clearTimeout(this.t3);
+    clearTimeout(this.t4);
     clearTimeout(this.stillT);
     if (this.ro) this.ro.disconnect();
     }
@@ -99,7 +125,7 @@ window.AISINA.accueil = function (DCLogic) {
     const czv = Math.round((mob ? iw / 1440 : 1) * 10000) / 10000;
     if (rs.getPropertyValue('--cz') !== String(czv)) rs.setProperty('--cz', String(czv));
     // L'en-tete garde l'aspect qu'il a aujourd'hui : une barre de 1440 px mise a l'echelle.
-    const he = mob ? iw / 1440 : flat ? z : Math.min(1, z / 0.7);
+    const he = mob ? 1 : flat ? z : Math.min(1, z / 0.7);
     const hiz = Math.round(he / z * 10000) / 10000, hhw = Math.round(iw / he);
     if (rs.getPropertyValue('--iz') !== String(hiz)) rs.setProperty('--iz', String(hiz));
     if (rs.getPropertyValue('--hw') !== hhw + 'px') rs.setProperty('--hw', hhw + 'px');
@@ -117,7 +143,7 @@ window.AISINA.accueil = function (DCLogic) {
     if (chm) this.setState(mo);
     return;
     }
-    if (this.state.mobile) this.setState({ mobile: false });
+    if (this.state.mobile) this.setState({ mobile: false, menu: false });
     if (flat) {
     if (!this.stillT) this.stillT = setTimeout(() => this.setState({ still: true }), 5500);
     const fl = { flat: true, z: Math.round(z * 10000) / 10000, vhd: 900, vwd: vw, sS: 1, nav: 'studio', leaving: false, p: 0, slide: 0, active: 0, open: false,
@@ -231,7 +257,7 @@ window.AISINA.accueil = function (DCLogic) {
     const chip = (k) => base + (w === k ? 'background: rgba(243, 238, 227, 0.16); border: 1px solid #F3EEE3; color: #F3EEE3;' : 'background: transparent; border: 1px solid rgba(201, 191, 174, 0.5); color: #C9BFAE;');
 
     const L = S.leaving, nv = S.nav;
-    const to = (id, blk) => (ev) => { if (ev && ev.preventDefault) ev.preventDefault(); this.go(id, blk); };
+    const to = (id, blk) => (ev) => { if (ev && ev.preventDefault) ev.preventDefault(); if (this.state.menu) this.setState({ menu: false }); this.go(id, blk); };
     const sec = (seen, off) => 'g snap' + (seen ? ' in' : '') + (off ? ' off' : '');
     const jgo = (k) => (ev) => {
     if (ev && ev.preventDefault) ev.preventDefault();
@@ -244,7 +270,7 @@ window.AISINA.accueil = function (DCLogic) {
     rootStyle: S.z < 1 ? 'zoom: ' + S.z + ';' : '',
     jScale: 'transform: scale(' + S.sS + ');',
     frameD: 'M28.5 28.5 H' + (S.vwd - 28.5) + ' V' + (S.vhd - 28.5) + ' H84.5 A56 56 0 0 1 28.5 ' + (S.vhd - 84.5) + ' Z',
-    rootClass: (S.open ? 'is-open' : '') + (L ? ' is-leaving' : '') + (S.mobile ? ' mobile' : '') + (S.flat ? ' flat' : '') + (S.flat && S.still ? ' still' : ''),
+    rootClass: (S.open ? 'is-open' : '') + (L ? ' is-leaving' : '') + (S.mobile ? ' mobile' : '') + (S.menu ? ' menu-ouvert' : '') + (S.flat ? ' flat' : '') + (S.flat && S.still ? ' still' : ''),
     c1: L && nv === 'studio' ? 'cur' : '',
     c2: L && nv === 'jeux' ? 'cur' : '',
     c3: L && nv === 'equipe' ? 'cur' : '',
@@ -254,6 +280,10 @@ window.AISINA.accueil = function (DCLogic) {
     cartelLabel: S.open ? 'Refermer le manifeste' : 'Lire le manifeste',
     no: false,
     toggle: () => this.setState({ open: !this.state.open }),
+    menuOuvert: S.menu ? 'true' : 'false',
+    menuMot: S.menu ? 'Fermer' : 'Menu',
+    menuLabel: S.menu ? 'Fermer le menu' : 'Ouvrir le menu',
+    menuToggle: () => this.setState({ menu: !this.state.menu }),
     gM: sec(S.seenM, S.offM), gJ: sec(S.seenJ, false), gE: sec(S.seenE, S.offE), gC: sec(S.seenC, S.offC),
     fcls: 'fa' + S.ar,
     goA: jgo(0), goB: jgo(1),

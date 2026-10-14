@@ -43,6 +43,132 @@
   /* le voile du haut n'a plus lieu d'être sans défilement écran par écran */
   .mobile .hveil { display: none !important; }
 
+  /* --------------------------------------------------- en-tête et menu --
+     En mode mobile, measure() pose --iz à 1 : l'en-tête cesse d'être une barre
+     de 1440 px réduite et reprend sa taille réelle. On peut donc y loger le
+     bouton MENU et le panneau de la maquette. Mêmes mesures que sur la 404. */
+  .mobile .hdr {
+    height: 66px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 16px 24px;
+  }
+  .mobile .hdr .lgw { position: static !important; flex: none; }
+  .mobile .hdr .lgw a {
+    position: static !important;
+    left: auto !important; top: auto !important;
+    animation: none !important;
+  }
+  .mobile .hdr .lgw svg { display: block; width: 117px; height: 21.6px; }
+
+  .mobile .mm-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex: none;
+    width: 120px;
+    padding: 8px 24px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    background: rgba(201, 191, 174, 0.12);
+    border: 1px solid rgba(201, 191, 174, 0.5);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    color: #F3EEE3;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 10px rgba(12, 20, 25, 0.85);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .mm-burger { position: relative; display: block; flex: none; width: 19px; height: 6px; }
+  .mm-burger i {
+    position: absolute; left: 0;
+    width: 19px; height: 1px;
+    background: #F3EEE3;
+    transition: transform .4s cubic-bezier(.2, .7, .2, 1);
+  }
+  .mm-burger i:nth-child(1) { top: 0; }
+  .mm-burger i:nth-child(2) { top: 5px; }
+  [aria-expanded="true"] .mm-burger i:nth-child(1) { transform: translateY(2.5px) rotate(135deg); }
+  [aria-expanded="true"] .mm-burger i:nth-child(2) { transform: translateY(-2.5px) rotate(-135deg); }
+
+  /* le panneau plein écran */
+  .mobile .hnav {
+    position: fixed !important;
+    /* le gabarit pose right: 50px et top: 60px en style en ligne : il faut
+       !important pour les neutraliser */
+    left: 0 !important; right: 0 !important; top: 66px !important; bottom: 0 !important;
+    width: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: none;
+    background: rgba(12, 20, 25, 0.86);
+    z-index: 61;
+  }
+  .mobile.menu-ouvert .hnav { display: block; }
+  .mobile .hnav nav {
+    height: 100%;
+    flex-direction: column !important;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0 !important;
+    padding: 24px 0;
+    box-sizing: border-box;
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .mobile .hnav a {
+    flex-direction: column;
+    gap: 16px !important;
+    max-width: none !important;
+    padding: 0 !important;
+    font-size: 20px !important;
+    letter-spacing: 2px !important;
+    color: #C8BFAE;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  .mobile .hnav a .nv { width: 40px; height: 40px; }
+  /* dans le panneau déployé, les icônes tournent en continu */
+  .mobile.menu-ouvert .hnav .nv { animation-play-state: running !important; }
+
+  /* sous 720 px la barre porte le bouton ; au-dessus, les quatre items
+     restent dépliés en ligne, comme le palier tablette de la 404 */
+  .mobile .mm-menu { display: none; }
+  @media (max-width: 720px) {
+    .mobile .mm-menu { display: inline-flex; }
+  }
+  @media (min-width: 721px) {
+    .mobile .hnav {
+      position: absolute !important;
+      display: block;
+      background: none;
+      left: auto !important; right: 24px !important;
+      top: 50% !important; bottom: auto !important;
+      transform: translateY(-50%) !important;
+    }
+    .mobile .hnav nav {
+      height: auto;
+      flex-direction: row !important;
+      gap: 28px !important;
+      padding: 0;
+    }
+    .mobile .hnav a { flex-direction: row; gap: 10px !important; font-size: 12px !important; letter-spacing: 0.16em !important; }
+    .mobile .hnav a .nv { width: 22px; height: 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mm-burger i { transition: none; }
+  }
+
   /* ---------------------------------------------------------------- hero */
   .mobile .fg {
     left: 0 !important;

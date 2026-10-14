@@ -143,7 +143,10 @@ window.AISINA.accueil = function (DCLogic) {
     if (!(h.height > 0) || !(iw > 0) || !(ih > 0)) return;
     if (mob) {
     const mo = { mobile: true, flat: false, still: false, z: 1, vhd: vh, vwd: vw, sS: 1, nav: 'studio',
-      leaving: false, p: 0, slide: 0, active: -2, open: false,
+      leaving: false, p: 0, slide: 0, active: -2,
+      /* le manifeste reste sous le contrôle de son bouton : ne pas le refermer
+         à chaque mesure, sinon il se referme seul dès qu'on défile */
+      open: this.state.open,
       seenM: true, seenJ: true, seenE: true, seenC: true, offH: false, offM: false, offE: false, offC: false };
     let chm = false;
     for (const k in mo) { if (mo[k] !== this.state[k]) { chm = true; break; } }

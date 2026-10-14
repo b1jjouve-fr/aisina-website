@@ -70,7 +70,7 @@
     gap: 12px;
     flex: none;
     width: 120px;
-    padding: 8px 24px;
+    padding: 8px 20px;
     box-sizing: border-box;
     border-radius: 999px;
     background: rgba(201, 191, 174, 0.12);
@@ -87,12 +87,15 @@
     appearance: none;
     -webkit-appearance: none;
   }
+  /* Le mot occupe une largeur fixe, celle du plus long des deux (« Fermer ») :
+     ni l'icône ni le texte ne bougent au changement d'état. */
+  .mm-menu-mot { display: block; flex: none; width: 48px; text-align: left; }
   .mm-burger { position: relative; display: block; flex: none; width: 19px; height: 6px; }
   .mm-burger i {
     position: absolute; left: 0;
     width: 19px; height: 1px;
     background: #F3EEE3;
-    transition: transform .4s cubic-bezier(.2, .7, .2, 1);
+    transition: transform .5s cubic-bezier(.65, 0, .35, 1);
   }
   .mm-burger i:nth-child(1) { top: 0; }
   .mm-burger i:nth-child(2) { top: 5px; }
@@ -108,9 +111,11 @@
     left: 0 !important; right: 0 !important; top: 0 !important; bottom: 0 !important;
     width: auto !important;
     transform: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: none;
+    display: block;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
+    transition: opacity .35s ease, visibility 0s linear .35s !important;
     background: rgba(12, 20, 25, 0.86);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -121,7 +126,12 @@
   .mobile .mm-menu { position: relative; z-index: 2; }
   /* la page ne défile plus tant que le menu est ouvert */
   html.menu-ouvert, html.menu-ouvert body { overflow: hidden; }
-  .mobile.menu-ouvert .hnav { display: block; }
+  .mobile.menu-ouvert .hnav {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto;
+    transition: opacity .35s ease, visibility 0s !important;
+  }
   .mobile .hnav nav {
     height: 100%;
     flex-direction: column !important;
@@ -164,6 +174,9 @@
       left: auto !important; right: 24px !important;
       top: 50% !important; bottom: auto !important;
       transform: translateY(-50%) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto;
     }
     .mobile .hnav nav {
       height: auto;
@@ -208,7 +221,8 @@
     display: flex !important;
     left: 24px !important; right: 24px !important;
     width: auto !important;
-    bottom: 172px !important;
+    bottom: var(--cartel-bas, 172px) !important;
+    transition: bottom .45s cubic-bezier(.2, .7, .2, 1);
     justify-content: center;
     gap: 10px !important;
     padding: 22px 16px !important;
@@ -226,8 +240,25 @@
     backdrop-filter: blur(7px) !important;
     -webkit-backdrop-filter: blur(7px) !important;
   }
-  /* le lien « Voir le jeu » est masqué dans la maquette */
-  .mobile .mm-cartouche .vj { display: none !important; }
+  /* Le lien « Voir le jeu » n'apparaît plus comme tel : il est étiré sur tout
+     le cartouche, qui devient cliquable d'un bloc. Son libellé sort du cadre
+     plutôt que d'être supprimé, pour rester annoncé aux lecteurs d'écran. */
+  .mobile .mm-cartouche .vj {
+    position: absolute !important;
+    top: 0; left: 0;
+    width: 100% !important; height: 100% !important;
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    text-indent: -200vw;
+    border-radius: inherit;
+  }
+
+  /* manifeste ouvert : la pastille descend à 24 px du bord pour libérer toute
+     la hauteur de lecture. Par variable héritée plutôt que par un sélecteur
+     plus spécifique, pour ne pas dépendre de l'ordre des règles. */
+  .mobile.is-open { --cartel-bas: 24px; }
 
   /* ---- le manifeste, ouvert par la pastille ----
      Le bloc importé est dessiné pour 1440 x 900 et n'a pas de classes : on le
@@ -250,8 +281,8 @@
     position: static !important;
     left: auto !important; top: auto !important;
     width: auto !important;
-    /* réserve en bas : la pastille qui referme le manifeste reste au-dessus */
-    padding: 110px 24px 260px;
+    /* réserve en bas : la pastille de fermeture est posée à 24 px du bord */
+    padding: 110px 24px 112px;
     box-sizing: border-box;
   }
   .mobile .mf h2 {

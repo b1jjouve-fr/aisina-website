@@ -215,7 +215,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid #D08A44; outline-offs
     justify-content: center;
     gap: 12px;
     width: 120px;
-    padding: 8px 24px;
+    padding: 8px 20px;
     box-sizing: border-box;
     border-radius: 999px;
     background: rgba(201, 191, 174, 0.12);
@@ -234,12 +234,15 @@ a:focus-visible, button:focus-visible { outline: 1px solid #D08A44; outline-offs
   }
 
   /* les deux barres se rejoignent et pivotent pour former la croix */
+  /* Le mot occupe une largeur fixe, celle du plus long des deux (« Fermer ») :
+     ni l'icône ni le texte ne bougent au changement d'état. */
+  .err-menu-mot { display: block; flex: none; width: 48px; text-align: left; }
   .err-burger { position: relative; display: block; flex: none; width: 19px; height: 6px; }
   .err-burger i {
     position: absolute; left: 0;
     width: 19px; height: 1px;
     background: #F3EEE3;
-    transition: transform .4s cubic-bezier(.2, .7, .2, 1);
+    transition: transform .5s cubic-bezier(.65, 0, .35, 1);
   }
   .err-burger i:nth-child(1) { top: 0; }
   .err-burger i:nth-child(2) { top: 5px; }
@@ -247,7 +250,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid #D08A44; outline-offs
   [aria-expanded="true"] .err-burger i:nth-child(2) { transform: translateY(-2.5px) rotate(-135deg); }
 
   @media (prefers-reduced-motion: reduce) {
-    .err-burger i { transition: none; }
+    .err-burger i, .err-nav { transition: none; }
   }
 
   /* ---- la navigation en plein écran ---- */
@@ -257,7 +260,11 @@ a:focus-visible, button:focus-visible { outline: 1px solid #D08A44; outline-offs
   .err-nav {
     position: fixed;
     left: 0; right: 0; top: 0; bottom: 0;
-    display: none;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .35s ease, visibility 0s linear .35s;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
@@ -271,7 +278,12 @@ a:focus-visible, button:focus-visible { outline: 1px solid #D08A44; outline-offs
     z-index: 1;
   }
   .err-logo, .err-menu { position: relative; z-index: 2; }
-  .menu-ouvert .err-nav { display: flex; }
+  .menu-ouvert .err-nav {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .35s ease, visibility 0s;
+  }
   /* la page ne défile plus tant que le menu est ouvert */
   html.menu-ouvert, html.menu-ouvert body { overflow: hidden; }
 

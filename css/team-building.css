@@ -47,3 +47,37 @@ html{scroll-behavior:smooth}
 .fiche:hover{rotate:-0.3deg;scale:1.03;filter:drop-shadow(0 32px 28px rgba(0,0,0,.55))}
 @media (prefers-reduced-motion: reduce){.fiche{transition:none}}
 .cta.up:hover .va,.cta.up:focus-visible .va{transform:rotate(-90deg)}
+
+/* ------------------------------------------------------------- téléphone --
+   Même seuil que la mise en page mobile de l'accueil (css/mobile.css).
+   Cette page est déjà fluide : on n'ajuste que les marges, le formulaire et
+   le dernier bloc. */
+@media (max-width: 760px) {
+
+  /* marge de page à 24 px, logo du pied de page compris */
+  .mm-page { padding: 0 24px !important; }
+
+  /* le formulaire prend toute la largeur et reprend la marge intérieure
+     de celui de l'accueil */
+  .mm-form {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    padding: 28px 22px 30px !important;
+  }
+
+  /* les champs se suivent les uns sous les autres */
+  .mm-champs {
+    grid-template-columns: minmax(0, 1fr) !important;
+    column-gap: 0 !important;
+    row-gap: 0 !important;
+  }
+
+  /* dernier bloc : le titre prend la largeur, le bouton passe dessous à gauche */
+  .mm-idee {
+    display: block !important;
+    margin-top: 56px !important;
+  }
+  .mm-idee > div { font-size: 30px !important; }
+  .mm-idee .cta { margin-top: 28px; }
+}

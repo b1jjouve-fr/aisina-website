@@ -141,19 +141,7 @@ window.AISINA.accueil = function (DCLogic) {
     const h = R('hero'), m = R('metier'), j = R('jeux'), e = R('equipe'), c = R('contact');
     if (!h || !m || !j || !e || !c) return;
     if (!(h.height > 0) || !(iw > 0) || !(ih > 0)) return;
-    if (mob) {
-    const mo = { mobile: true, flat: false, still: false, z: 1, vhd: vh, vwd: vw, sS: 1, nav: 'studio',
-      leaving: false, p: 0, slide: 0, active: -2,
-      /* le manifeste reste sous le contrôle de son bouton : ne pas le refermer
-         à chaque mesure, sinon il se referme seul dès qu'on défile */
-      open: this.state.open,
-      seenM: true, seenJ: true, seenE: true, seenC: true, offH: false, offM: false, offE: false, offC: false };
-    let chm = false;
-    for (const k in mo) { if (mo[k] !== this.state[k]) { chm = true; break; } }
-    if (chm) this.setState(mo);
-    return;
-    }
-    if (this.state.mobile) this.setState({ mobile: false, menu: false });
+    if (!mob && this.state.mobile) this.setState({ mobile: false, menu: false });
     if (flat) {
     if (!this.stillT) this.stillT = setTimeout(() => this.setState({ still: true }), 5500);
     const fl = { flat: true, z: Math.round(z * 10000) / 10000, vhd: 900, vwd: vw, sS: 1, nav: 'studio', leaving: false, p: 0, slide: 0, active: 0, open: false,
@@ -188,6 +176,33 @@ window.AISINA.accueil = function (DCLogic) {
     if (ms && ms.getBoundingClientRect().top / z <= vh * (this.down ? 0.97 : 0.03)) active = -1;
     }
     const vis = (b) => b.bottom > 0 && b.top < vh;
+    if (mob) {
+    /* Mode mobile : on garde les mesures de visibilité calculées plus haut, pour
+       que les titres et les textes s'animent à l'arrivée de chaque section comme
+       sur ordinateur, et que les portraits d'équipe gardent leur apparition. */
+    /* Sur téléphone, chaque photo est posée juste au-dessus de sa fiche : le
+       portrait doit apparaître quand la photo entre dans l'écran, et non quand
+       la fiche passe le milieu comme sur ordinateur. */
+    let actifMob = -2;
+    d.querySelectorAll('#equipe .ph').forEach((ph, i) => {
+    if (ph.getBoundingClientRect().top <= vh * 0.75) actifMob = i;
+    });
+    const mo = { mobile: true, flat: false, still: false, z: 1, vhd: vh, vwd: vw, sS: 1, nav: 'studio',
+      leaving: false, p: 0, slide: 0,
+      active: actifMob,
+      /* le manifeste reste sous le contrôle de son bouton : ne pas le refermer
+         à chaque mesure, sinon il se referme seul dès qu'on défile */
+      open: this.state.open,
+      seenM: vis(m) && (this.state.seenM || m.top < vh * 0.75),
+      seenJ: vis(j) && (this.state.seenJ || j.top < vh * 0.6),
+      seenE: vis(e) && (this.state.seenE || e.top < vh * 0.7),
+      seenC: vis(c) && (this.state.seenC || c.top < vh * 0.7),
+      offH: !vis(h), offM: !vis(m), offE: !vis(e), offC: !vis(c) };
+    let chm = false;
+    for (const k in mo) { if (mo[k] !== this.state[k]) { chm = true; break; } }
+    if (chm) this.setState(mo);
+    return;
+    }
     const next = {
     flat: false, still: false, z: Math.round(z * 10000) / 10000, vhd: vh, vwd: vw, sS: Math.round(Math.max(1, vh / 900, (iw / z) / 1440) * 1000) / 1000,
     nav, leaving, p, slide, active,
@@ -290,6 +305,9 @@ window.AISINA.accueil = function (DCLogic) {
     cartelLabel: S.open ? 'Refermer le manifeste' : 'Lire le manifeste',
     no: false,
     toggle: () => this.setState({ open: !this.state.open }),
+    /* position du bouton manifeste : sur téléphone il se pose au-dessus du
+       cartouche, et descend à 24 px du bord quand le manifeste est ouvert */
+    cartelBas: S.mobile ? (S.open ? '24px' : '172px') : '82px',
     menuVisible: S.mobile,
     menuOuvert: S.menu ? 'true' : 'false',
     menuMot: S.menu ? 'Fermer' : 'Menu',

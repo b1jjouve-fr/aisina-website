@@ -221,7 +221,6 @@
     display: flex !important;
     left: 24px !important; right: 24px !important;
     width: auto !important;
-    bottom: var(--cartel-bas, 172px) !important;
     transition: bottom .45s cubic-bezier(.2, .7, .2, 1);
     justify-content: center;
     gap: 10px !important;
@@ -254,11 +253,6 @@
     text-indent: -200vw;
     border-radius: inherit;
   }
-
-  /* manifeste ouvert : la pastille descend à 24 px du bord pour libérer toute
-     la hauteur de lecture. Par variable héritée plutôt que par un sélecteur
-     plus spécifique, pour ne pas dépendre de l'ordre des règles. */
-  .mobile.is-open { --cartel-bas: 24px; }
 
   /* ---- le manifeste, ouvert par la pastille ----
      Le bloc importé est dessiné pour 1440 x 900 et n'a pas de classes : on le
@@ -432,15 +426,12 @@
     width: min(70vw, 290px) !important;
     height: auto !important;
     aspect-ratio: 351 / 441;
-    margin: 56px auto -24px !important;
+    margin: 56px auto 28px !important;
     opacity: 1 !important;
     transition: none !important;
   }
-  .mobile .ph .pp {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
+  /* le portrait garde l'apparition du bureau : opacité et glissement pilotés
+     par --po / --py / --pd, que renderVals pose selon la fiche atteinte */
 
   .mobile .mbr {
     height: auto !important;
@@ -460,6 +451,7 @@
   }
   .mobile .mis .rvt > div { width: auto !important; }
   .mobile .mis .rvt > div + div { margin-top: 28px; }
+  .mobile .mis .rvt .cta { margin-top: 36px; }
   .mobile .mis h2,
   .mobile .mis .rvt > div > div:nth-child(2) { font-size: 28px !important; line-height: 1.14 !important; }
 

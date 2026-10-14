@@ -197,8 +197,11 @@ window.AISINA.accueil = function (DCLogic) {
     const mo = { mobile: true, flat: false, still: false, z: 1, vhd: vh, vwd: vw, sS: sSv, nav: 'studio',
       leaving: false, p: p, slide: slide,
       /* verrous d'arrivee : une fois poses, personnages et cartouche restent la */
-      vuA: this.state.vuA || j.top <= vh * 0.15,
-      vuB: this.state.vuB || p >= 0.52,
+      /* l'entree ne part qu'une fois la scene collee en haut de l'ecran, et une
+         fois le tribunal entierement en place : sinon elle se joue pendant que
+         l'on defile encore et on ne la voit pas */
+      vuA: this.state.vuA || j.top <= 0,
+      vuB: this.state.vuB || p >= 0.56,
       active: actifMob,
       /* le manifeste reste sous le contrôle de son bouton : ne pas le refermer
          à chaque mesure, sinon il se referme seul dès qu'on défile */
@@ -262,8 +265,12 @@ window.AISINA.accueil = function (DCLogic) {
        et les juges tombent hors cadre. */
     const DX = { wolf: -194, farmer: -44, skullcat: -194, bluecat: 33,
                  portrait: 133, redhat: 33, judgestand: -44, bluehat: -89, judgeclose: -67 };
-    const DT = { farmer: 0, wolf: 0.18, skullcat: 0.3, bluecat: 0.36,
-                 portrait: 0, redhat: 0.12, judgestand: 0.24, bluehat: 0.3, judgeclose: 0.36 };
+    /* DY : les personnages remontent pour occuper le vide entre la barre du haut
+       et le cartouche. DT : l'ordre d'arrivee. */
+    const DY = { wolf: -120, farmer: -120, skullcat: -120, bluecat: -120,
+                 portrait: -140, redhat: -140, judgestand: -140, bluehat: -140, judgeclose: -140 };
+    const DT = { farmer: 0.15, wolf: 0.35, skullcat: 0.55, bluecat: 0.65,
+                 portrait: 0.15, redhat: 0.35, bluehat: 0.45, judgestand: 0.55, judgeclose: 0 };
     const mkSt = (p, M) => {
     const F = [['wolf', 0.45], ['farmer', 0.8], ['skullcat', 1.0], ['bluecat', 1.0]];
     const T = [['portrait', 0.45], ['redhat', 0.65], ['judgestand', 0.5], ['bluehat', 0.85], ['judgeclose', 1.0]];
@@ -279,19 +286,20 @@ window.AISINA.accueil = function (DCLogic) {
     F.forEach(([k, dd]) => {
     const sc = (M ? 0.60 : 1) + fo * (0.12 + 0.55 * dd);
     const tx = -p * 80 * (dd - 0.3) + (M ? DX[k] : 0);
-    const ty = -p * 30 * dd;
+    const ty = -p * 30 * dd + (M ? DY[k] : 0);
     const op = M && !S.vuA ? 0 : (1 - sm((fo - 0.1) / 0.7));
-    const an = M && S.vuA ? ' animation: jparait .9s ease-out ' + DT[k] + 's backwards;' : '';
+    const an = M && S.vuA ? ' animation: jparait 1.1s ease-out ' + DT[k] + 's backwards;' : '';
     st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(4) + '); opacity: ' + op.toFixed(3) + '; filter: blur(' + (fo * (1.5 + 6 * dd)).toFixed(1) + 'px);' + an;
     });
     T.forEach(([k, dd]) => {
     const sc = M ? 0.58 : 0.78 + 0.22 * tc;
     const tx = -q * 70 * (dd - 0.3) + (M ? DX[k] : 0);
-    const ty = -q * 30 * dd;
+    const ty = -q * 30 * dd + (M ? DY[k] : 0);
     /* les personnages du tribunal suivent leur decor : invisibles tant qu'il
-       n'est pas la, et ils repartent avec lui si l'on remonte */
-    const op = M ? (S.vuB ? ti : 0) : cl((tc - (1 - Math.min(dd, 1)) * 0.25) / 0.5);
-    const an = M && S.vuB ? ' animation: jparait 1s ease-out ' + DT[k] + 's backwards;' : '';
+       n'est pas la, et ils repartent avec lui si l'on remonte. Le juge le plus
+       a droite est retire du cadrage telephone, trop a l'etroit. */
+    const op = M ? (k === 'judgeclose' ? 0 : (S.vuB ? ti : 0)) : cl((tc - (1 - Math.min(dd, 1)) * 0.25) / 0.5);
+    const an = M && S.vuB && k !== 'judgeclose' ? ' animation: jparait 1.1s ease-out ' + DT[k] + 's backwards;' : '';
     st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + (sc + q * 0.04 * dd).toFixed(4) + '); opacity: ' + op.toFixed(3) + '; filter: blur(' + (M ? 0 : (1 - tc) * (2 + 6 * dd)).toFixed(1) + 'px);' + an;
     });
     st.dot = 'top: ' + (p * 232).toFixed(1) + 'px;';
@@ -314,7 +322,7 @@ window.AISINA.accueil = function (DCLogic) {
     const vu = p < 0.52 ? S.vuA : S.vuB;
     const op = !vu ? 0 : (p < 0.52 ? 1 - xa : 1);
     const ty = p < 0.52 ? -xa * 34 : 0;
-    const an = vu ? ' animation: jsurgir 1s cubic-bezier(.2,.7,.2,1) ' + (p < 0.52 ? '.5' : '.75') + 's backwards;' : '';
+    const an = vu ? ' animation: jsurgir 1.2s cubic-bezier(.2,.7,.2,1) ' + (p < 0.52 ? '.95' : '1') + 's backwards;' : ' animation: none;';
     jCarte = 'opacity: ' + op.toFixed(3) + '; transform: translateY(' + ty.toFixed(1) + 'px);' + an;
     }
     const on = (k) => 'opacity: ' + (k ? 1 : 0) + '; visibility: ' + (k ? 'visible' : 'hidden') + ';';

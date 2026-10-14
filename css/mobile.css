@@ -346,8 +346,10 @@
   .mobile #jeux .jtags,
   .mobile a.jr { display: none !important; }
 
-  /* le cartouche se pose en bas, à 24 px des bords ; son opacité et sa montée
-     sont pilotées par le défilement (jCarte), pas par une animation d'entrée */
+  /* Le cartouche se pose en bas, à 24 px des bords. Son opacité, sa montée et
+     son entrée viennent du style en ligne (jCarte), qui pose toujours une
+     propriété « animation » : elle remplace celle de .in .jr, l'entrée commune
+     à l'ordinateur, qui sinon rallumerait le cartouche avant l'heure. */
   .mobile #jeux .jr {
     left: 24px !important;
     right: 24px !important;
@@ -355,7 +357,6 @@
     top: auto !important;
     width: auto !important;
     scale: 1 !important;
-    animation: none !important;
     padding: 24px !important;
     gap: 14px !important;
   }

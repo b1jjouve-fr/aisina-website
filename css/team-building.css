@@ -52,10 +52,119 @@ html{scroll-behavior:smooth}
    Même seuil que la mise en page mobile de l'accueil (css/mobile.css).
    Cette page est déjà fluide : on n'ajuste que les marges, le formulaire et
    le dernier bloc. */
+/* la barre de navigation n'existe que sur téléphone */
+.mm-barre { display: none; }
+
 @media (max-width: 760px) {
 
   /* marge de page à 24 px, logo du pied de page compris */
   .mm-page { padding: 0 24px !important; }
+
+  /* ---- navigation : même barre et même panneau que l'accueil et la 404 ---- */
+  .mm-barre {
+    position: fixed;
+    left: 0; right: 0; top: 0;
+    height: 66px;
+    box-sizing: border-box;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    z-index: 40;
+  }
+  .mm-barre .mm-logo { position: relative; z-index: 2; display: block; flex: none; }
+  .mm-barre .mm-logo svg { display: block; }
+
+  /* le bouton icône flottant est remplacé par cette barre */
+  .studio { display: none !important; }
+
+  .mm-menu {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex: none;
+    width: 120px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    background: rgba(201, 191, 174, 0.12);
+    border: 1px solid rgba(201, 191, 174, 0.5);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    color: #F3EEE3;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 10px rgba(12, 20, 25, 0.85);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .mm-menu-mot { display: block; flex: none; width: 48px; text-align: left; }
+  .mm-burger { position: relative; display: block; flex: none; width: 19px; height: 6px; }
+  .mm-burger i {
+    position: absolute; left: 0;
+    width: 19px; height: 1px;
+    background: #F3EEE3;
+    transition: transform .5s cubic-bezier(.65, 0, .35, 1);
+  }
+  .mm-burger i:nth-child(1) { top: 0; }
+  .mm-burger i:nth-child(2) { top: 5px; }
+  [aria-expanded="true"] .mm-burger i:nth-child(1) { transform: translateY(2.5px) rotate(135deg); }
+  [aria-expanded="true"] .mm-burger i:nth-child(2) { transform: translateY(-2.5px) rotate(-135deg); }
+
+  .mm-nav {
+    position: fixed;
+    left: 0; right: 0; top: 0; bottom: 0;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .35s ease, visibility 0s linear .35s;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 66px 0 24px;
+    box-sizing: border-box;
+    background: rgba(12, 20, 25, 0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    overscroll-behavior: contain;
+    z-index: 1;
+  }
+  .menu-ouvert .mm-nav {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .35s ease, visibility 0s;
+  }
+  html.menu-ouvert, html.menu-ouvert body { overflow: hidden; }
+
+  .mm-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #C8BFAE;
+  }
+  .mm-nav a .nv { width: 40px; height: 40px; }
+  .menu-ouvert .mm-nav .nv { animation-play-state: running; }
+
+  /* la page commence sous la barre */
+  .mm-page:first-of-type { padding-top: 24px !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mm-burger i, .mm-nav { transition: none; }
+  }
 
   /* le formulaire prend toute la largeur et reprend la marge intérieure
      de celui de l'accueil */

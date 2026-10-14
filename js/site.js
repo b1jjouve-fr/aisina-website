@@ -342,7 +342,21 @@ window.AISINA.teamBuilding = function (DCLogic) {
   return class Component extends DCLogic {
     constructor(...args) {
     super(...args);
-    this.state = { n: 0, sent: false, fade: false };
+    this.state = { n: 0, sent: false, fade: false, menu: false };
+    this.onEchap = (ev) => {
+    if (ev.key === 'Escape' && this.state.menu) this.setState({ menu: false });
+    };
+    }
+    componentDidMount() {
+    window.addEventListener('keydown', this.onEchap);
+    }
+    componentWillUnmount() {
+    window.removeEventListener('keydown', this.onEchap);
+    document.documentElement.classList.remove('menu-ouvert');
+    }
+    /* le voile du menu couvre l'ecran : on bloque le defilement de la page */
+    componentDidUpdate() {
+    document.documentElement.classList.toggle('menu-ouvert', !!this.state.menu);
     }
     renderVals() {
     const n = this.state.n;
@@ -350,6 +364,11 @@ window.AISINA.teamBuilding = function (DCLogic) {
     const chip = (k) => base + (n === k ? 'background: rgba(243, 238, 227, 0.16); border: 1px solid #F3EEE3; color: #F3EEE3;' : 'background: transparent; border: 1px solid rgba(201, 191, 174, 0.5); color: #C9BFAE;');
     const sent = this.state.sent;
     return {
+    rootClass: this.state.menu ? 'menu-ouvert' : '',
+    menuOuvert: this.state.menu ? 'true' : 'false',
+    menuMot: this.state.menu ? 'Fermer' : 'Menu',
+    menuLabel: this.state.menu ? 'Fermer le menu' : 'Ouvrir le menu',
+    menuToggle: () => this.setState({ menu: !this.state.menu }),
     chip0: chip(0), chip1: chip(1), chip2: chip(2), chip3: chip(3),
     pick0: () => this.setState({ n: 0 }),
     pick1: () => this.setState({ n: 1 }),

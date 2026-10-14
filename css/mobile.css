@@ -158,35 +158,8 @@
   /* dans le panneau déployé, les icônes tournent en continu */
   .mobile.menu-ouvert .hnav .nv { animation-play-state: running !important; }
 
-  /* sous 720 px la barre porte le bouton ; au-dessus, les quatre items
-     restent dépliés en ligne, comme le palier tablette de la 404 */
-  .mobile .mm-menu { display: none; }
-  @media (max-width: 720px) {
-    /* !important : le bouton porte display:none en style en ligne, pour qu'une
-       feuille manquante ou périmée ne puisse pas le laisser surgir sur ordinateur */
-    .mobile .mm-menu { display: inline-flex !important; }
-  }
-  @media (min-width: 721px) {
-    .mobile .hnav {
-      position: absolute !important;
-      display: block;
-      background: none;
-      left: auto !important; right: 24px !important;
-      top: 50% !important; bottom: auto !important;
-      transform: translateY(-50%) !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto;
-    }
-    .mobile .hnav nav {
-      height: auto;
-      flex-direction: row !important;
-      gap: 28px !important;
-      padding: 0;
-    }
-    .mobile .hnav a { flex-direction: row; gap: 10px !important; font-size: 12px !important; letter-spacing: 0.16em !important; }
-    .mobile .hnav a .nv { width: 22px; height: 22px; }
-  }
+  /* le bouton MENU couvre tout le domaine mobile (seuil unique à 760 px) */
+  .mobile .mm-menu { display: inline-flex; }
 
   @media (prefers-reduced-motion: reduce) {
     .mm-burger i { transition: none; }

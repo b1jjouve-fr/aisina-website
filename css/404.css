@@ -10,11 +10,9 @@
 
    Trois paliers :
      au-delà de 1240 px  mise en page de bureau
-     721 à 1240 px       logo réduit au monogramme, propos centré, bête assombrie
-     jusqu'à 720 px      barre avec bouton MENU et navigation en plein écran
-   Le seuil téléphone est à 720 px et non 760 comme sur l'accueil : l'artboard
-   tablette de la maquette fait 744 px et doit recevoir la mise en page tablette.
-   À harmoniser avec css/mobile.css. */
+     761 à 1240 px       logo réduit au monogramme, propos centré, bête assombrie
+     jusqu'à 760 px      barre avec bouton MENU et navigation en plein écran
+   Seuil téléphone unique sur tout le site : 760 px, comme css/mobile.css. */
 
 body { margin: 0; background: #0C1419; }
 
@@ -159,7 +157,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid #D08A44; outline-offs
 /* ------------------------------------------------------------- tablette */
 /* Le mot AISINA se rétracte sur son monogramme, le propos se centre, et la
    bête s'assombrit pour passer derrière le texte. */
-@media (min-width: 721px) and (max-width: 1240px) {
+@media (min-width: 761px) and (max-width: 1240px) {
   .err-logo .lt { opacity: 0; transform: translateX(-12px); transition-delay: calc(var(--i) * .09s); }
 
   .err-bloc {
@@ -177,7 +175,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid #D08A44; outline-offs
 }
 
 /* ------------------------------------------------------------ téléphone */
-@media (max-width: 720px) {
+@media (max-width: 760px) {
   .err {
     display: flex;
     flex-direction: column;

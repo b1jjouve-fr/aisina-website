@@ -251,23 +251,29 @@ a:focus-visible, button:focus-visible { outline: 1px solid #D08A44; outline-offs
   }
 
   /* ---- la navigation en plein écran ---- */
+  /* Le panneau couvre tout l'écran, barre comprise : le voile passe donc sous
+     le logo et le bouton, qu'on remonte au-dessus de lui. La réserve en haut
+     garde les items centrés dans la zone sous la barre. */
   .err-nav {
     position: fixed;
-    left: 0; right: 0; top: 66px; bottom: 0;
+    left: 0; right: 0; top: 0; bottom: 0;
     display: none;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     gap: 0;
-    padding: 24px 0;
+    padding: 66px 0 24px;
     box-sizing: border-box;
-    /* léger voile : la maquette n'en prévoit pas, mais sans lui les libellés
-       se confondent avec le texte de la page. Une seule ligne à retirer. */
     background: rgba(12, 20, 25, 0.86);
-    z-index: 4;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    overscroll-behavior: contain;
+    z-index: 1;
   }
+  .err-logo, .err-menu { position: relative; z-index: 2; }
   .menu-ouvert .err-nav { display: flex; }
-  .menu-ouvert, .menu-ouvert body { overflow: hidden; }
+  /* la page ne défile plus tant que le menu est ouvert */
+  html.menu-ouvert, html.menu-ouvert body { overflow: hidden; }
 
   .err-nav a {
     flex-direction: column;

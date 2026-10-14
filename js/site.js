@@ -93,6 +93,12 @@ window.AISINA.accueil = function (DCLogic) {
     this.t3 = setTimeout(poser, 500);
     this.t4 = setTimeout(poser, 1700);
     }
+    /* Le voile du menu couvre l'ecran : on bloque le defilement de la page
+       tant qu'il est ouvert. La classe doit etre sur <html>, que le gabarit
+       ne touche pas. */
+    componentDidUpdate() {
+    document.documentElement.classList.toggle('menu-ouvert', !!this.state.menu);
+    }
     componentWillUnmount() {
     window.removeEventListener('scroll', this.onScr, true);
     window.removeEventListener('resize', this.onScr);
@@ -104,6 +110,7 @@ window.AISINA.accueil = function (DCLogic) {
     clearTimeout(this.t4);
     clearTimeout(this.stillT);
     if (this.ro) this.ro.disconnect();
+    document.documentElement.classList.remove('menu-ouvert');
     }
     measure() {
     const d = document;
@@ -280,6 +287,7 @@ window.AISINA.accueil = function (DCLogic) {
     cartelLabel: S.open ? 'Refermer le manifeste' : 'Lire le manifeste',
     no: false,
     toggle: () => this.setState({ open: !this.state.open }),
+    menuVisible: S.mobile,
     menuOuvert: S.menu ? 'true' : 'false',
     menuMot: S.menu ? 'Fermer' : 'Menu',
     menuLabel: S.menu ? 'Fermer le menu' : 'Ouvrir le menu',

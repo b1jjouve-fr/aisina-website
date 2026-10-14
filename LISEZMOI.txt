@@ -52,8 +52,13 @@ Affichage sur téléphone :
   le texte retrouve sa taille de lecture et css/mobile.css remet les blocs les uns sous
   les autres, comme sur la page Team building. Dans ce mode :
     - le défilement écran par écran et le manifeste en surimpression sont désactivés ;
-    - les deux volets de la section Jeux s'affichent l'un sous l'autre ;
-    - les scènes peintes restent à l'échelle, via la variable --cz ;
+    - la section Jeux garde son déroulé au défilement, mais raconté en six temps :
+      le décor de forêt seul, ses personnages, le cartouche Masca, puis le tribunal
+      seul, ses personnages et son cartouche. La toile de 1440 x 900 est réduite
+      par --sS pour couvrir la hauteur de l'écran (cadrage portrait) et le plan est
+      reculé pour qu'on voie plusieurs personnages ; les minutages sont dans
+      renderVals (mkSt et jCarte) de js/site.js ;
+    - les autres scènes peintes restent à l'échelle, via la variable --cz ;
     - chaque photo d'équipe se place au-dessus de la fiche du membre.
   Au-dessus de 760 px, rien ne change : l'affichage sur ordinateur est celui d'origine.
   Le seuil est défini à deux endroits, qui doivent rester d'accord : MOBILE_MAX dans

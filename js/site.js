@@ -127,7 +127,12 @@ window.AISINA.accueil = function (DCLogic) {
     const rs = document.documentElement.style;
     if (rs.getPropertyValue('--H') !== vh + 'px') rs.setProperty('--H', vh + 'px');
     const vw = Math.round(iw / z);
-    const sSv = Math.round(Math.max(1, vh / 900, vw / 1440) * 1000) / 1000;
+    /* Echelle de la toile peinte de 1440 x 900. Sur ordinateur elle ne descend
+       jamais sous 1 (la toile couvre deja l'ecran). Sur telephone on la reduit
+       pour qu'elle couvre l'ecran en hauteur : la scene devient un cadrage
+       portrait, comme la maquette de la section Jeux. */
+    const sSv = Math.round((mob ? Math.max(ih / 900, iw / 1440)
+                                : Math.max(1, vh / 900, vw / 1440)) * 1000) / 1000;
     if (rs.getPropertyValue('--sS') !== String(sSv)) rs.setProperty('--sS', String(sSv));
     const czv = Math.round((mob ? iw / 1440 : 1) * 10000) / 10000;
     if (rs.getPropertyValue('--cz') !== String(czv)) rs.setProperty('--cz', String(czv));
@@ -187,8 +192,10 @@ window.AISINA.accueil = function (DCLogic) {
     d.querySelectorAll('#equipe .ph').forEach((ph, i) => {
     if (ph.getBoundingClientRect().top <= vh * 0.75) actifMob = i;
     });
-    const mo = { mobile: true, flat: false, still: false, z: 1, vhd: vh, vwd: vw, sS: 1, nav: 'studio',
-      leaving: false, p: 0, slide: 0,
+    /* La section Jeux garde son deroule au defilement : p et slide sont calcules
+       plus haut, comme sur ordinateur, et la scene est collante. */
+    const mo = { mobile: true, flat: false, still: false, z: 1, vhd: vh, vwd: vw, sS: sSv, nav: 'studio',
+      leaving: false, p: p, slide: slide,
       active: actifMob,
       /* le manifeste reste sous le contrôle de son bouton : ne pas le refermer
          à chaque mesure, sinon il se referme seul dès qu'on défile */
@@ -237,35 +244,58 @@ window.AISINA.accueil = function (DCLogic) {
     const sm = (x) => { x = cl(x); return x * x * (3 - 2 * x); };
     const S = this.state;
     const p = S.p;
-    const mkSt = (p) => {
+    /* Deroule de la section Jeux.
+       Sur ordinateur, les deux decors se relaient au defilement et les
+       personnages sont la des le depart.
+       Sur telephone, la maquette demande six temps : le decor de foret seul,
+       puis ses personnages, puis le cartouche ; le tribunal monte ensuite,
+       seul, puis ses personnages, puis son cartouche. On ne change donc que
+       les fenetres de temps, pas le dessin. */
+    const mkSt = (p, M) => {
     const F = [['wolf', 0.45], ['farmer', 0.8], ['skullcat', 1.0], ['bluecat', 1.0]];
     const T = [['portrait', 0.45], ['redhat', 0.65], ['judgestand', 0.5], ['bluehat', 0.85], ['judgeclose', 1.0]];
-    const fo = sm((p - 0.36) / 0.26);
-    const ti = sm((p - 0.38) / 0.28);
+    const fi = M ? sm((p - 0.03) / 0.13) : 1;
+    const fo = M ? sm((p - 0.34) / 0.22) : sm((p - 0.36) / 0.26);
+    const ti = M ? sm((p - 0.42) / 0.22) : sm((p - 0.38) / 0.28);
+    const tc = M ? sm((p - 0.62) / 0.24) : ti;
     const q = cl((p - 0.45) / 0.55);
     const st = {};
     st.foret = 'transform: scale(' + (1.02 + fo * 0.25 + p * 0.04).toFixed(4) + '); opacity: ' + (1 - sm((fo - 0.35) / 0.65)).toFixed(3) + '; filter: blur(' + (fo * 4).toFixed(1) + 'px);';
     st.tribunal = 'transform: scale(' + (1.22 - ti * 0.14 + q * 0.03).toFixed(4) + '); opacity: ' + sm(ti * 1.8).toFixed(3) + '; filter: brightness(0.82) saturate(0.95) blur(' + ((1 - ti) * 5).toFixed(1) + 'px);';
+    /* Sur telephone l'ecran ne montre qu'un tiers de la toile : on recule un peu
+       le plan pour que l'on voie l'ensemble des personnages et non un seul. */
     F.forEach(([k, dd]) => {
-    const sc = 1 + fo * (0.12 + 0.55 * dd);
+    const sc = (M ? 0.80 : 1) + fo * (0.12 + 0.55 * dd);
     const tx = -p * 80 * (dd - 0.3);
     const ty = -p * 30 * dd;
-    st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(4) + '); opacity: ' + (1 - sm((fo - 0.1) / 0.7)).toFixed(3) + '; filter: blur(' + (fo * (1.5 + 6 * dd)).toFixed(1) + 'px);';
+    st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(4) + '); opacity: ' + (fi * (1 - sm((fo - 0.1) / 0.7))).toFixed(3) + '; filter: blur(' + (fo * (1.5 + 6 * dd)).toFixed(1) + 'px);';
     });
     T.forEach(([k, dd]) => {
-    const sc = 0.78 + 0.22 * ti + 0.0;
+    const sc = M ? 0.56 + 0.16 * tc : 0.78 + 0.22 * tc;
     const tx = -q * 70 * (dd - 0.3);
     const ty = -q * 30 * dd;
-    const op = cl((ti - (1 - Math.min(dd, 1)) * 0.25) / 0.5);
-    st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + (sc + q * 0.04 * dd).toFixed(4) + '); opacity: ' + op.toFixed(3) + '; filter: blur(' + ((1 - ti) * (2 + 6 * dd)).toFixed(1) + 'px);';
+    const op = cl((tc - (1 - Math.min(dd, 1)) * 0.25) / 0.5);
+    st[k] = 'transform: translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + (sc + q * 0.04 * dd).toFixed(4) + '); opacity: ' + op.toFixed(3) + '; filter: blur(' + ((1 - tc) * (2 + 6 * dd)).toFixed(1) + 'px);';
     });
     st.dot = 'top: ' + (p * 232).toFixed(1) + 'px;';
     st.cue = 'opacity: ' + (1 - cl(p / 0.08)).toFixed(3) + ';';
     st.scrim = 'opacity: ' + (1 - 0.6 * sm((p - 0.35) / 0.3)).toFixed(3) + ';';
     return st;
     };
-    const st = mkSt(p);
-    const stB = mkSt(1);
+    const M = S.mobile;
+    const st = mkSt(p, M);
+    const stB = mkSt(1, false);
+    /* Le cartouche : sur telephone il monte en place apres les personnages,
+       repart vers le haut pendant le changement de decor, et le second revient
+       de la meme facon une fois le tribunal peuple. Le texte bascule a p = 0.52,
+       c'est-a-dire pendant qu'il est invisible : on ne voit jamais le fondu. */
+    let jCarte = '';
+    if (M) {
+    const ea = sm((p - 0.06) / 0.12), xa = sm((p - 0.40) / 0.10), eb = sm((p - 0.68) / 0.14);
+    const op = p < 0.52 ? ea * (1 - xa) : eb;
+    const ty = p < 0.52 ? (1 - ea) * 44 - xa * 34 : (1 - eb) * 44;
+    jCarte = 'opacity: ' + op.toFixed(3) + '; transform: translateY(' + ty.toFixed(1) + 'px);';
+    }
     const on = (k) => 'opacity: ' + (k ? 1 : 0) + '; visibility: ' + (k ? 'visible' : 'hidden') + ';';
     const dot = (k) => 'background-color: ' + (k ? '#F3EEE3' : 'rgba(201, 191, 174, 0.45)') + ';';
     const cur = S.slide === 1 ? 1 : 0;
@@ -294,6 +324,7 @@ window.AISINA.accueil = function (DCLogic) {
     st, sl, stB, slB,
     rootStyle: S.z < 1 ? 'zoom: ' + S.z + ';' : '',
     jScale: 'transform: scale(' + S.sS + ');',
+    jCarte,
     frameD: 'M28.5 28.5 H' + (S.vwd - 28.5) + ' V' + (S.vhd - 28.5) + ' H84.5 A56 56 0 0 1 28.5 ' + (S.vhd - 84.5) + ' Z',
     rootClass: (S.open ? 'is-open' : '') + (L ? ' is-leaving' : '') + (S.mobile ? ' mobile' : '') + (S.menu ? ' menu-ouvert' : '') + (S.flat ? ' flat' : '') + (S.flat && S.still ? ' still' : ''),
     c1: L && nv === 'studio' ? 'cur' : '',

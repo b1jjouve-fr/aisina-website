@@ -26,7 +26,6 @@
   /* Hero et Studio gardent une hauteur d'écran pleine (maquette : 390 x 780).
      Jeux, Équipe et Contact laissent défiler leur contenu : seul leur fond
      reste à la hauteur de l'écran, ce que .bgf fait déjà en position fixed. */
-  .mobile #jeux,
   .mobile #contact { height: auto !important; }
   .mobile #metier { height: var(--H) !important; }
 
@@ -301,51 +300,64 @@
   }
 
   /* --------------------------------------------------------------- jeux */
-  /* la scène peinte ne peut pas se réagencer : on la met à l'échelle */
-  .mobile #jstage { position: static !important; height: auto !important; }
-  /* la scène garde ses 1440 x 900 mais se réduit par zoom ; la réserve en haut
-     laisse la peinture occuper sa hauteur, le texte vient se poser en dessous */
-  .mobile .mm-scene {
-    position: relative !important;
-    left: 0 !important; top: 0 !important;
-    height: auto !important;
-    overflow: visible !important;
-    zoom: var(--cz, 1);
+  /* La section garde son déroulé au défilement, comme sur ordinateur, mais
+     raconté en six temps (maquette Figma « section#Jeux ») : le décor de forêt
+     seul, ses personnages, le cartouche Masca ; puis le tribunal qui monte,
+     seul, ses personnages, et le cartouche de la fabrication.
+     Les fenêtres de temps sont dans js/site.js (mkSt et jCarte) ; ici on ne
+     fait que remettre la scène à l'écran et poser le cartouche en bas. */
+
+  /* deux écrans de défilement pour laisser respirer les six temps */
+  .mobile #jeux { height: calc(3 * var(--H)) !important; }
+  .mobile #jstage {
+    position: sticky !important;
+    top: 0 !important;
+    height: var(--H) !important;
   }
-  /* la couche de texte de la scene reprend sa place dans le flux, sous la
-     peinture : la reserve de 900 px laisse celle-ci occuper sa hauteur */
-  .mobile .mm-scene-texte {
-    position: relative !important;
-    width: auto !important; height: auto !important;
-    padding-top: 900px;
+  /* le second volet n'existe que pour le défilement écran par écran de
+     l'ordinateur : ici tout est raconté par la scène collante */
+  .mobile .jstB { display: none !important; }
+
+  /* La toile de 1440 x 900 garde sa place et ses proportions : --sS vaut sur
+     téléphone le rapport qui la fait couvrir la hauteur de l'écran, elle
+     déborde donc en largeur et se recadre en portrait. */
+
+  /* La couche de texte quitte le repère de la toile : on la recentre et on
+     annule l'échelle de celle-ci, si bien qu'elle recouvre exactement l'écran
+     et que son contenu retrouve sa taille de lecture. */
+  .mobile #jeux .mm-scene-texte {
+    left: 50% !important;
+    top: 50% !important;
+    width: 100vw !important;
+    height: var(--H) !important;
+    transform: translate(-50%, -50%) scale(calc(1 / var(--sS, 1)));
   }
-  /* le second volet, masqué sur ordinateur car il s'affiche au défilement,
-     devient ici une section à part entière */
-  .mobile .jstB {
-    display: block !important;
-    position: relative !important;
-    left: 0 !important; top: 0 !important;
-    width: 100% !important; height: auto !important;
-    margin-top: 48px;
-  }
-  /* pastilles, boutons de volet et lien « faire défiler » : il n'y a plus de
-     diaporama, les deux volets sont affichés l'un sous l'autre */
+
+  /* pastilles de volet, boutons et lien « faire défiler » : le défilement
+     suffit à tout dire */
   .mobile .mm-points,
-  .mobile .mm-scene-texte button,
+  .mobile #jeux .jnav,
+  .mobile #jeux .jtags,
   .mobile a.jr { display: none !important; }
 
-  /* le texte est un enfant de la scène : on annule l'échelle de celle-ci
-     pour qu'il retrouve sa taille de lecture normale */
+  /* le cartouche se pose en bas, à 24 px des bords ; son opacité et sa montée
+     sont pilotées par le défilement (jCarte), pas par une animation d'entrée */
   .mobile #jeux .jr {
-    position: relative !important;
-    left: auto !important; right: auto !important; bottom: auto !important;
-    zoom: calc(1 / var(--cz, 1));
-    width: 100vw !important;
-    box-sizing: border-box;
-    padding: 26px 20px 0 !important;
+    left: 24px !important;
+    right: 24px !important;
+    bottom: 24px !important;
+    top: auto !important;
+    width: auto !important;
+    scale: 1 !important;
+    animation: none !important;
+    padding: 24px !important;
+    gap: 14px !important;
   }
-  .mobile #jeux .jr h2 { font-size: 32px !important; line-height: 1.12 !important; }
-  .mobile #jeux .jr p { font-size: 16px !important; }
+  /* écrans courts : le cartouche se resserre pour laisser voir la peinture */
+  @media (max-height: 700px) {
+    .mobile #jeux .jr { padding: 20px !important; gap: 10px !important; }
+    .mobile #jeux .jr p { font-size: 15px !important; line-height: 1.45 !important; }
+  }
 
   /* -------------------------------------------------------------- équipe */
   .mobile #eq-title {

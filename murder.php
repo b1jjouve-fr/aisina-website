@@ -27,6 +27,9 @@ const RETOUR = '/team-building.html';
 /** Délai minimum entre deux envois depuis la même adresse IP, en secondes. */
 const DELAI_ENTRE_ENVOIS = 60;
 
+/** Fichier où le mode test écrit les messages, à côté de ce fichier. */
+const JOURNAL_TEST = 'mails-test.log';
+
 /* ----------------------------------------------------------- utilitaires */
 
 /** Termine la requête : JSON pour un envoi en arrière-plan, redirection sinon. */
@@ -115,6 +118,39 @@ function noterEnvoi(): void
 function longueur(string $valeur): int
 {
     return function_exists('mb_strlen') ? mb_strlen($valeur, 'UTF-8') : strlen($valeur);
+}
+
+/** Vrai quand le site est servi en local. Le mode test en découle : rien n'est
+ *  expédié, les messages s'ajoutent au journal. C'est l'adresse demandée par le
+ *  navigateur qui décide, et non un réglage qu'on pourrait oublier d'éteindre
+ *  avant la mise en ligne. */
+function enLocal(): bool
+{
+    $hote = strtolower((string) ($_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? ''));
+    $hote = preg_replace('/:\d+$/', '', $hote) ?? '';   // retirer le port
+    $hote = trim($hote, '[]');                           // retirer les crochets d'une adresse IPv6
+    return $hote === 'localhost'
+        || $hote === '127.0.0.1'
+        || $hote === '::1'
+        || str_ends_with($hote, '.localhost')
+        || str_ends_with($hote, '.test');
+}
+
+/** Mode test : ajoute le message au journal au lieu de l'expédier. */
+function journaliser(string $sujetLisible, string $corps, string $entetes): bool
+{
+    $bloc = implode("\n", [
+        str_repeat('=', 72),
+        'Le ' . date('d/m/Y à H:i:s') . ' — message NON expédié (mode test local)',
+        'À     : ' . DESTINATAIRE,
+        'Sujet : ' . $sujetLisible,
+        '',
+        $entetes,
+        '',
+        $corps,
+        '',
+    ]);
+    return @file_put_contents(__DIR__ . '/' . JOURNAL_TEST, $bloc . "\n", FILE_APPEND | LOCK_EX) !== false;
 }
 
 /** Garde la valeur reçue seulement si elle fait partie des choix proposés. */
@@ -213,13 +249,18 @@ $entetes = implode("\r\n", [
     'MIME-Version: 1.0',
 ]);
 
-$sujet = motEncode('Devis Team Building — ' . ($entreprise !== '' ? $entreprise : $nom));
-$parti = mail(DESTINATAIRE, $sujet, $corps, $entetes, '-f' . EXPEDITEUR);
+$sujetLisible = 'Devis Team Building — ' . ($entreprise !== '' ? $entreprise : $nom);
+$essai = enLocal();
+$parti = $essai
+    ? journaliser($sujetLisible, $corps, $entetes)
+    : mail(DESTINATAIRE, motEncode($sujetLisible), $corps, $entetes, '-f' . EXPEDITEUR);
 
 if (!$parti) {
-    error_log('aisina/murder.php : mail() a échoué pour ' . $courriel);
-    repondre(500, ['ok' => false, 'message' => 'L’envoi a échoué. Écrivez-nous directement à ' . DESTINATAIRE . '.']);
+    error_log('aisina/murder.php : envoi impossible pour ' . $courriel);
+    repondre(500, ['ok' => false, 'message' => $essai
+        ? 'Mode test : impossible d’écrire ' . JOURNAL_TEST . '. Vérifiez les droits du dossier.'
+        : 'L’envoi a échoué. Écrivez-nous directement à ' . DESTINATAIRE . '.']);
 }
 
 noterEnvoi();
-repondre(200, ['ok' => true]);
+repondre(200, $essai ? ['ok' => true, 'test' => true] : ['ok' => true]);

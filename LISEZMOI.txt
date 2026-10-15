@@ -23,6 +23,7 @@ Organisation des fichiers :
   contact.php          Reçoit le formulaire de contact de l'accueil
   murder.php           Reçoit le formulaire de devis de la page Team Building
   outils/generer.py    Reconstruit les fiches à partir de content/
+  .htaccess            Refuse l'accès au journal du mode test (serveurs Apache)
   support.js           Moteur d'affichage des pages (ne pas modifier, ne pas supprimer)
   Manifeste.dc.html    Le composant du manifeste. La page affiche une copie de ce fichier,
                        embarquée dans index.html ; le générateur refait cette copie, donc
@@ -66,6 +67,14 @@ Les formulaires :
   Pour essayer en local : placer le dossier dans MAMP et ouvrir la page par
   http://localhost, jamais par double-clic — en file:// il n'y a pas de serveur
   pour exécuter le PHP.
+
+  MODE TEST. Quand le site est servi en local, rien n'est expédié : les messages
+  s'ajoutent à mails-test.log, à côté des fichiers PHP, et la réponse porte
+  "test": true. C'est l'adresse demandée par le navigateur qui décide —
+  localhost, 127.0.0.1, ::1, ou un nom en .localhost ou .test — et non un
+  réglage qu'on pourrait oublier d'éteindre avant la mise en ligne.
+  Le journal est ignoré par git et son accès par le web est refusé dans
+  .htaccess : il contient des noms, des adresses et des téléphones.
 
   Les champs ne sont pas tenus par l'état du composant : js/site.js les lit dans
   le document au moment du clic (window.AISINA.envoyer). C'est voulu : un champ

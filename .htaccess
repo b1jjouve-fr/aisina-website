@@ -1,0 +1,5 @@
+# Le journal du mode test contient des noms, des adresses et des téléphones :
+# il ne doit jamais être lisible par le web. Voir contact.php et murder.php.
+<Files "mails-test.log">
+  Require all denied
+</Files>

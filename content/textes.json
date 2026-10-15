@@ -143,5 +143,14 @@
         "ton": "clair"
       }
     ]
+  },
+  "manifeste": {
+    "surtitre": "MANIFESTE",
+    "titre": "Une fabrique animée par des bricoleurs qualifiés.",
+    "paragraphes": [
+      "Aisina est un studio de création gaming tourné autour de la narration, qui va au-delà du jeu vidéo pour raconter des histoires partout où elles sont nécessaires."
+    ],
+    "mission_surtitre": "Notre mission",
+    "mission": "Fabriquer des histoires qui ont du sens et qui marquent."
   }
 }

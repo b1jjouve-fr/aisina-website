@@ -53,6 +53,14 @@ TITRES = {'metier': ('<h2 style="position: absolute; left: 160px; top: 198px; wi
 
 TONS = {'sombre': '#7D766A', 'clair': '#F3EEE3'}
 
+MF_SURTITRE   = 'font-family: &quot;Space Mono&quot;, monospace; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; color: rgb(201, 191, 174)'
+MF_FILET      = 'display: none; flex-grow: 1; height: 1px; background: rgba(201, 191, 174, 0.3)'
+MF_TITRE      = "margin: 34px 0 0; max-width: 1000px; font-family: 'Fraunces', serif; font-weight: 300; font-size: 72px; line-height: 1.06; color: #F3EEE3"
+MF_PARA       = "margin: 0; max-width: 520px; font-family: 'Instrument Sans', sans-serif; font-weight: 400; font-size: 22px; line-height: 1.55; color: #E4DCCB"
+MF_ENCADRE    = 'padding-left: 28px; border-left: 2px solid #B5702E; display: flex; flex-direction: column; gap: 12px'
+MF_MISSION_SUR = "font-family: 'Space Mono', monospace; text-transform: uppercase; font-size: 11px; letter-spacing: 0.2em; color: #D08A44"
+MF_MISSION    = "font-family: 'Fraunces', serif; font-weight: 300; font-size: 38px; line-height: 1.15; color: #F3EEE3"
+
 
 def lire(nom):
     with open(os.path.join(RACINE, 'content', nom), encoding='utf-8') as f:
@@ -142,6 +150,29 @@ def scenarios_cartes(sc):
     return lignes
 
 
+# --------------------------------------------------------------- manifeste
+def manifeste(tx):
+    """Le pave de texte du composant Manifeste.dc.html.
+
+    Les paragraphes sont reunis dans un seul <p>, separes par une espace
+    insecable et un retour a la ligne, comme dans la maquette d'origine."""
+    m = tx['manifeste']
+    return [
+        '<div style="display: flex; align-items: center; gap: 20px">'
+        '<span style="%s">%s</span><span style="%s"></span></div>'
+        % (MF_SURTITRE, m['surtitre'], MF_FILET),
+        '<h2 style="%s">%s</h2>' % (MF_TITRE, m['titre']),
+        '<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);'
+        ' column-gap: 80px; margin-top: 64px; align-items: start">',
+        '<p style="%s">%s</p>' % (MF_PARA, '&nbsp;<br>'.join(m['paragraphes'])),
+        '<div style="%s">' % MF_ENCADRE,
+        '<span style="%s">%s</span>' % (MF_MISSION_SUR, m['mission_surtitre']),
+        '<span style="%s">%s</span>' % (MF_MISSION, m['mission']),
+        '</div>',
+        '</div>',
+    ]
+
+
 # ------------------------------------------------------------------ titres
 def titre(cle, t):
     ouverture, fermeture = TITRES[cle]
@@ -165,6 +196,7 @@ def fabrique_titre(cle):
 PLAN = [
     ('index.html',         'equipe-photos',       'equipe.json',    equipe_photos),
     ('index.html',         'equipe-fiches',       'equipe.json',    equipe_fiches),
+    ('Manifeste.dc.html',  'manifeste',           'textes.json',    manifeste),
     ('index.html',         'titre-metier',        'textes.json',    fabrique_titre('metier')),
     ('index.html',         'titre-equipe',        'textes.json',    fabrique_titre('equipe')),
     ('index.html',         'titre-contact',       'textes.json',    fabrique_titre('contact')),
@@ -175,6 +207,18 @@ PLAN = [
     ('team-building.html', 'titre-histoire',      'textes.json',    fabrique_titre('tb_histoire')),
     ('team-building.html', 'titre-exemples',      'textes.json',    fabrique_titre('tb_exemples')),
 ]
+
+
+def embarquer(source):
+    """Rend la ligne qui transporte le composant Manifeste dans index.html.
+
+    La page n'affiche pas Manifeste.dc.html : elle affiche cette copie, placee
+    dans un Blob pour que l'ouverture par double-clic (file://) fonctionne. Les
+    deux ont diverge par le passe ; cette fonction les remet d'accord a chaque
+    passage du generateur."""
+    chaine = json.dumps(source, ensure_ascii=True).replace('</', '<\\/')
+    return ('<script>window.__resources={};window.__resourceBlobs='
+            '{"./Manifeste.dc.html":new Blob([%s],{type:"text/html"})};</script>' % chaine)
 
 
 def reperes(fichier, nom):
@@ -206,6 +250,9 @@ def main():
             with open(chemin, encoding='utf-8') as f:
                 avant[fichier] = apres[fichier] = f.read()
         apres[fichier] = remplacer(apres[fichier], fichier, nom, fabrique(donnees[source]))
+
+    apres['index.html'] = remplacer(apres['index.html'], 'index.html', 'manifeste-embarque',
+                                    [embarquer(apres['Manifeste.dc.html'])])
 
     change = [f for f in avant if avant[f] != apres[f]]
     if verifier:

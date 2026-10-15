@@ -16,15 +16,17 @@ Organisation des fichiers :
   js/site.js           Logique des deux pages : défilement, zoom, calcul des tailles, formulaires
   content/equipe.json  Les cinq fiches de l'équipe
   content/scenarios.json  Les étapes et les scénarios de la page Team building
-  content/textes.json  Les grands titres (mots et couleurs)
+  content/textes.json  Les grands titres (mots et couleurs) et le texte du manifeste
   assets/equipe/       Photos des membres : prenom-portrait.webp et prenom-fond.webp
   assets/              Toutes les autres images (fonds, aquarelles, personnages)
   fonts/               Polices embarquées (Fraunces, Space Mono, Instrument Sans, Pinyon Script)
   outils/generer.py    Reconstruit les fiches à partir de content/
   support.js           Moteur d'affichage des pages (ne pas modifier, ne pas supprimer)
-  Manifeste.dc.html    Bloc "Manifeste" du Hero (déjà intégré dans index.html, gardé par précaution)
+  Manifeste.dc.html    Le composant du manifeste. La page affiche une copie de ce fichier,
+                       embarquée dans index.html ; le générateur refait cette copie, donc
+                       les deux ne peuvent plus diverger. Son texte vient de content/textes.json.
 
-Modifier le contenu (équipe, scénarios, titres) :
+Modifier le contenu (équipe, scénarios, titres, manifeste) :
   1. Modifier le fichier voulu dans content/.
   2. Lancer dans ce dossier :
        python3 outils/generer.py

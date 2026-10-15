@@ -30,6 +30,10 @@ const DELAI_ENTRE_ENVOIS = 60;
 /** Fichier où le mode test écrit les messages, à côté de ce fichier. */
 const JOURNAL_TEST = 'mails-test.log';
 
+/** Domaine connu pour exister, qui sert à savoir si la résolution de noms
+ *  fonctionne avant de refuser une adresse. Voir domaineAccepteLeCourrier(). */
+const DOMAINE_TEMOIN = 'iana.org';
+
 /* ----------------------------------------------------------- utilitaires */
 
 /** Termine la requête : JSON pour un envoi en arrière-plan, redirection sinon. */
@@ -120,6 +124,32 @@ function longueur(string $valeur): int
     return function_exists('mb_strlen') ? mb_strlen($valeur, 'UTF-8') : strlen($valeur);
 }
 
+/** Vrai si le domaine de cette adresse est capable de recevoir du courrier.
+
+ *  filter_var ne juge que la forme : « aaa@bbb.cc » lui convient alors que ce
+ *  domaine n'existe pas. On regarde donc s'il annonce un serveur de courrier.
+ *  Cela ne dit pas si la boîte existe — seul un courriel de confirmation le
+ *  dirait — mais cela écarte les adresses inventées.
+ *
+ *  Garde-fou : si le domaine ne répond pas, on vérifie d'abord qu'un domaine
+ *  connu répond. Sans réseau, toute adresse paraîtrait fausse et plus personne
+ *  ne pourrait écrire : dans ce cas on laisse passer. */
+function domaineAccepteLeCourrier(string $courriel): bool
+{
+    if (!function_exists('checkdnsrr')) {
+        return true;
+    }
+    $domaine = substr((string) strrchr($courriel, '@'), 1);
+    if ($domaine === '') {
+        return false;
+    }
+    if (checkdnsrr($domaine, 'MX') || checkdnsrr($domaine, 'A')) {
+        return true;
+    }
+    $resolutionMarche = checkdnsrr(DOMAINE_TEMOIN, 'MX') || checkdnsrr(DOMAINE_TEMOIN, 'A');
+    return !$resolutionMarche;
+}
+
 /** Vrai quand le site est servi en local. Le mode test en découle : rien n'est
  *  expédié, les messages s'ajoutent au journal. C'est l'adresse demandée par le
  *  navigateur qui décide, et non un réglage qu'on pourrait oublier d'éteindre
@@ -203,9 +233,13 @@ if ($courriel === '') {
     $erreurs['email'] = 'Merci d’indiquer votre e-mail professionnel.';
 } elseif (!filter_var($courriel, FILTER_VALIDATE_EMAIL) || longueur($courriel) > 160) {
     $erreurs['email'] = 'Cette adresse e-mail ne semble pas valide.';
+} elseif (!domaineAccepteLeCourrier($courriel)) {
+    $erreurs['email'] = 'Ce domaine ne reçoit pas de courrier. Vérifiez votre adresse.';
 }
 
-if ($entreprise !== '' && longueur($entreprise) > 100) {
+if ($entreprise === '') {
+    $erreurs['entreprise'] = 'Merci d’indiquer votre entreprise.';
+} elseif (longueur($entreprise) > 100) {
     $erreurs['entreprise'] = 'Ce nom d’entreprise est trop long.';
 }
 
@@ -229,7 +263,7 @@ $corps = implode("\n", [
     'Demande de devis Team Building depuis aisina.net',
     '',
     'Nom          : ' . $nom,
-    'Entreprise   : ' . ($entreprise !== '' ? $entreprise : 'non précisée'),
+    'Entreprise   : ' . $entreprise,
     'E-mail       : ' . $courriel,
     'Téléphone    : ' . ($telephone !== '' ? $telephone : 'non précisé'),
     'Participants : ' . ($participants !== '' ? $participants : 'non précisé'),

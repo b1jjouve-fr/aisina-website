@@ -55,6 +55,13 @@ Les formulaires :
   Les deux formulaires envoient leurs données à contact.php et murder.php, qui
   vérifient les champs et expédient le message par courriel.
 
+  Champs obligatoires : nom, e-mail et message sur l'accueil ; nom, entreprise,
+  e-mail et message sur Team Building. Le téléphone y reste facultatif.
+
+  L'adresse e-mail est vérifiée deux fois : sa forme, puis l'existence d'un
+  serveur de courrier sur son domaine. Cela écarte les adresses inventées, mais
+  ne dit pas si la boîte existe — seul un courriel de confirmation le dirait.
+
   AVANT LA MISE EN LIGNE, remplir en tête de chaque fichier :
     DESTINATAIRE  l'adresse qui reçoit les demandes ;
     EXPEDITEUR    l'adresse d'expédition, qui doit appartenir au domaine qui

@@ -28,3 +28,13 @@ a:hover .nv,a:focus-visible .nv{animation-play-state:running}
 .fld:focus{border-bottom-color:#D08A44 !important}
 @keyframes wordIn{from{opacity:0;transform:translateY(22px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* --------------------------------------------------- formulaires : envoi */
+/* Piège à robots : un champ que l'œil ne voit pas et que le clavier ignore,
+   mais qu'un automate remplira. Il est hors écran plutôt qu'en display:none,
+   que certains robots savent repérer. */
+.leurre{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+
+/* Les messages renvoyés par contact.php et murder.php. Un message par ligne,
+   d'où le pre-line : le texte arrive avec des retours à la ligne. */
+.errs{margin-top:18px;white-space:pre-line;font-size:14px;line-height:1.5;color:#E8A06A}

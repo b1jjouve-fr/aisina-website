@@ -68,6 +68,13 @@ function sansRetour(string $valeur): string
     return trim(str_replace(["\r", "\n"], ' ', $valeur));
 }
 
+/** Un champ d'une seule ligne : on y remplace tout retour à la ligne par une
+ *  espace, pour que le message reçu reste lisible. */
+function uneLigne(mixed $valeur): string
+{
+    return sansRetour(propre($valeur));
+}
+
 /** Encode un texte non ASCII comme le veut la norme des courriels. Sert au
  *  sujet et au nom affiché de l'adresse de réponse : l'encodage met aussi à
  *  l'abri des caractères qui casseraient l'en-tête (chevrons, virgules). */
@@ -107,7 +114,7 @@ function noterEnvoi(): void
  *  plus sévère et jamais faux pour une limite haute. */
 function longueur(string $valeur): int
 {
-    return function_exists('mb_strlen') ? longueur($valeur, 'UTF-8') : strlen($valeur);
+    return function_exists('mb_strlen') ? mb_strlen($valeur, 'UTF-8') : strlen($valeur);
 }
 
 /** Garde la valeur reçue seulement si elle fait partie des choix proposés. */
@@ -141,10 +148,10 @@ const PARTICIPANTS = [
     'Pas encore défini',
 ];
 
-$nom          = propre($_POST['nom'] ?? '');
-$entreprise   = propre($_POST['entreprise'] ?? '');
-$courriel     = propre($_POST['email'] ?? '');
-$telephone    = propre($_POST['telephone'] ?? '');
+$nom          = uneLigne($_POST['nom'] ?? '');
+$entreprise   = uneLigne($_POST['entreprise'] ?? '');
+$courriel     = uneLigne($_POST['email'] ?? '');
+$telephone    = uneLigne($_POST['telephone'] ?? '');
 $participants = parmi(propre($_POST['participants'] ?? ''), PARTICIPANTS);
 $message      = propre($_POST['message'] ?? '');
 

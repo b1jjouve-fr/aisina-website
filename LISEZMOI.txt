@@ -20,6 +20,8 @@ Organisation des fichiers :
   assets/equipe/       Photos des membres : prenom-portrait.webp et prenom-fond.webp
   assets/              Toutes les autres images (fonds, aquarelles, personnages)
   fonts/               Polices embarquées (Fraunces, Space Mono, Instrument Sans, Pinyon Script)
+  contact.php          Reçoit le formulaire de contact de l'accueil
+  murder.php           Reçoit le formulaire de devis de la page Team Building
   outils/generer.py    Reconstruit les fiches à partir de content/
   support.js           Moteur d'affichage des pages (ne pas modifier, ne pas supprimer)
   Manifeste.dc.html    Le composant du manifeste. La page affiche une copie de ce fichier,
@@ -47,6 +49,33 @@ Modifier le contenu (équipe, scénarios, titres, manifeste) :
   la position des photos vient de css/accueil.css, lignes ".flat .ph:nth-child(1)" à
   ".flat .ph:nth-child(5)". Ajouter une ligne de plus par membre supplémentaire.
   (L'ordre photo/fiche sur téléphone, lui, est régénéré tout seul dans css/mobile.css.)
+
+Les formulaires :
+  Les deux formulaires envoient leurs données à contact.php et murder.php, qui
+  vérifient les champs et expédient le message par courriel.
+
+  AVANT LA MISE EN LIGNE, remplir en tête de chaque fichier :
+    DESTINATAIRE  l'adresse qui reçoit les demandes ;
+    EXPEDITEUR    l'adresse d'expédition, qui doit appartenir au domaine qui
+                  envoie, sinon les messages partent en indésirables.
+
+  Il faut un hébergement qui exécute PHP 8.0 ou plus. GitHub Pages ne sert que
+  des fichiers statiques : les deux fichiers y seront livrés tels quels, sans
+  effet, et les formulaires afficheront une erreur d'envoi.
+
+  Pour essayer en local : placer le dossier dans MAMP et ouvrir la page par
+  http://localhost, jamais par double-clic — en file:// il n'y a pas de serveur
+  pour exécuter le PHP.
+
+  Les champs ne sont pas tenus par l'état du composant : js/site.js les lit dans
+  le document au moment du clic (window.AISINA.envoyer). C'est voulu : un champ
+  tenu par l'état serait redessiné à chaque frappe, au risque de déplacer le
+  curseur dans le texte.
+
+  Les listes de choix (profil sur l'accueil, nombre de participants sur Team
+  Building) sont écrites à trois endroits qui doivent rester d'accord, mot pour
+  mot : le libellé des boutons dans la page, la constante dans js/site.js, et la
+  constante dans le fichier PHP. Une valeur inconnue y est ignorée.
 
 Affichage sur téléphone :
   L'accueil est dessiné comme une suite d'écrans fixes de 1440 x 900, réduits par un zoom.

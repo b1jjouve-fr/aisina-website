@@ -6,6 +6,52 @@ window.AISINA = window.AISINA || {};
 /* ---------------------------------------------------------------
    Accueil (index.html) - defilement ecran par ecran, zoom, parallaxe
    --------------------------------------------------------------- */
+/* Envoi d'un formulaire vers son fichier PHP.
+
+   Les champs ne sont pas tenus par l'etat du composant : on les lit dans le
+   document au moment du clic. C'est volontaire — un champ controle par l'etat
+   serait redessine a chaque frappe par le moteur, avec le risque de deplacer
+   le curseur dans le texte.
+
+   Rend un objet : { ok: true } ou { erreurs: {...} } ou { message: '...' }. */
+window.AISINA.envoyer = async function (idFormulaire, adresse, extras) {
+  const bloc = document.getElementById(idFormulaire);
+  if (!bloc) return { message: "Le formulaire est introuvable." };
+
+  const donnees = new FormData();
+  bloc.querySelectorAll('[name]').forEach((champ) => {
+    donnees.append(champ.name, champ.value || '');
+  });
+  for (const cle in (extras || {})) donnees.append(cle, extras[cle]);
+
+  let reponse;
+  try {
+    reponse = await fetch(adresse, {
+      method: 'POST',
+      body: donnees,
+      headers: { 'Accept': 'application/json' },
+    });
+  } catch (e) {
+    /* Hors ligne, ou page ouverte par double-clic (file://) : dans ce cas il
+       n'y a pas de serveur pour executer le PHP. */
+    return { message: "L'envoi n'a pas abouti. Verifiez votre connexion, ou ecrivez-nous directement." };
+  }
+
+  let charge = null;
+  try { charge = await reponse.json(); } catch (e) { charge = null; }
+
+  if (reponse.ok && charge && charge.ok) return { ok: true };
+  if (charge && charge.erreurs) return { erreurs: charge.erreurs };
+  if (charge && charge.message) return { message: charge.message };
+  return { message: "L'envoi a echoue. Reessayez dans un instant." };
+};
+
+/* Vide les champs d'un formulaire, pour en reecrire un autre apres coup. */
+window.AISINA.viderFormulaire = function (idFormulaire) {
+  const bloc = document.getElementById(idFormulaire);
+  if (bloc) bloc.querySelectorAll('[name]').forEach((c) => { c.value = ''; });
+};
+
 window.AISINA.accueil = function (DCLogic) {
   /* Largeur en dessous de laquelle la page passe en mise en page mobile
      (doit rester en accord avec la requete media de css/mobile.css). */
@@ -15,10 +61,14 @@ window.AISINA.accueil = function (DCLogic) {
   /* contenu:equipe-identifiants */
   const MEMBRES = ['m0', 'm1', 'm2', 'm3', 'm4'];
   /* /contenu:equipe-identifiants */
+  /* Doit correspondre mot pour mot à la liste PROFILS de contact.php :
+     une valeur inconnue y est ignorée. */
+  const PROFILS = ['Investisseur ou financeur', 'Studio', 'Créateur indépendant', 'Autre'];
+  const ORDRE_CONTACT = ['nom', 'email', 'message'];
   return class Component extends DCLogic {
     constructor(...args) {
     super(...args);
-    this.state = { fade: false, flat: false, mobile: false, menu: false, still: false, vuA: false, vuB: false, z: 1, vhd: 900, vwd: 1440, sS: 1, open: false, leaving: false, nav: 'studio', p: 0, slide: 0, ar: 0, active: -2, who: 0, sent: false,
+    this.state = { fade: false, flat: false, mobile: false, menu: false, still: false, vuA: false, vuB: false, envoi: false, erreurs: null, msg: '', z: 1, vhd: 900, vwd: 1440, sS: 1, open: false, leaving: false, nav: 'studio', p: 0, slide: 0, ar: 0, active: -2, who: 0, sent: false,
       seenM: false, seenJ: false, seenE: false, seenC: false, offH: false, offM: true, offE: true, offC: true };
     this.auto = 0;
     this.inJ = false;
@@ -340,6 +390,11 @@ window.AISINA.accueil = function (DCLogic) {
     const base = "cursor: pointer; padding: 10px 16px; border-radius: 999px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px; ";
     const chip = (k) => base + (w === k ? 'background: rgba(243, 238, 227, 0.16); border: 1px solid #F3EEE3; color: #F3EEE3;' : 'background: transparent; border: 1px solid rgba(201, 191, 174, 0.5); color: #C9BFAE;');
 
+    /* Les messages d'erreur, dans l'ordre des champs du formulaire. */
+    const lignesErr = (S.erreurs ? ORDRE_CONTACT.filter((k) => S.erreurs[k]).map((k) => S.erreurs[k]) : [])
+      .concat(S.msg ? [S.msg] : []);
+    const errTexte = lignesErr.join('\n');
+
     const L = S.leaving, nv = S.nav;
     const to = (id, blk) => (ev) => { if (ev && ev.preventDefault) ev.preventDefault(); if (this.state.menu) this.setState({ menu: false }); this.go(id, blk); };
     const sec = (seen, off) => 'g snap' + (seen ? ' in' : '') + (off ? ' off' : '');
@@ -383,11 +438,25 @@ window.AISINA.accueil = function (DCLogic) {
     ph: w === 1 ? 'Parlez-nous de votre studio, du profil ou de la mission que vous cherchez.' : 'Votre message',
     chip0: chip(0), chip1: chip(1), chip2: chip(2), chip3: chip(3),
     pick0: () => this.setState({ who: 0 }), pick1: () => this.setState({ who: 1 }), pick2: () => this.setState({ who: 2 }), pick3: () => this.setState({ who: 3 }),
-    send: () => this.setState({ sent: true }),
+    send: async () => {
+    if (this.state.envoi) return;
+    this.setState({ envoi: true, erreurs: null, msg: '' });
+    const r = await window.AISINA.envoyer('form-contact', 'contact.php',
+      { profil: PROFILS[this.state.who] || '' });
+    if (r.ok) {
+    window.AISINA.viderFormulaire('form-contact');
+    this.setState({ envoi: false, sent: true });
+    return;
+    }
+    this.setState({ envoi: false, erreurs: r.erreurs || null, msg: r.message || '' });
+    },
+    envoiLabel: S.envoi ? 'Envoi en cours…' : 'Envoyer le message →',
+    errTexte: errTexte,
+    errStyle: errTexte ? '' : 'display: none;',
     taChk: (e) => { const t = e && e.target; if (!t) return; const over = t.scrollHeight > t.clientHeight + 2 && t.scrollTop + t.clientHeight < t.scrollHeight - 2; if (over !== !!this.state.fade) this.setState({ fade: over }); },
     fadeO: this.state.fade ? 1 : 0,
     noop: (ev) => { if (ev && ev.preventDefault) ev.preventDefault(); },
-    again: () => this.setState({ sent: false }),
+    again: () => this.setState({ sent: false, erreurs: null, msg: '' }),
     formStyle: S.sent ? 'display: none;' : '',
     doneStyle: S.sent ? '' : 'display: none;'
     };
@@ -399,10 +468,13 @@ window.AISINA.accueil = function (DCLogic) {
    Team building (team-building.html) - formulaire de contact
    --------------------------------------------------------------- */
 window.AISINA.teamBuilding = function (DCLogic) {
+  /* Doit correspondre mot pour mot a la liste PARTICIPANTS de murder.php. */
+  const PARTICIPANTS = ['Moins de 15', '15 à 40', 'Plus de 40', 'Pas encore défini'];
+  const ORDRE_MURDER = ['nom', 'entreprise', 'email', 'telephone', 'message'];
   return class Component extends DCLogic {
     constructor(...args) {
     super(...args);
-    this.state = { n: 0, sent: false, fade: false, menu: false };
+    this.state = { n: 0, sent: false, fade: false, menu: false, envoi: false, erreurs: null, msg: '' };
     this.onEchap = (ev) => {
     if (ev.key === 'Escape' && this.state.menu) this.setState({ menu: false });
     };
@@ -423,6 +495,11 @@ window.AISINA.teamBuilding = function (DCLogic) {
     const base = "cursor: pointer; padding: 9px 14px; border-radius: 999px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; font-size: 10px; ";
     const chip = (k) => base + (n === k ? 'background: rgba(243, 238, 227, 0.16); border: 1px solid #F3EEE3; color: #F3EEE3;' : 'background: transparent; border: 1px solid rgba(201, 191, 174, 0.5); color: #C9BFAE;');
     const sent = this.state.sent;
+    const S = this.state;
+    /* Les messages d'erreur, dans l'ordre des champs du formulaire. */
+    const lignesErr = (S.erreurs ? ORDRE_MURDER.filter((k) => S.erreurs[k]).map((k) => S.erreurs[k]) : [])
+      .concat(S.msg ? [S.msg] : []);
+    const errTexte = lignesErr.join('\n');
     return {
     rootClass: this.state.menu ? 'menu-ouvert' : '',
     menuOuvert: this.state.menu ? 'true' : 'false',
@@ -434,10 +511,24 @@ window.AISINA.teamBuilding = function (DCLogic) {
     pick1: () => this.setState({ n: 1 }),
     pick2: () => this.setState({ n: 2 }),
     pick3: () => this.setState({ n: 3 }),
-    send: () => this.setState({ sent: true }),
+    send: async () => {
+    if (this.state.envoi) return;
+    this.setState({ envoi: true, erreurs: null, msg: '' });
+    const r = await window.AISINA.envoyer('form-murder', 'murder.php',
+      { participants: PARTICIPANTS[this.state.n] || '' });
+    if (r.ok) {
+    window.AISINA.viderFormulaire('form-murder');
+    this.setState({ envoi: false, sent: true });
+    return;
+    }
+    this.setState({ envoi: false, erreurs: r.erreurs || null, msg: r.message || '' });
+    },
+    envoiLabel: S.envoi ? 'Envoi en cours…' : 'Réservez mon appel',
+    errTexte: errTexte,
+    errStyle: errTexte ? '' : 'display: none;',
     taChk: (e) => { const t = e && e.target; if (!t) return; const over = t.scrollHeight > t.clientHeight + 2 && t.scrollTop + t.clientHeight < t.scrollHeight - 2; if (over !== !!this.state.fade) this.setState({ fade: over }); },
     fadeO: this.state.fade ? 1 : 0,
-    again: () => this.setState({ sent: false }),
+    again: () => this.setState({ sent: false, erreurs: null, msg: '' }),
     formStyle: sent ? 'display: none;' : '',
     doneStyle: sent ? '' : 'display: none;'
     };

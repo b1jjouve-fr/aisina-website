@@ -31,7 +31,7 @@ body { margin: 0; background: #0C1419; }
 .err-foret { position: absolute; left: -8%; top: -6%; width: 116%; height: 118%; }
 .err-foret .pa {
   position: absolute; inset: 0;
-  background: url(../assets/d591d22d59771371b623ee155c2773ff.jpg) 50% 34% / cover no-repeat;
+  background: url(../assets/9db14b673327e1e78317a70674a71fef.webp) 50% 34% / cover no-repeat;
   filter: brightness(.74) saturate(.9);
 }
 

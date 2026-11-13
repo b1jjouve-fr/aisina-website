@@ -1,3 +1,8 @@
+# Page affichée quand une adresse n'existe pas. GitHub Pages le faisait tout
+# seul ; Apache a besoin de cette ligne, sinon c'est sa page d'erreur grise
+# qui s'affiche à la place de 404.html.
+ErrorDocument 404 /404.html
+
 # Le journal du mode test contient des noms, des adresses et des téléphones :
 # il ne doit jamais être lisible par le web. Voir contact.php et murder.php.
 <Files "mails-test.log">

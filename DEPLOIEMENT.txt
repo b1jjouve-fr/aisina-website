@@ -1,0 +1,127 @@
+AISINA — ce qu'il faut pour mettre le site en ligne
+===================================================
+
+Le site est statique : des fichiers HTML, CSS, JS et images, plus deux fichiers
+PHP qui reçoivent les formulaires. Pas de base de données, pas de composer, pas
+d'étape de construction. On dépose le contenu du dépôt, et c'est tout.
+
+
+1. L'hébergement
+----------------
+  PHP 8.0 au minimum. Le code utilise str_contains, str_ends_with et le type
+  mixed, apparus en 8.0. Essayé sur PHP 8.3.30 ; 8.2 ou 8.3 sont les versions
+  raisonnables aujourd'hui, 8.0 et 8.1 ne sont plus maintenues.
+
+  Extensions : filter et hash (présentes partout), mbstring (recommandée ;
+  son absence est gérée, le comptage des caractères est juste plus sévère).
+
+  Le serveur doit pouvoir résoudre les noms de domaine. Les formulaires
+  vérifient que le domaine d'une adresse e-mail annonce bien un serveur de
+  courrier (checkdnsrr), pour écarter les adresses inventées. Si la résolution
+  ne marche pas du tout, le code s'en aperçoit et laisse passer plutôt que de
+  bloquer tout le monde.
+
+  Racine du site (document root) = la racine du dépôt, là où se trouve
+  index.html.
+
+
+2. L'envoi des courriels
+------------------------
+  Les deux fichiers PHP utilisent la fonction mail(), avec le paramètre -f pour
+  fixer l'expéditeur d'enveloppe. Il faut donc :
+
+    - un serveur d'envoi configuré sur l'hébergement ;
+    - que le cinquième paramètre de mail() ne soit pas bloqué.
+
+  Si l'hébergement n'a pas d'envoi local, ou si les messages tombent en
+  indésirables malgré le point 3, on peut passer à un envoi SMTP authentifié :
+  cela change une vingtaine de lignes dans chaque fichier.
+
+
+3. Le domaine et la délivrabilité
+---------------------------------
+  Le site doit être servi en HTTPS sur aisina.net. Les balises canoniques et de
+  partage (Open Graph) pointent toutes vers https://aisina.net/ : si le site
+  répond ailleurs, les moteurs et les réseaux sociaux verront une incohérence.
+  Prévoir la redirection de www vers le domaine nu, ou l'inverse, mais une
+  seule des deux formes doit répondre.
+
+  Pour que les messages des formulaires n'arrivent pas en indésirables, il faut
+  un enregistrement SPF, et de préférence DKIM, sur le domaine d'envoi. C'est
+  le point qui fait la différence, bien plus que le code.
+
+
+4. Les deux réglages à remplir
+------------------------------
+  En tête de contact.php ET de murder.php, lignes 18 et 22 :
+
+    const DESTINATAIRE = 'CHANGEZ-MOI@aisina.net';   <- l'adresse qui reçoit
+    const EXPEDITEUR   = 'site@aisina.net';          <- l'adresse d'expédition
+
+  L'expéditeur doit appartenir au domaine qui envoie, sinon les messages
+  partent en indésirables. La valeur CHANGEZ-MOI est volontairement visible :
+  tant qu'elle est là, le réglage n'a pas été fait.
+
+
+5. Le fichier .htaccess
+-----------------------
+  Il fait deux choses, et suppose un Apache qui autorise les .htaccess
+  (AllowOverride) :
+
+    - ErrorDocument 404 /404.html, pour que la page d'erreur maison s'affiche.
+      Sans cette ligne, Apache montre sa page grise à la place ;
+    - il refuse l'accès au fichier mails-test.log (voir le point 6).
+
+  Sous nginx, l'équivalent dans le bloc server :
+
+    error_page 404 /404.html;
+    location = /mails-test.log { deny all; }
+
+
+6. Le mode test, et pourquoi il ne gênera pas en production
+-----------------------------------------------------------
+  Quand le site est servi en local, les formulaires n'expédient rien : ils
+  écrivent les messages dans mails-test.log, à la racine. Le déclencheur est
+  l'adresse demandée par le navigateur — localhost, 127.0.0.1, ::1, ou un nom
+  finissant en .localhost ou .test — et non un réglage qu'on pourrait oublier
+  d'éteindre. Sur aisina.net, le mode test ne s'active donc jamais.
+
+  Seule précaution : ne pas héberger le site sur un nom de domaine finissant
+  en .test, ce qui l'activerait sans qu'on le veuille.
+
+  En production, aucun droit d'écriture particulier n'est nécessaire dans le
+  dossier du site. Le seul fichier écrit est un témoin anti-spam, dans le
+  dossier temporaire du système (un envoi par minute et par adresse IP).
+
+
+7. Ce qu'on peut ne pas déployer
+--------------------------------
+  Sans conséquence si c'est déployé, mais inutile au visiteur :
+
+    outils/             le script qui fabrique les fiches depuis content/
+    content/            les textes et données sources, en JSON
+    Manifeste.dc.html   la source du bloc manifeste, déjà intégrée à index.html
+    LISEZMOI.txt        la documentation du projet
+    DEPLOIEMENT.txt     ce fichier
+
+  À ne jamais déployer : mails-test.log (il est déjà ignoré par git).
+
+
+8. Pour vérifier que tout marche, une fois en ligne
+---------------------------------------------------
+  a. Ouvrir https://aisina.net/ : la page d'accueil doit s'afficher et défiler.
+  b. Ouvrir une adresse au hasard, par exemple https://aisina.net/zzz :
+     la page 404 maison doit apparaître, pas celle du serveur.
+  c. Envoyer le formulaire de contact de l'accueil avec une vraie adresse :
+     le panneau « Message envoyé » doit s'afficher, et le courriel arriver.
+  d. Recommencer tout de suite : le message « Merci de patienter un instant »
+     doit apparaître. C'est la limite d'un envoi par minute, c'est normal.
+  e. Essayer une adresse volontairement fausse, du genre jean@zzz-invente.fr :
+     elle doit être refusée avec « Ce domaine ne reçoit pas de courrier ».
+  f. Faire la même chose sur team-building.html.
+  g. Vérifier que https://aisina.net/mails-test.log répond 403 ou 404,
+     jamais le contenu du fichier.
+
+  Si un envoi échoue, le détail est dans le journal d'erreurs PHP de
+  l'hébergement : les deux fichiers y écrivent une ligne commençant par
+  « aisina/contact.php » ou « aisina/murder.php ».
